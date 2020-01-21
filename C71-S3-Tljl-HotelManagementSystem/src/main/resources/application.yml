@@ -1,0 +1,4 @@
+server: 
+  port: 80
+  
+#log日志等级： debug(所有的调试信息均要被调试出来) error warn info
