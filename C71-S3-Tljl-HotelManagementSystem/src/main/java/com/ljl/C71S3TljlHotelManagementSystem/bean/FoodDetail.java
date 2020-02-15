@@ -1,11 +1,11 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class FoodDetail {
     private Integer id;
 
-    private Timestamp diningTime;
+    private Date diningTime;
 
     private Integer dishId;
 
@@ -19,11 +19,11 @@ public class FoodDetail {
         this.id = id;
     }
 
-    public Timestamp getDiningTime() {
+    public Date getDiningTime() {
         return diningTime;
     }
 
-    public void setDiningTime(Timestamp diningTime) {
+    public void setDiningTime(Date diningTime) {
         this.diningTime = diningTime;
     }
 

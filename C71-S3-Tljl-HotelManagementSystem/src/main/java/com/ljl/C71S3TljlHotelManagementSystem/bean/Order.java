@@ -1,6 +1,6 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class Order {
     private Integer id;
@@ -9,7 +9,7 @@ public class Order {
 
     private Integer userId;
 
-    private Timestamp orderTime;
+    private Date orderTime;
 
     private Double consumptionAmount;
 
@@ -45,11 +45,11 @@ public class Order {
         this.userId = userId;
     }
 
-    public Timestamp getOrderTime() {
+    public Date getOrderTime() {
         return orderTime;
     }
 
-    public void setOrderTime(Timestamp orderTime) {
+    public void setOrderTime(Date orderTime) {
         this.orderTime = orderTime;
     }
 

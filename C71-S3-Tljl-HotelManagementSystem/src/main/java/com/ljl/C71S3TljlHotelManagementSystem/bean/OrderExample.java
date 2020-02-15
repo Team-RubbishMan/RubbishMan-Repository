@@ -1,7 +1,7 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OrderExample {
@@ -295,52 +295,52 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeEqualTo(Timestamp value) {
+        public Criteria andOrderTimeEqualTo(Date value) {
             addCriterion("order_time =", value, "orderTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeNotEqualTo(Timestamp value) {
+        public Criteria andOrderTimeNotEqualTo(Date value) {
             addCriterion("order_time <>", value, "orderTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeGreaterThan(Timestamp value) {
+        public Criteria andOrderTimeGreaterThan(Date value) {
             addCriterion("order_time >", value, "orderTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeGreaterThanOrEqualTo(Timestamp value) {
+        public Criteria andOrderTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("order_time >=", value, "orderTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeLessThan(Timestamp value) {
+        public Criteria andOrderTimeLessThan(Date value) {
             addCriterion("order_time <", value, "orderTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeLessThanOrEqualTo(Timestamp value) {
+        public Criteria andOrderTimeLessThanOrEqualTo(Date value) {
             addCriterion("order_time <=", value, "orderTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeIn(List<Timestamp> values) {
+        public Criteria andOrderTimeIn(List<Date> values) {
             addCriterion("order_time in", values, "orderTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeNotIn(List<Timestamp> values) {
+        public Criteria andOrderTimeNotIn(List<Date> values) {
             addCriterion("order_time not in", values, "orderTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBetween(Timestamp value1, Timestamp value2) {
+        public Criteria andOrderTimeBetween(Date value1, Date value2) {
             addCriterion("order_time between", value1, value2, "orderTime");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeNotBetween(Timestamp value1, Timestamp value2) {
+        public Criteria andOrderTimeNotBetween(Date value1, Date value2) {
             addCriterion("order_time not between", value1, value2, "orderTime");
             return (Criteria) this;
         }

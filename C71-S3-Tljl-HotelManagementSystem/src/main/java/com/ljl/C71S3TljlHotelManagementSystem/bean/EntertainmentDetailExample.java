@@ -1,7 +1,7 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EntertainmentDetailExample {
@@ -175,52 +175,52 @@ public class EntertainmentDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeEqualTo(Timestamp value) {
+        public Criteria andPayTimeEqualTo(Date value) {
             addCriterion("pay_time =", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeNotEqualTo(Timestamp value) {
+        public Criteria andPayTimeNotEqualTo(Date value) {
             addCriterion("pay_time <>", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeGreaterThan(Timestamp value) {
+        public Criteria andPayTimeGreaterThan(Date value) {
             addCriterion("pay_time >", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeGreaterThanOrEqualTo(Timestamp value) {
+        public Criteria andPayTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("pay_time >=", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeLessThan(Timestamp value) {
+        public Criteria andPayTimeLessThan(Date value) {
             addCriterion("pay_time <", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeLessThanOrEqualTo(Timestamp value) {
+        public Criteria andPayTimeLessThanOrEqualTo(Date value) {
             addCriterion("pay_time <=", value, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeIn(List<Timestamp> values) {
+        public Criteria andPayTimeIn(List<Date> values) {
             addCriterion("pay_time in", values, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeNotIn(List<Timestamp> values) {
+        public Criteria andPayTimeNotIn(List<Date> values) {
             addCriterion("pay_time not in", values, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeBetween(Timestamp value1, Timestamp value2) {
+        public Criteria andPayTimeBetween(Date value1, Date value2) {
             addCriterion("pay_time between", value1, value2, "payTime");
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeNotBetween(Timestamp value1, Timestamp value2) {
+        public Criteria andPayTimeNotBetween(Date value1, Date value2) {
             addCriterion("pay_time not between", value1, value2, "payTime");
             return (Criteria) this;
         }

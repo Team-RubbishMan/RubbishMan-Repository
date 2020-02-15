@@ -1,13 +1,13 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class CheckInDetail {
     private Integer id;
 
-    private Timestamp checkInTime;
+    private Date checkInTime;
 
-    private Timestamp checkOutTime;
+    private Date checkOutTime;
 
     private Integer roomId;
 
@@ -27,19 +27,19 @@ public class CheckInDetail {
         this.id = id;
     }
 
-    public Timestamp getCheckInTime() {
+    public Date getCheckInTime() {
         return checkInTime;
     }
 
-    public void setCheckInTime(Timestamp checkInTime) {
+    public void setCheckInTime(Date checkInTime) {
         this.checkInTime = checkInTime;
     }
 
-    public Timestamp getCheckOutTime() {
+    public Date getCheckOutTime() {
         return checkOutTime;
     }
 
-    public void setCheckOutTime(Timestamp checkOutTime) {
+    public void setCheckOutTime(Date checkOutTime) {
         this.checkOutTime = checkOutTime;
     }
 

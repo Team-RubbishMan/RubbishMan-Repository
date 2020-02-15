@@ -1,7 +1,7 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CheckInDetailExample {
@@ -175,52 +175,52 @@ public class CheckInDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andCheckInTimeEqualTo(Timestamp value) {
+        public Criteria andCheckInTimeEqualTo(Date value) {
             addCriterion("check_in_time =", value, "checkInTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckInTimeNotEqualTo(Timestamp value) {
+        public Criteria andCheckInTimeNotEqualTo(Date value) {
             addCriterion("check_in_time <>", value, "checkInTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckInTimeGreaterThan(Timestamp value) {
+        public Criteria andCheckInTimeGreaterThan(Date value) {
             addCriterion("check_in_time >", value, "checkInTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckInTimeGreaterThanOrEqualTo(Timestamp value) {
+        public Criteria andCheckInTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("check_in_time >=", value, "checkInTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckInTimeLessThan(Timestamp value) {
+        public Criteria andCheckInTimeLessThan(Date value) {
             addCriterion("check_in_time <", value, "checkInTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckInTimeLessThanOrEqualTo(Timestamp value) {
+        public Criteria andCheckInTimeLessThanOrEqualTo(Date value) {
             addCriterion("check_in_time <=", value, "checkInTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckInTimeIn(List<Timestamp> values) {
+        public Criteria andCheckInTimeIn(List<Date> values) {
             addCriterion("check_in_time in", values, "checkInTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckInTimeNotIn(List<Timestamp> values) {
+        public Criteria andCheckInTimeNotIn(List<Date> values) {
             addCriterion("check_in_time not in", values, "checkInTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckInTimeBetween(Timestamp value1, Timestamp value2) {
+        public Criteria andCheckInTimeBetween(Date value1, Date value2) {
             addCriterion("check_in_time between", value1, value2, "checkInTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckInTimeNotBetween(Timestamp value1, Timestamp value2) {
+        public Criteria andCheckInTimeNotBetween(Date value1, Date value2) {
             addCriterion("check_in_time not between", value1, value2, "checkInTime");
             return (Criteria) this;
         }
@@ -235,52 +235,52 @@ public class CheckInDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andCheckOutTimeEqualTo(Timestamp value) {
+        public Criteria andCheckOutTimeEqualTo(Date value) {
             addCriterion("check_out_time =", value, "checkOutTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckOutTimeNotEqualTo(Timestamp value) {
+        public Criteria andCheckOutTimeNotEqualTo(Date value) {
             addCriterion("check_out_time <>", value, "checkOutTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckOutTimeGreaterThan(Timestamp value) {
+        public Criteria andCheckOutTimeGreaterThan(Date value) {
             addCriterion("check_out_time >", value, "checkOutTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckOutTimeGreaterThanOrEqualTo(Timestamp value) {
+        public Criteria andCheckOutTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("check_out_time >=", value, "checkOutTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckOutTimeLessThan(Timestamp value) {
+        public Criteria andCheckOutTimeLessThan(Date value) {
             addCriterion("check_out_time <", value, "checkOutTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckOutTimeLessThanOrEqualTo(Timestamp value) {
+        public Criteria andCheckOutTimeLessThanOrEqualTo(Date value) {
             addCriterion("check_out_time <=", value, "checkOutTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckOutTimeIn(List<Timestamp> values) {
+        public Criteria andCheckOutTimeIn(List<Date> values) {
             addCriterion("check_out_time in", values, "checkOutTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckOutTimeNotIn(List<Timestamp> values) {
+        public Criteria andCheckOutTimeNotIn(List<Date> values) {
             addCriterion("check_out_time not in", values, "checkOutTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckOutTimeBetween(Timestamp value1, Timestamp value2) {
+        public Criteria andCheckOutTimeBetween(Date value1, Date value2) {
             addCriterion("check_out_time between", value1, value2, "checkOutTime");
             return (Criteria) this;
         }
 
-        public Criteria andCheckOutTimeNotBetween(Timestamp value1, Timestamp value2) {
+        public Criteria andCheckOutTimeNotBetween(Date value1, Date value2) {
             addCriterion("check_out_time not between", value1, value2, "checkOutTime");
             return (Criteria) this;
         }

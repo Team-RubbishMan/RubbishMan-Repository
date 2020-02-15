@@ -37,31 +37,31 @@
 			<generatedKey column="id" sqlStatement="mysql" identity="true"/>
 		</table>
 		
-		<table tableName="order">
-			<!-- 配置日期字段 -->
+		<!-- <table tableName="order">
+			配置日期字段
 			<columnOverride column="order_time" javaType="java.sql.Timestamp"></columnOverride>
 		</table>
 		
 		<table tableName="food_order">
-			<!-- 配置日期字段 -->
+			配置日期字段
 			<columnOverride column="pay_time" javaType="java.sql.Timestamp"></columnOverride>
 		</table>
 		
 		<table tableName="food_detail">
-			<!-- 配置日期字段 -->
+			配置日期字段
 			<columnOverride column="dining_time" javaType="java.sql.Timestamp"></columnOverride>
 		</table>
 		
 		<table tableName="entertainment_detail">
-			<!-- 配置日期字段 -->
+			配置日期字段
 			<columnOverride column="pay_time" javaType="java.sql.Timestamp"></columnOverride>
 		</table>
 		
 		<table tableName="check_in_detail">
-			<!-- 配置日期字段 -->
+			配置日期字段
 			<columnOverride column="check_in_time" javaType="java.sql.Timestamp"></columnOverride>
 			<columnOverride column="check_out_time" javaType="java.sql.Timestamp"></columnOverride>
-		</table>
+		</table> -->
 
 	</context>
 </generatorConfiguration>

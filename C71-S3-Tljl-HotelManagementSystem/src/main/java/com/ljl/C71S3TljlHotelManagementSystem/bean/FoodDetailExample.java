@@ -1,7 +1,7 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FoodDetailExample {
@@ -175,52 +175,52 @@ public class FoodDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andDiningTimeEqualTo(Timestamp value) {
+        public Criteria andDiningTimeEqualTo(Date value) {
             addCriterion("dining_time =", value, "diningTime");
             return (Criteria) this;
         }
 
-        public Criteria andDiningTimeNotEqualTo(Timestamp value) {
+        public Criteria andDiningTimeNotEqualTo(Date value) {
             addCriterion("dining_time <>", value, "diningTime");
             return (Criteria) this;
         }
 
-        public Criteria andDiningTimeGreaterThan(Timestamp value) {
+        public Criteria andDiningTimeGreaterThan(Date value) {
             addCriterion("dining_time >", value, "diningTime");
             return (Criteria) this;
         }
 
-        public Criteria andDiningTimeGreaterThanOrEqualTo(Timestamp value) {
+        public Criteria andDiningTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("dining_time >=", value, "diningTime");
             return (Criteria) this;
         }
 
-        public Criteria andDiningTimeLessThan(Timestamp value) {
+        public Criteria andDiningTimeLessThan(Date value) {
             addCriterion("dining_time <", value, "diningTime");
             return (Criteria) this;
         }
 
-        public Criteria andDiningTimeLessThanOrEqualTo(Timestamp value) {
+        public Criteria andDiningTimeLessThanOrEqualTo(Date value) {
             addCriterion("dining_time <=", value, "diningTime");
             return (Criteria) this;
         }
 
-        public Criteria andDiningTimeIn(List<Timestamp> values) {
+        public Criteria andDiningTimeIn(List<Date> values) {
             addCriterion("dining_time in", values, "diningTime");
             return (Criteria) this;
         }
 
-        public Criteria andDiningTimeNotIn(List<Timestamp> values) {
+        public Criteria andDiningTimeNotIn(List<Date> values) {
             addCriterion("dining_time not in", values, "diningTime");
             return (Criteria) this;
         }
 
-        public Criteria andDiningTimeBetween(Timestamp value1, Timestamp value2) {
+        public Criteria andDiningTimeBetween(Date value1, Date value2) {
             addCriterion("dining_time between", value1, value2, "diningTime");
             return (Criteria) this;
         }
 
-        public Criteria andDiningTimeNotBetween(Timestamp value1, Timestamp value2) {
+        public Criteria andDiningTimeNotBetween(Date value1, Date value2) {
             addCriterion("dining_time not between", value1, value2, "diningTime");
             return (Criteria) this;
         }

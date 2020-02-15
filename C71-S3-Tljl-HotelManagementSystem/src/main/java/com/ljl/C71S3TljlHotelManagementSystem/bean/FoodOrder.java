@@ -1,11 +1,11 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class FoodOrder {
     private Integer id;
 
-    private Timestamp payTime;
+    private Date payTime;
 
     private Double amount;
 
@@ -19,11 +19,11 @@ public class FoodOrder {
         this.id = id;
     }
 
-    public Timestamp getPayTime() {
+    public Date getPayTime() {
         return payTime;
     }
 
-    public void setPayTime(Timestamp payTime) {
+    public void setPayTime(Date payTime) {
         this.payTime = payTime;
     }
 
