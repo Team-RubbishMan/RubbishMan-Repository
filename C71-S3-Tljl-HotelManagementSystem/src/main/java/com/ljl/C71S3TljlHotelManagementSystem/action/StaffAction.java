@@ -16,6 +16,10 @@ public class StaffAction {
 	public String frame() {
 		return "back/frame";
 	}
+	@GetMapping("/back/signup.html")
+	public String signup() {
+		return "/back/signup";
+	}
 	//
 	@PostMapping("/back/dologin")
 	public ModelAndView dologin(@RequestParam("email")String name,@RequestParam("password")String password) {
