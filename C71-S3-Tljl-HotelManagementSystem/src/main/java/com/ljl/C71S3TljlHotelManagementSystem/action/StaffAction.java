@@ -26,6 +26,7 @@ public class StaffAction {
 		
 		return "back/frame";
 	}
+<<<<<<< HEAD
 	
 	@GetMapping("/back/signup.html")
 	public String signup() {
@@ -43,5 +44,10 @@ public class StaffAction {
 			return new ModelAndView("redirect:/back/login.html");
 		}
 		
+=======
+	@GetMapping("/back/signup.html")
+	public String signup() {
+		return "/back/signup";
+>>>>>>> branch 'master' of https://github.com/Team-RubbishMan/RubbishMan-Repository.git
 	}
 }
