@@ -7,4 +7,9 @@ spring:
       username: root
       password: a
       driver-class-name: com.mysql.jdbc.Driver
+
+logging:
+  level:
+    com:
+      ljl: debug
 #log日志等级： debug(所有的调试信息均要被调试出来) error warn info

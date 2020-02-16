@@ -80,4 +80,12 @@ public class Staff {
     public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
     }
+
+	@Override
+	public String toString() {
+		return "Staff [id=" + id + ", username=" + username + ", name=" + name + ", gender=" + gender + ", idCard="
+				+ idCard + ", password=" + password + ", telephone=" + telephone + ", departmentId=" + departmentId
+				+ "]";
+	}
+    
 }
