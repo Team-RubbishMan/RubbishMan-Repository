@@ -7,6 +7,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="telephone" jdbcType="VARCHAR" property="telephone" />
     <result column="department_id" jdbcType="INTEGER" property="departmentId" />
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, name, gender, id_card, password, telephone, department_id
+    id, username, name, gender, id_card, email, password, telephone, department_id
   </sql>
   <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.StaffExample" resultMap="BaseResultMap">
     select
@@ -107,11 +108,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into staff (username, name, gender, 
-      id_card, password, telephone, 
-      department_id)
+      id_card, email, password, 
+      telephone, department_id)
     values (#{username,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
-      #{idCard,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
-      #{departmentId,jdbcType=INTEGER})
+      #{idCard,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Staff">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -130,6 +131,9 @@
       </if>
       <if test="idCard != null">
         id_card,
+      </if>
+      <if test="email != null">
+        email,
       </if>
       <if test="password != null">
         password,
@@ -153,6 +157,9 @@
       </if>
       <if test="idCard != null">
         #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
@@ -189,6 +196,9 @@
       <if test="record.idCard != null">
         id_card = #{record.idCard,jdbcType=VARCHAR},
       </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
       </if>
@@ -210,6 +220,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       gender = #{record.gender,jdbcType=VARCHAR},
       id_card = #{record.idCard,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       telephone = #{record.telephone,jdbcType=VARCHAR},
       department_id = #{record.departmentId,jdbcType=INTEGER}
@@ -232,6 +243,9 @@
       <if test="idCard != null">
         id_card = #{idCard,jdbcType=VARCHAR},
       </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
@@ -250,6 +264,7 @@
       name = #{name,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=VARCHAR},
       id_card = #{idCard,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       telephone = #{telephone,jdbcType=VARCHAR},
       department_id = #{departmentId,jdbcType=INTEGER}

@@ -11,6 +11,8 @@ public class Staff {
 
     private String idCard;
 
+    private String email;
+
     private String password;
 
     private String telephone;
@@ -57,6 +59,14 @@ public class Staff {
         this.idCard = idCard == null ? null : idCard.trim();
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
     public String getPassword() {
         return password;
     }
@@ -84,8 +94,8 @@ public class Staff {
 	@Override
 	public String toString() {
 		return "Staff [id=" + id + ", username=" + username + ", name=" + name + ", gender=" + gender + ", idCard="
-				+ idCard + ", password=" + password + ", telephone=" + telephone + ", departmentId=" + departmentId
-				+ "]";
+				+ idCard + ", email=" + email + ", password=" + password + ", telephone=" + telephone
+				+ ", departmentId=" + departmentId + "]";
 	}
     
 }

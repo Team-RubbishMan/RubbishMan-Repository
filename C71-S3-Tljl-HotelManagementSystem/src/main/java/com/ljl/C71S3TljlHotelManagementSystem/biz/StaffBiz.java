@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.ljl.C71S3TljlHotelManagementSystem.bean.Staff;
 import com.ljl.C71S3TljlHotelManagementSystem.bean.StaffExample;
-import com.ljl.C71S3TljlHotelManagementSystem.bean.StaffExample.Criteria;
 import com.ljl.C71S3TljlHotelManagementSystem.dao.StaffMapper;
 import com.ljl.C71S3TljlHotelManagementSystem.utils.MD5Util;
 import com.ljl.C71S3TljlHotelManagementSystem.utils.SensitiveInfoHidingUtil;
@@ -35,6 +34,7 @@ public class StaffBiz {
 		objStaffExample.or().andUsernameEqualTo(username).andPasswordEqualTo(objMD5Util.MD5(password));
 		objStaffExample.or().andNameEqualTo(username).andPasswordEqualTo(objMD5Util.MD5(password));
 		objStaffExample.or().andIdCardEqualTo(username).andPasswordEqualTo(objMD5Util.MD5(password));
+		//System.out.println();
 		//存放从数据库中查找到的职员信息
 		List<Staff> lstStaff = staffMapper.selectByExample(objStaffExample);
 		
