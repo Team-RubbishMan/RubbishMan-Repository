@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ljl.C71S3TljlHotelManagementSystem.bean.Staff;
 import com.ljl.C71S3TljlHotelManagementSystem.biz.BizException;
@@ -73,7 +72,7 @@ public class StaffAction {
 		System.out.println("account=" + account);
 		System.out.println("email=====" + email);
 		try {
-			if (staffBiz.usernameIsExsist(account, email)) {
+			if (staffBiz.accountAndEmaiIsNotEmpty(account,email)&&staffBiz.usernameIsNotExsist(account, email)) {
 				String strVerificationCode = staffBiz.sendVerificationCode(email);
 				System.out.println("验证码是========" + strVerificationCode);
 				// 向session插入验证码，用于和用户输入的验证码进行比对
