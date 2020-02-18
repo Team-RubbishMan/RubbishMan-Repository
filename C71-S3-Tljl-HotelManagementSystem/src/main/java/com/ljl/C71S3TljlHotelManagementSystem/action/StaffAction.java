@@ -72,7 +72,7 @@ public class StaffAction {
 		System.out.println("account=" + account);
 		System.out.println("email=====" + email);
 		try {
-			if (staffBiz.accountAndEmaiIsNotEmpty(account,email)&&staffBiz.usernameIsNotExsist(account, email)) {
+			if (staffBiz.accountAndEmaiIsNotEmpty(account,email)&&staffBiz.usernameIsExsist(account, email)) {
 				String strVerificationCode = staffBiz.sendVerificationCode(email);
 				System.out.println("验证码是========" + strVerificationCode);
 				// 向session插入验证码，用于和用户输入的验证码进行比对

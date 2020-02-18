@@ -91,7 +91,7 @@ public class StaffBiz {
 	 * @return 
 	 * @throws BizException 
 	 */
-	public boolean usernameIsNotExsist(String account,String email) throws BizException {
+	public boolean usernameIsExsist(String account,String email) throws BizException {
 		StaffExample objStaffExample=new StaffExample();
 		objStaffExample.or().andUsernameEqualTo(account).andEmailEqualTo(email);
 		objStaffExample.or().andNameEqualTo(account).andEmailEqualTo(email);
