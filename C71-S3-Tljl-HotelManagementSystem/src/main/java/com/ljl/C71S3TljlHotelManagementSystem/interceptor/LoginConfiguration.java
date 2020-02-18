@@ -17,12 +17,13 @@ public class LoginConfiguration implements WebMvcConfigurer {
 		// 添加拦截路径
 		objLoginRegistry.addPathPatterns("/back/**.html");
 		// 排除路径
-		objLoginRegistry.excludePathPatterns("back/login.html");
-		objLoginRegistry.excludePathPatterns("back/signup.html");
-		objLoginRegistry.excludePathPatterns("back/forgetpassword.html");
+		objLoginRegistry.excludePathPatterns("/back/login.html");
+		objLoginRegistry.excludePathPatterns("/back/signup.html");
+		objLoginRegistry.excludePathPatterns("/back/forgetpassword.html");
+		
 		
 		// 排除资源请求
-		objLoginRegistry.excludePathPatterns("/back/**");
+		//objLoginRegistry.excludePathPatterns("/back/**");
 
 		WebMvcConfigurer.super.addInterceptors(registry);
 	}

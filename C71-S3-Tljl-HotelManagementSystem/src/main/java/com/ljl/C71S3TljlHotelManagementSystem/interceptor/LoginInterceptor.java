@@ -18,9 +18,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		String strUrl = request.getRequestURI();
-		if(strUrl.endsWith("login.html") ) {
-			return true;
-		}
+		/*
+		 * if(strUrl.endsWith("login.html") ) { return true; }
+		 */
 		
 		Object objStaff = request.getSession().getAttribute("objStaff");
 		if(objStaff != null) {
