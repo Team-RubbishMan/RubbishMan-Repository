@@ -16,7 +16,18 @@ spring:
       username: root
       password: a
       driver-class-name: com.mysql.jdbc.Driver
-
+      
+   mail: 
+    host: smtp.qq.com
+    username: 799751640@qq.com
+    password: kkyebcnklirybeij
+    default-encoding: UTF-8
+    
+    
+mail: 
+  sender: 
+    addr: 799751640@qq.com
+    
 logging:
   level:
     com:
