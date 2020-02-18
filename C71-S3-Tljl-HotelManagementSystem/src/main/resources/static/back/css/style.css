@@ -1759,6 +1759,17 @@ p.creating {
     font-size: 1em;
     margin: 0.5em 0 0 11em;
 }
+.sub_home  input[type="button"] {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    background: #6164C1;
+    width: 23%;
+    padding: .5em 1em;
+    font-size: 1em;
+    margin: 0.5em 0 0 11em;
+}
 .sub_home input[type="submit"]:hover {
     background-color: #E94E02;
 }
