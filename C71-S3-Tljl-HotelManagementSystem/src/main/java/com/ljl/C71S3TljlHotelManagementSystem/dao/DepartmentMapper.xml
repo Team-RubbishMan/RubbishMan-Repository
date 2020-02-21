@@ -5,9 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
-  <select id="selectById" resultMap="BaseResultMap">
-  	select d.id,d.name from department d,staff s where s.department_id=d.id and s.department_id=#{id};
-  </select>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
