@@ -5,10 +5,8 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="deposit" jdbcType="DOUBLE" property="deposit" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
   </resultMap>
-  <select id="selectRoomTypebyId" resultMap="BaseResultMap">
-  	select t.id,t.type,t.deposit from room_type t, room r where r.room_type_id = t.id and r.id=#{id}
-  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -68,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, type, deposit
+    id, type, deposit, amount
   </sql>
   <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.RoomTypeExample" resultMap="BaseResultMap">
     select
@@ -104,8 +102,10 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into room_type (type, deposit)
-    values (#{type,jdbcType=VARCHAR}, #{deposit,jdbcType=DOUBLE})
+    insert into room_type (type, deposit, amount
+      )
+    values (#{type,jdbcType=VARCHAR}, #{deposit,jdbcType=DOUBLE}, #{amount,jdbcType=DOUBLE}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.RoomType">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -119,6 +119,9 @@
       <if test="deposit != null">
         deposit,
       </if>
+      <if test="amount != null">
+        amount,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="type != null">
@@ -126,6 +129,9 @@
       </if>
       <if test="deposit != null">
         #{deposit,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -147,6 +153,9 @@
       <if test="record.deposit != null">
         deposit = #{record.deposit,jdbcType=DOUBLE},
       </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -156,7 +165,8 @@
     update room_type
     set id = #{record.id,jdbcType=INTEGER},
       type = #{record.type,jdbcType=VARCHAR},
-      deposit = #{record.deposit,jdbcType=DOUBLE}
+      deposit = #{record.deposit,jdbcType=DOUBLE},
+      amount = #{record.amount,jdbcType=DOUBLE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -170,13 +180,17 @@
       <if test="deposit != null">
         deposit = #{deposit,jdbcType=DOUBLE},
       </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.RoomType">
     update room_type
     set type = #{type,jdbcType=VARCHAR},
-      deposit = #{deposit,jdbcType=DOUBLE}
+      deposit = #{deposit,jdbcType=DOUBLE},
+      amount = #{amount,jdbcType=DOUBLE}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

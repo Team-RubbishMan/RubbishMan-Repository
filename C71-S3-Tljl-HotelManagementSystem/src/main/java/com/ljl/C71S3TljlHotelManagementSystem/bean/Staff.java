@@ -23,9 +23,15 @@ public class Staff {
     
     private Department department;
     
-    
 
-    public Department getDepartment() {
+    @Override
+	public String toString() {
+		return "Staff [id=" + id + ", username=" + username + ", name=" + name + ", gender=" + gender + ", idCard="
+				+ idCard + ", email=" + email + ", password=" + password + ", telephone=" + telephone
+				+ ", departmentId=" + departmentId + ", profile=" + profile + ", department=" + department + "]";
+	}
+
+	public Department getDepartment() {
 		return department;
 	}
 
@@ -112,12 +118,4 @@ public class Staff {
     public void setProfile(String profile) {
         this.profile = profile == null ? null : profile.trim();
     }
-
-	@Override
-	public String toString() {
-		return "Staff [id=" + id + ", username=" + username + ", name=" + name + ", gender=" + gender + ", idCard="
-				+ idCard + ", email=" + email + ", password=" + password + ", telephone=" + telephone
-				+ ", departmentId=" + departmentId + ", profile=" + profile + "]";
-	}
-    
 }

@@ -5,7 +5,12 @@ public class Department {
 
     private String name;
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Department [id=" + id + ", name=" + name + "]";
+	}
+
+	public Integer getId() {
         return id;
     }
 

@@ -7,6 +7,8 @@ public class RoomType {
 
     private Double deposit;
 
+    private Double amount;
+
     public Integer getId() {
         return id;
     }
@@ -31,9 +33,11 @@ public class RoomType {
         this.deposit = deposit;
     }
 
-	@Override
-	public String toString() {
-		return "RoomType [id=" + id + ", type=" + type + ", deposit=" + deposit + "]";
-	}
-    
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 }

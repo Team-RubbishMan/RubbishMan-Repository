@@ -1,14 +1,11 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
 public class Room {
-
-	private Integer id;
+    private Integer id;
 
     private Integer roomTypeId;
 
     private Integer roomNumber;
-
-    private Double amount;
 
     private String status;
 
@@ -18,24 +15,7 @@ public class Room {
 
     private String temp3;
 
-    private RoomType roomType;
-    
-    @Override
-	public String toString() {
-		return "Room [id=" + id + ", roomTypeId=" + roomTypeId + ", roomNumber=" + roomNumber + ", amount=" + amount
-				+ ", status=" + status + ", temp1=" + temp1 + ", temp2=" + temp2 + ", temp3=" + temp3 + ", roomType="
-				+ roomType + "]";
-	}
-
-	public RoomType getRoomType() {
-		return roomType;
-	}
-
-	public void setRoomType(RoomType roomType) {
-		this.roomType = roomType;
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -57,14 +37,6 @@ public class Room {
 
     public void setRoomNumber(Integer roomNumber) {
         this.roomNumber = roomNumber;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
     }
 
     public String getStatus() {

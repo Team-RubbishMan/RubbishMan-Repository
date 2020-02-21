@@ -1,291 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="com.ljl.C71S3TljlHotelManagementSystem.dao.RoomMapper">
-	<resultMap id="BaseResultMap"
-		type="com.ljl.C71S3TljlHotelManagementSystem.bean.Room">
-		<id column="id" jdbcType="INTEGER" property="id" />
-		<result column="room_type_id" jdbcType="INTEGER"
-			property="roomTypeId" />
-		<result column="room_number" jdbcType="INTEGER"
-			property="roomNumber" />
-		<result column="amount" jdbcType="DOUBLE" property="amount" />
-		<result column="status" jdbcType="VARCHAR" property="status" />
-		<result column="temp1" jdbcType="VARCHAR" property="temp1" />
-		<result column="temp2" jdbcType="VARCHAR" property="temp2" />
-		<result column="temp3" jdbcType="VARCHAR" property="temp3" />
-		<!-- 关联对象 -->
-		<association  autoMapping="true" column="room_type_id" property="roomType"
-			select="com.ljl.C71S3TljlHotelManagementSystem.dao.RoomTypeMapper.selectRoomTypebyId"
-			javaType="com.ljl.C71S3TljlHotelManagementSystem.bean.RoomType">
-			<id column="id" jdbcType="INTEGER" property="id" />
-			<result column="type" jdbcType="VARCHAR" property="type" />
-			<result column="deposit" jdbcType="DOUBLE" property="deposit" />
-		</association>
-		
-	</resultMap>
-	<sql id="Example_Where_Clause">
-		<where>
-			<foreach collection="oredCriteria" item="criteria"
-				separator="or">
-				<if test="criteria.valid">
-					<trim prefix="(" prefixOverrides="and" suffix=")">
-						<foreach collection="criteria.criteria" item="criterion">
-							<choose>
-								<when test="criterion.noValue">
-									and ${criterion.condition}
-								</when>
-								<when test="criterion.singleValue">
-									and ${criterion.condition} #{criterion.value}
-								</when>
-								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
-									#{criterion.secondValue}
-								</when>
-								<when test="criterion.listValue">
-									and ${criterion.condition}
-									<foreach close=")" collection="criterion.value"
-										item="listItem" open="(" separator=",">
-										#{listItem}
-									</foreach>
-								</when>
-							</choose>
-						</foreach>
-					</trim>
-				</if>
-			</foreach>
-		</where>
-	</sql>
-	<sql id="Update_By_Example_Where_Clause">
-		<where>
-			<foreach collection="example.oredCriteria" item="criteria"
-				separator="or">
-				<if test="criteria.valid">
-					<trim prefix="(" prefixOverrides="and" suffix=")">
-						<foreach collection="criteria.criteria" item="criterion">
-							<choose>
-								<when test="criterion.noValue">
-									and ${criterion.condition}
-								</when>
-								<when test="criterion.singleValue">
-									and ${criterion.condition} #{criterion.value}
-								</when>
-								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
-									#{criterion.secondValue}
-								</when>
-								<when test="criterion.listValue">
-									and ${criterion.condition}
-									<foreach close=")" collection="criterion.value"
-										item="listItem" open="(" separator=",">
-										#{listItem}
-									</foreach>
-								</when>
-							</choose>
-						</foreach>
-					</trim>
-				</if>
-			</foreach>
-		</where>
-	</sql>
-	<sql id="Base_Column_List">
-		id, room_type_id, room_number, amount, status, temp1, temp2, temp3
-	</sql>
-	<select id="selectByExample"
-		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.RoomExample"
-		resultMap="BaseResultMap">
-		select
-		<if test="distinct">
-			distinct
-		</if>
-		<include refid="Base_Column_List" />
-		from room
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-		<if test="orderByClause != null">
-			order by ${orderByClause}
-		</if>
-	</select>
-	<select id="selectByPrimaryKey"
-		parameterType="java.lang.Integer" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from room
-		where id = #{id,jdbcType=INTEGER}
-	</select>
-	<delete id="deleteByPrimaryKey"
-		parameterType="java.lang.Integer">
-		delete from room
-		where id = #{id,jdbcType=INTEGER}
-	</delete>
-	<delete id="deleteByExample"
-		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.RoomExample">
-		delete from room
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-	</delete>
-	<insert id="insert"
-		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Room">
-		<selectKey keyProperty="id" order="AFTER"
-			resultType="java.lang.Integer">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-		insert into room (room_type_id, room_number, amount,
-		status, temp1, temp2,
-		temp3)
-		values (#{roomTypeId,jdbcType=INTEGER}, #{roomNumber,jdbcType=INTEGER},
-		#{amount,jdbcType=DOUBLE},
-		#{status,jdbcType=VARCHAR}, #{temp1,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR},
-		#{temp3,jdbcType=VARCHAR})
-	</insert>
-	<insert id="insertSelective"
-		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Room">
-		<selectKey keyProperty="id" order="AFTER"
-			resultType="java.lang.Integer">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-		insert into room
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="roomTypeId != null">
-				room_type_id,
-			</if>
-			<if test="roomNumber != null">
-				room_number,
-			</if>
-			<if test="amount != null">
-				amount,
-			</if>
-			<if test="status != null">
-				status,
-			</if>
-			<if test="temp1 != null">
-				temp1,
-			</if>
-			<if test="temp2 != null">
-				temp2,
-			</if>
-			<if test="temp3 != null">
-				temp3,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="roomTypeId != null">
-				#{roomTypeId,jdbcType=INTEGER},
-			</if>
-			<if test="roomNumber != null">
-				#{roomNumber,jdbcType=INTEGER},
-			</if>
-			<if test="amount != null">
-				#{amount,jdbcType=DOUBLE},
-			</if>
-			<if test="status != null">
-				#{status,jdbcType=VARCHAR},
-			</if>
-			<if test="temp1 != null">
-				#{temp1,jdbcType=VARCHAR},
-			</if>
-			<if test="temp2 != null">
-				#{temp2,jdbcType=VARCHAR},
-			</if>
-			<if test="temp3 != null">
-				#{temp3,jdbcType=VARCHAR},
-			</if>
-		</trim>
-	</insert>
-	<select id="countByExample"
-		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.RoomExample"
-		resultType="java.lang.Long">
-		select count(*) from room
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-	</select>
-	<update id="updateByExampleSelective" parameterType="map">
-		update room
-		<set>
-			<if test="record.id != null">
-				id = #{record.id,jdbcType=INTEGER},
-			</if>
-			<if test="record.roomTypeId != null">
-				room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
-			</if>
-			<if test="record.roomNumber != null">
-				room_number = #{record.roomNumber,jdbcType=INTEGER},
-			</if>
-			<if test="record.amount != null">
-				amount = #{record.amount,jdbcType=DOUBLE},
-			</if>
-			<if test="record.status != null">
-				status = #{record.status,jdbcType=VARCHAR},
-			</if>
-			<if test="record.temp1 != null">
-				temp1 = #{record.temp1,jdbcType=VARCHAR},
-			</if>
-			<if test="record.temp2 != null">
-				temp2 = #{record.temp2,jdbcType=VARCHAR},
-			</if>
-			<if test="record.temp3 != null">
-				temp3 = #{record.temp3,jdbcType=VARCHAR},
-			</if>
-		</set>
-		<if test="_parameter != null">
-			<include refid="Update_By_Example_Where_Clause" />
-		</if>
-	</update>
-	<update id="updateByExample" parameterType="map">
-		update room
-		set id = #{record.id,jdbcType=INTEGER},
-		room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
-		room_number = #{record.roomNumber,jdbcType=INTEGER},
-		amount = #{record.amount,jdbcType=DOUBLE},
-		status = #{record.status,jdbcType=VARCHAR},
-		temp1 = #{record.temp1,jdbcType=VARCHAR},
-		temp2 = #{record.temp2,jdbcType=VARCHAR},
-		temp3 = #{record.temp3,jdbcType=VARCHAR}
-		<if test="_parameter != null">
-			<include refid="Update_By_Example_Where_Clause" />
-		</if>
-	</update>
-	<update id="updateByPrimaryKeySelective"
-		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Room">
-		update room
-		<set>
-			<if test="roomTypeId != null">
-				room_type_id = #{roomTypeId,jdbcType=INTEGER},
-			</if>
-			<if test="roomNumber != null">
-				room_number = #{roomNumber,jdbcType=INTEGER},
-			</if>
-			<if test="amount != null">
-				amount = #{amount,jdbcType=DOUBLE},
-			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=VARCHAR},
-			</if>
-			<if test="temp1 != null">
-				temp1 = #{temp1,jdbcType=VARCHAR},
-			</if>
-			<if test="temp2 != null">
-				temp2 = #{temp2,jdbcType=VARCHAR},
-			</if>
-			<if test="temp3 != null">
-				temp3 = #{temp3,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where id = #{id,jdbcType=INTEGER}
-	</update>
-	<update id="updateByPrimaryKey"
-		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Room">
-		update room
-		set room_type_id = #{roomTypeId,jdbcType=INTEGER},
-		room_number = #{roomNumber,jdbcType=INTEGER},
-		amount = #{amount,jdbcType=DOUBLE},
-		status = #{status,jdbcType=VARCHAR},
-		temp1 = #{temp1,jdbcType=VARCHAR},
-		temp2 = #{temp2,jdbcType=VARCHAR},
-		temp3 = #{temp3,jdbcType=VARCHAR}
-		where id = #{id,jdbcType=INTEGER}
-	</update>
+<mapper namespace="com.ljl.C71S3TljlHotelManagementSystem.dao.RoomMapper">
+  <resultMap id="BaseResultMap" type="com.ljl.C71S3TljlHotelManagementSystem.bean.Room">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="room_type_id" jdbcType="INTEGER" property="roomTypeId" />
+    <result column="room_number" jdbcType="INTEGER" property="roomNumber" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="temp1" jdbcType="VARCHAR" property="temp1" />
+    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
+    <result column="temp3" jdbcType="VARCHAR" property="temp3" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, room_type_id, room_number, status, temp1, temp2, temp3
+  </sql>
+  <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.RoomExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from room
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from room
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from room
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.RoomExample">
+    delete from room
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Room">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into room (room_type_id, room_number, status, 
+      temp1, temp2, temp3
+      )
+    values (#{roomTypeId,jdbcType=INTEGER}, #{roomNumber,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{temp1,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, #{temp3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Room">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into room
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roomTypeId != null">
+        room_type_id,
+      </if>
+      <if test="roomNumber != null">
+        room_number,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="temp1 != null">
+        temp1,
+      </if>
+      <if test="temp2 != null">
+        temp2,
+      </if>
+      <if test="temp3 != null">
+        temp3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roomTypeId != null">
+        #{roomTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="roomNumber != null">
+        #{roomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="temp1 != null">
+        #{temp1,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        #{temp3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.RoomExample" resultType="java.lang.Long">
+    select count(*) from room
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update room
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomTypeId != null">
+        room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomNumber != null">
+        room_number = #{record.roomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp1 != null">
+        temp1 = #{record.temp1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp2 != null">
+        temp2 = #{record.temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp3 != null">
+        temp3 = #{record.temp3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update room
+    set id = #{record.id,jdbcType=INTEGER},
+      room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
+      room_number = #{record.roomNumber,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=VARCHAR},
+      temp1 = #{record.temp1,jdbcType=VARCHAR},
+      temp2 = #{record.temp2,jdbcType=VARCHAR},
+      temp3 = #{record.temp3,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Room">
+    update room
+    <set>
+      <if test="roomTypeId != null">
+        room_type_id = #{roomTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="roomNumber != null">
+        room_number = #{roomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="temp1 != null">
+        temp1 = #{temp1,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        temp2 = #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        temp3 = #{temp3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Room">
+    update room
+    set room_type_id = #{roomTypeId,jdbcType=INTEGER},
+      room_number = #{roomNumber,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      temp1 = #{temp1,jdbcType=VARCHAR},
+      temp2 = #{temp2,jdbcType=VARCHAR},
+      temp3 = #{temp3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>
