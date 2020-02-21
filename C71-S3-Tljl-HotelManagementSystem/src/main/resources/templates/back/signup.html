@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<title>员工注册界面</title>
@@ -49,14 +49,14 @@
 				<h3 class="title1">注&nbsp&nbsp&nbsp册</h3>
 				<p class="creating">欢迎加入天堂酒店</p>
 				<div class="sign-up-row widget-shadow">
-				<form>
+				<form id="form" action="#" method="post" enctype="multipart/form-data">
 					<h5>个 人 信 息 :</h5>
 					<div class="sign-u">
 						<div class="sign-up1">
 							<h4>名 字* :</h4>
 						</div>
 						<div class="sign-up2">
-								<input type="text" required>
+								<input type="text" id="username" name="username" required>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -65,7 +65,7 @@
 							<h4>姓 氏* :</h4>
 						</div>
 						<div class="sign-up2">
-								<input type="text" required>
+								<input type="text" name="name" required>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -74,7 +74,16 @@
 							<h4>联 系 方 式* :</h4>
 						</div>
 						<div class="sign-up2">
-								<input type="text" required>
+								<input type="text" name="telephone" required>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="sign-u">
+						<div class="sign-up1">
+							<h4>Email* :</h4>
+						</div>
+						<div class="sign-up2">
+								<input type="text" name="email" required>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -83,7 +92,7 @@
 							<h4>身 份 证 号* :</h4>
 						</div>
 						<div class="sign-up2">
-								<input type="text" required>
+								<input type="text" name="idCard" required>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -92,17 +101,12 @@
 							<h4>所 属 部 门* :</h4>
 						</div>
 						<div class="sign-up2">
-								<select class="combobox" style="margin-top:10px;width:966px;height: 50px;">
-									<option>前厅部</option>
-									<option>客房部</option>
-									<option>餐饮部</option>
-									<option>保安部</option>
-									<option>娱乐部</option>
-									<option>销售部</option>
-									<option>人事部</option>
-									<option>财务部</option>
-									<option>行政部</option>
-								</select>
+							<select name="departmentId" class="combobox"
+								style="margin-top: 10px; width: 100%; height: 50px;">
+								<option th:each="Department : ${Department}"
+									th:value="${Department.id}"
+									th:text="${Department.name}"></option>
+							</select>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -113,11 +117,11 @@
 						</div>
 						<div class="sign-up2">
 							<label>
-								<input type="radio" name="Gender" required>
+								<input checked="checked" type="radio" value="1" name="gender" required>
 								男
 							</label>
 							<label>
-								<input type="radio" name="Gender" required>
+								<input type="radio" name="gender" value="0" required>
 								女
 							</label>
 						</div>
@@ -129,7 +133,7 @@
 							<h4>密 码* :</h4>
 						</div>
 						<div class="sign-up2">
-								<input type="password" required>
+								<input type="password" id="pwd1" name="password" required>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
@@ -138,13 +142,16 @@
 							<h4>确 认 密 码* :</h4>
 						</div>
 						<div class="sign-up2">
-								<input type="password" required>
+								<input type="password" id="pwd2" required>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
+					<div class="alert alert-warning" style="display:">
+						<a href="#" class="close" data-dismiss="alert"> &times; </a> <strong id="info">提示：请务必填写所有字段！</strong>
+					</div>
 					<div class="sub_home">
-							<input type="submit" value="提 交">
-							<input style="margin-left:300px" type="submit" value="取消">
+							<input id="sub" type="button" value="提 交">
+							<input style="margin-left:28%" type="submit" value="取消">
 						<div class="clearfix"> </div>
 					</div>
 					</form>
@@ -160,16 +167,40 @@
 		<!-- Classie -->
 		<script src="js/classie.js"></script>
 		<script>
+		  $("#sub").click(function () { 
+			  var username = $("#username").val();
+			  var pwd1 = $("#pwd1").val();
+			  var pwd2 = $("#pwd2").val();
+			  
+			  $.post('doname', {name:username}, function (result) {
+				  	if(result.resultCode!=1){
+			            $("#info").html("该用户名已被注册，请重新输入");
+						$("#username").val("");
+		            }else if(pwd1!=pwd2){
+		            	$("#info").html("两次密码输入不一致，请重新输入");
+						  $("#pwd1").val("");
+						  $("#pwd2").val("");
+		            }else{
+		            	//验证成功后提交
+		            	reg();
+		            }
+			  }) 	
+			});
+		  //提交表单数据
+		  function reg(){
+			  $.post('doreg', $('#form').serialize(), function (result) {
+		            if(result.resultCode==1){
+		               alert(result.message);
+		               location.href = "login.html";
+		            }else{
+		               alert(result.message);
+		            }
+		        });
+		  }
 			var menuLeft = document.getElementById('cbp-spmenu-s1'),
 				showLeftPush = document.getElementById('showLeftPush'),
 				body = document.body;
 
-			showLeftPush.onclick = function() {
-				classie.toggle(this, 'active');
-				classie.toggle(body, 'cbp-spmenu-push-toright');
-				classie.toggle(menuLeft, 'cbp-spmenu-open');
-				disableOther('showLeftPush');
-			};
 
 			function disableOther(button) {
 				if (button !== 'showLeftPush') {

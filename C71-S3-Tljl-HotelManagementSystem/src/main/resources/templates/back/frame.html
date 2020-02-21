@@ -71,7 +71,7 @@
 				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left"
 					id="cbp-spmenu-s1">
 					<ul class="nav" id="side-menu">
-						<li><a href="home()" class="active"><i
+						<li><a href="#" onclick="home()" class="active"><i
 								class="fa fa-home nav_icon"></i>首页</a></li>
 						<li><a href="#"><i class="fa fa-cogs nav_icon"></i>组件 <span
 								class="nav-badge">12</span> <span class="fa arrow"></span></a>
@@ -281,8 +281,8 @@
 		<!-- //header-ends -->
 		<!-- main content start-->
 		<div id="page-wrapper">
-
-			<div th:include="../templates/back/home :: contentPage"></div>
+		<!-- th:include="../templates/back/home :: contentPage"  -->
+			<div id="dynamicDisplayDiv"></div>
 
 		</div>
 		<!--footer-->
@@ -313,10 +313,19 @@
 	<!--scrolling js-->
 	<script src="js/jquery.nicescroll.js"></script>
 	<script src="js/scripts.js"></script>
-	<!--//scrolling js-->
+ 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js">
 		
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			$("#dynamicDisplayDiv").load("home.html");
+		});
+		
+		function home(){
+			$("#dynamicDisplayDiv").load("home.html");
+		};
 	</script>
 </body>
 </html>

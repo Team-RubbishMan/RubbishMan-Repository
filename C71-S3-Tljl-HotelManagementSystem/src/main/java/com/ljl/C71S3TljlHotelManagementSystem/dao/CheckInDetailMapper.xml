@@ -5,9 +5,9 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="check_in_time" jdbcType="TIMESTAMP" property="checkInTime" />
     <result column="check_out_time" jdbcType="TIMESTAMP" property="checkOutTime" />
+    <result column="check_in_number" jdbcType="INTEGER" property="checkInNumber" />
     <result column="room_id" jdbcType="INTEGER" property="roomId" />
     <result column="order_id" jdbcType="INTEGER" property="orderId" />
-    <result column="temp1" jdbcType="VARCHAR" property="temp1" />
     <result column="temp2" jdbcType="VARCHAR" property="temp2" />
     <result column="temp3" jdbcType="VARCHAR" property="temp3" />
   </resultMap>
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, check_in_time, check_out_time, room_id, order_id, temp1, temp2, temp3
+    id, check_in_time, check_out_time, check_in_number, room_id, order_id, temp2, temp3
   </sql>
   <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.CheckInDetailExample" resultMap="BaseResultMap">
     select
@@ -106,11 +106,11 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into check_in_detail (check_in_time, check_out_time, room_id, 
-      order_id, temp1, temp2, 
+    insert into check_in_detail (check_in_time, check_out_time, check_in_number, 
+      room_id, order_id, temp2, 
       temp3)
-    values (#{checkInTime,jdbcType=TIMESTAMP}, #{checkOutTime,jdbcType=TIMESTAMP}, #{roomId,jdbcType=INTEGER}, 
-      #{orderId,jdbcType=INTEGER}, #{temp1,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, 
+    values (#{checkInTime,jdbcType=TIMESTAMP}, #{checkOutTime,jdbcType=TIMESTAMP}, #{checkInNumber,jdbcType=INTEGER}, 
+      #{roomId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{temp2,jdbcType=VARCHAR}, 
       #{temp3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.CheckInDetail">
@@ -125,14 +125,14 @@
       <if test="checkOutTime != null">
         check_out_time,
       </if>
+      <if test="checkInNumber != null">
+        check_in_number,
+      </if>
       <if test="roomId != null">
         room_id,
       </if>
       <if test="orderId != null">
         order_id,
-      </if>
-      <if test="temp1 != null">
-        temp1,
       </if>
       <if test="temp2 != null">
         temp2,
@@ -148,14 +148,14 @@
       <if test="checkOutTime != null">
         #{checkOutTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="checkInNumber != null">
+        #{checkInNumber,jdbcType=INTEGER},
+      </if>
       <if test="roomId != null">
         #{roomId,jdbcType=INTEGER},
       </if>
       <if test="orderId != null">
         #{orderId,jdbcType=INTEGER},
-      </if>
-      <if test="temp1 != null">
-        #{temp1,jdbcType=VARCHAR},
       </if>
       <if test="temp2 != null">
         #{temp2,jdbcType=VARCHAR},
@@ -183,14 +183,14 @@
       <if test="record.checkOutTime != null">
         check_out_time = #{record.checkOutTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.checkInNumber != null">
+        check_in_number = #{record.checkInNumber,jdbcType=INTEGER},
+      </if>
       <if test="record.roomId != null">
         room_id = #{record.roomId,jdbcType=INTEGER},
       </if>
       <if test="record.orderId != null">
         order_id = #{record.orderId,jdbcType=INTEGER},
-      </if>
-      <if test="record.temp1 != null">
-        temp1 = #{record.temp1,jdbcType=VARCHAR},
       </if>
       <if test="record.temp2 != null">
         temp2 = #{record.temp2,jdbcType=VARCHAR},
@@ -208,9 +208,9 @@
     set id = #{record.id,jdbcType=INTEGER},
       check_in_time = #{record.checkInTime,jdbcType=TIMESTAMP},
       check_out_time = #{record.checkOutTime,jdbcType=TIMESTAMP},
+      check_in_number = #{record.checkInNumber,jdbcType=INTEGER},
       room_id = #{record.roomId,jdbcType=INTEGER},
       order_id = #{record.orderId,jdbcType=INTEGER},
-      temp1 = #{record.temp1,jdbcType=VARCHAR},
       temp2 = #{record.temp2,jdbcType=VARCHAR},
       temp3 = #{record.temp3,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -226,14 +226,14 @@
       <if test="checkOutTime != null">
         check_out_time = #{checkOutTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="checkInNumber != null">
+        check_in_number = #{checkInNumber,jdbcType=INTEGER},
+      </if>
       <if test="roomId != null">
         room_id = #{roomId,jdbcType=INTEGER},
       </if>
       <if test="orderId != null">
         order_id = #{orderId,jdbcType=INTEGER},
-      </if>
-      <if test="temp1 != null">
-        temp1 = #{temp1,jdbcType=VARCHAR},
       </if>
       <if test="temp2 != null">
         temp2 = #{temp2,jdbcType=VARCHAR},
@@ -248,9 +248,9 @@
     update check_in_detail
     set check_in_time = #{checkInTime,jdbcType=TIMESTAMP},
       check_out_time = #{checkOutTime,jdbcType=TIMESTAMP},
+      check_in_number = #{checkInNumber,jdbcType=INTEGER},
       room_id = #{roomId,jdbcType=INTEGER},
       order_id = #{orderId,jdbcType=INTEGER},
-      temp1 = #{temp1,jdbcType=VARCHAR},
       temp2 = #{temp2,jdbcType=VARCHAR},
       temp3 = #{temp3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

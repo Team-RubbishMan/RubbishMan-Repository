@@ -216,4 +216,39 @@ public class StaffBiz {
 		}
 	}
 	
+	/**
+	 * 注册业务方法实现
+	 * @param staff 实体类
+	 * @return 成功返回1
+	 * @throws BizException 业务异常
+	 */
+	public int register(Staff staff) throws BizException {
+		try {
+			staffMapper.insertSelective(staff);
+		} catch (Exception e) {
+			throw new RuntimeException("业务繁忙！");
+		}
+		return 1;
+	}
+	
+	/**
+	 * 验证用户名业务实现
+	 * @param name 用户名
+	 * @return 未注册返回1
+	 * @throws BizException
+	 */
+	public int validation(String name) throws BizException {
+		try {
+			StaffExample objStaffExample = new StaffExample();
+			objStaffExample.createCriteria().andUsernameEqualTo(name);
+			List<Staff> lstStaffs = staffMapper.selectByExample(objStaffExample);
+			if(lstStaffs.size()==0) {
+				return 1;
+			}else {
+				return 0;
+			}
+		} catch (Exception e) {
+			throw new RuntimeException("业务繁忙！");
+		}
+	}
 }

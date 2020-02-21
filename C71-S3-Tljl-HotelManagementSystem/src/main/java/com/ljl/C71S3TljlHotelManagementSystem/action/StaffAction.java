@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,12 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ljl.C71S3TljlHotelManagementSystem.bean.Staff;
 import com.ljl.C71S3TljlHotelManagementSystem.biz.BizException;
 import com.ljl.C71S3TljlHotelManagementSystem.biz.StaffBiz;
+import com.ljl.C71S3TljlHotelManagementSystem.dao.DepartmentMapper;
 import com.ljl.C71S3TljlHotelManagementSystem.vo.Result;
 
 @Controller
 public class StaffAction {
 	@Resource
 	private StaffBiz staffBiz;
+	@Resource	
+	private DepartmentMapper departmentMapper;
 
 	@GetMapping("/back/login.html")
 	public String login() {
@@ -39,10 +43,10 @@ public class StaffAction {
 	}
 
 	@GetMapping("/back/signup.html")
-	public String signup() {
+	public String signup(Model m) {
+		m.addAttribute("Department",departmentMapper.selectByExample(null));
 		return "/back/signup";
 	}
-
 
 	@PostMapping("/back/dologin")
 	@ResponseBody
@@ -117,5 +121,41 @@ public class StaffAction {
 			return new Result(2,e.getMessage(),null);
 		}
 		return null;
+	}
+	/**
+	 * 验证用户名是否被注册
+	 * @param name 用户名
+	 * @return
+	 */
+	@PostMapping("/back/doname")
+	@ResponseBody
+	public Result validation(@RequestParam String name) {
+		try {
+			if(staffBiz.validation(name)==1) {
+				return new Result(1);
+			}
+		} catch (BizException e) {
+			e.printStackTrace();
+		}
+		return new Result(0);
+	}
+	
+	/**
+	 * 实现注册业务方法
+	 * @param staff 接收实体类对象
+	 * @return
+	 */
+	@PostMapping("/back/doreg")
+	@ResponseBody
+	public Result doreg(Staff staff) {
+		System.out.println(staff.toString());
+		try {
+			if(staffBiz.register(staff)==1) {
+				return new Result(1,"注册成功");
+			}
+		} catch (BizException e) {
+			e.printStackTrace();
+		}
+		return new Result(0,"注册失败");
 	}
 }

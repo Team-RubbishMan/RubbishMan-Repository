@@ -9,11 +9,11 @@ public class CheckInDetail {
 
     private Date checkOutTime;
 
+    private Integer checkInNumber;
+
     private Integer roomId;
 
     private Integer orderId;
-
-    private String temp1;
 
     private String temp2;
 
@@ -43,6 +43,14 @@ public class CheckInDetail {
         this.checkOutTime = checkOutTime;
     }
 
+    public Integer getCheckInNumber() {
+        return checkInNumber;
+    }
+
+    public void setCheckInNumber(Integer checkInNumber) {
+        this.checkInNumber = checkInNumber;
+    }
+
     public Integer getRoomId() {
         return roomId;
     }
@@ -57,14 +65,6 @@ public class CheckInDetail {
 
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
-    }
-
-    public String getTemp1() {
-        return temp1;
-    }
-
-    public void setTemp1(String temp1) {
-        this.temp1 = temp1 == null ? null : temp1.trim();
     }
 
     public String getTemp2() {
@@ -82,4 +82,12 @@ public class CheckInDetail {
     public void setTemp3(String temp3) {
         this.temp3 = temp3 == null ? null : temp3.trim();
     }
+
+	@Override
+	public String toString() {
+		return "CheckInDetail [id=" + id + ", checkInTime=" + checkInTime + ", checkOutTime=" + checkOutTime
+				+ ", checkInNumber=" + checkInNumber + ", roomId=" + roomId + ", orderId=" + orderId + ", temp2="
+				+ temp2 + ", temp3=" + temp3 + "]";
+	}
+    
 }

@@ -9,9 +9,9 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="id_card" jdbcType="VARCHAR" property="idCard" />
     <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="profile" jdbcType="VARCHAR" property="profile" />
     <result column="vip_id" jdbcType="INTEGER" property="vipId" />
     <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="temp1" jdbcType="VARCHAR" property="temp1" />
     <result column="temp2" jdbcType="VARCHAR" property="temp2" />
     <result column="temp3" jdbcType="VARCHAR" property="temp3" />
   </resultMap>
@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, telephone, email, id_card, gender, vip_id, status, temp1, 
+    id, username, password, telephone, email, id_card, gender, profile, vip_id, status, 
     temp2, temp3
   </sql>
   <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.UserExample" resultMap="BaseResultMap">
@@ -113,11 +113,11 @@
     </selectKey>
     insert into user (username, password, telephone, 
       email, id_card, gender, 
-      vip_id, status, temp1, 
+      profile, vip_id, status, 
       temp2, temp3)
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
-      #{vipId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{temp1,jdbcType=VARCHAR}, 
+      #{profile,jdbcType=VARCHAR}, #{vipId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
       #{temp2,jdbcType=VARCHAR}, #{temp3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.User">
@@ -144,14 +144,14 @@
       <if test="gender != null">
         gender,
       </if>
+      <if test="profile != null">
+        profile,
+      </if>
       <if test="vipId != null">
         vip_id,
       </if>
       <if test="status != null">
         status,
-      </if>
-      <if test="temp1 != null">
-        temp1,
       </if>
       <if test="temp2 != null">
         temp2,
@@ -179,14 +179,14 @@
       <if test="gender != null">
         #{gender,jdbcType=VARCHAR},
       </if>
+      <if test="profile != null">
+        #{profile,jdbcType=VARCHAR},
+      </if>
       <if test="vipId != null">
         #{vipId,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="temp1 != null">
-        #{temp1,jdbcType=VARCHAR},
       </if>
       <if test="temp2 != null">
         #{temp2,jdbcType=VARCHAR},
@@ -226,14 +226,14 @@
       <if test="record.gender != null">
         gender = #{record.gender,jdbcType=VARCHAR},
       </if>
+      <if test="record.profile != null">
+        profile = #{record.profile,jdbcType=VARCHAR},
+      </if>
       <if test="record.vipId != null">
         vip_id = #{record.vipId,jdbcType=INTEGER},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=VARCHAR},
-      </if>
-      <if test="record.temp1 != null">
-        temp1 = #{record.temp1,jdbcType=VARCHAR},
       </if>
       <if test="record.temp2 != null">
         temp2 = #{record.temp2,jdbcType=VARCHAR},
@@ -255,9 +255,9 @@
       email = #{record.email,jdbcType=VARCHAR},
       id_card = #{record.idCard,jdbcType=VARCHAR},
       gender = #{record.gender,jdbcType=VARCHAR},
+      profile = #{record.profile,jdbcType=VARCHAR},
       vip_id = #{record.vipId,jdbcType=INTEGER},
       status = #{record.status,jdbcType=VARCHAR},
-      temp1 = #{record.temp1,jdbcType=VARCHAR},
       temp2 = #{record.temp2,jdbcType=VARCHAR},
       temp3 = #{record.temp3,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -285,14 +285,14 @@
       <if test="gender != null">
         gender = #{gender,jdbcType=VARCHAR},
       </if>
+      <if test="profile != null">
+        profile = #{profile,jdbcType=VARCHAR},
+      </if>
       <if test="vipId != null">
         vip_id = #{vipId,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="temp1 != null">
-        temp1 = #{temp1,jdbcType=VARCHAR},
       </if>
       <if test="temp2 != null">
         temp2 = #{temp2,jdbcType=VARCHAR},
@@ -311,9 +311,9 @@
       email = #{email,jdbcType=VARCHAR},
       id_card = #{idCard,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=VARCHAR},
+      profile = #{profile,jdbcType=VARCHAR},
       vip_id = #{vipId,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
-      temp1 = #{temp1,jdbcType=VARCHAR},
       temp2 = #{temp2,jdbcType=VARCHAR},
       temp3 = #{temp3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
