@@ -7,6 +7,7 @@
 <meta name="keywords" content="" />
 <script type="application/x-javascript">
 	
+	
 			addEventListener("load", function() {
 				setTimeout(hideURLbar, 0);
 			}, false);
@@ -15,6 +16,7 @@
 				window.scrollTo(0, 1);
 			}
 		
+
 </script>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -73,12 +75,12 @@
 					<ul class="nav" id="side-menu">
 						<li><a href="#" onclick="home()" class="active"><i
 								class="fa fa-home nav_icon"></i>首页</a></li>
-						<li><a href="#"><i class="fa fa-cogs nav_icon"></i>组件 <span
-								class="nav-badge">12</span> <span class="fa arrow"></span></a>
+						<li><a href="#"><i class="fa fa-hotel nav_icon"></i>房间管理<span
+								class="fa arrow"></span></a>
 							<ul class="nav nav-second-level collapse">
-								<li><a href="grids.html">网格布局</a></li>
-								<li><a href="media.html">媒体对象</a></li>
-							</ul> <!-- /nav-second-level --></li>
+								<li><a href="#" onclick="roomManagement()">房间状态管理</a></li>
+								<li><a href="#" onclick="roomPriceManagement()">房型价格管理</a></li>
+							</ul></li>
 						<li class=""><a href="#"><i class="fa fa-book nav_icon"></i>UI
 								Elements <span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level collapse">
@@ -257,13 +259,13 @@
 							class="dropdown-toggle" data-toggle="dropdown"
 							aria-expanded="false">
 								<div class="profile_img">
-									<span class="prfil-img">
-										<img th:src="${session.objStaff.profile}==null ? 'images/a.png' : ${session.objStaff.profile}"  alt="">
+									<span class="prfil-img"> <img
+										th:src="${session.objStaff.profile}==null ? 'images/a.png' : ${session.objStaff.profile}"
+										alt="">
 									</span>
 									<div class="user-name">
 										<p th:text="${session.objStaff.username}"></p>
 										<span th:text="${session.objStaff.department.name}">
-										
 									</div>
 									<i class="fa fa-angle-down lnr"></i> <i
 										class="fa fa-angle-up lnr"></i>
@@ -283,7 +285,7 @@
 		<!-- //header-ends -->
 		<!-- main content start-->
 		<div id="page-wrapper">
-		<!-- th:include="../templates/back/home :: contentPage"  -->
+			<!-- th:include="../templates/back/home :: contentPage"  -->
 			<div id="dynamicDisplayDiv"></div>
 
 		</div>
@@ -315,19 +317,27 @@
 	<!--scrolling js-->
 	<script src="js/jquery.nicescroll.js"></script>
 	<script src="js/scripts.js"></script>
- 	<!--//scrolling js-->
+	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js">
 		
 	</script>
 	<script type="text/javascript">
-		$(function(){
+		$(function() {
 			$("#dynamicDisplayDiv").load("home.html");
 		});
-		
-		function home(){
+
+		function home() {
 			$("#dynamicDisplayDiv").load("home.html");
 		};
+		
+		function roomManagement() {
+			$("#dynamicDisplayDiv").load("roommanagement.html");
+	
+		}
+		function roomPriceManagement(){
+			$("#dynamicDisplayDiv").load("roompricemanagement.html");
+		}
 	</script>
 </body>
 </html>

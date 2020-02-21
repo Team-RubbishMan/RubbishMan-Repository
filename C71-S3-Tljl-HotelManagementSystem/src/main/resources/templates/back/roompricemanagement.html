@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		
+
+
+
+
+
+
+
+
+
+
+</script>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+
+
+<!-- Custom CSS -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet">
+<!-- //font-awesome icons -->
+<!-- js-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<!--webfonts-->
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic'
+	rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css"
+	media="all">
+<script src="js/wow.min.js"></script>
+<script>
+	new WOW().init();
+</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+<link href="css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+</head>
+<body>
+	<div th:fragment="roomManagementPage">
+		<div class="main-page">
+			<div class="tables">
+				<h3 class="title1">房型价格管理</h3>
+				<div class="table-responsive bs-example widget-shadow">
+					<h4>表格:</h4>
+
+					<table class="table table-bordered">
+
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>房间号</th>
+								<th>房间单价</th>
+								<th>房间使用情况</th>
+								<th style="width: 15%;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>哈哈哈</th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>
+									<button type="button" class="btn btn-primary"
+										data-toggle="modal" data-target="#priceRevisionModal"
+										style="float: left;">修 改 价 格</button>
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<ul class="pagination" style="float: right">
+						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item active"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="priceRevisionModal" tabindex="-1"
+				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="sign-u">
+									<div class="sign-up1">
+										<h4>房型名称 :</h4>
+									</div>
+									<div class="sign-up2">
+										<input disabled="disabled" name="" type="text" required>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="sign-u">
+									<div class="sign-up1">
+										<h4>房型价格 :</h4>
+									</div>
+									<div class="sign-up2">
+										<input  name="" type="text" required>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="sign-u">
+									<div class="sign-up1">
+										<h4>房型押金 :</h4>
+									</div>
+									<div class="sign-up2">
+										<input  name="" type="text" required>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary">提交更改</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+		</div>
+	</div>
+	<!-- Classie -->
+	<script src="js/classie.js"></script>
+	<script>
+		var menuLeft = document.getElementById('cbp-spmenu-s1'), showLeftPush = document
+				.getElementById('showLeftPush'), body = document.body;
+
+		showLeftPush.onclick = function() {
+			classie.toggle(this, 'active');
+			classie.toggle(body, 'cbp-spmenu-push-toright');
+			classie.toggle(menuLeft, 'cbp-spmenu-open');
+			disableOther('showLeftPush');
+		};
+
+		function disableOther(button) {
+			if (button !== 'showLeftPush') {
+				classie.toggle(showLeftPush, 'disabled');
+			}
+		}
+	</script>
+	<!--scrolling js-->
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/scripts.js"></script>
+	<!--//scrolling js-->
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.js">
+		
+	</script>
+
+	<script type="text/javascript">
+		
+	</script>
+</body>
+</html>

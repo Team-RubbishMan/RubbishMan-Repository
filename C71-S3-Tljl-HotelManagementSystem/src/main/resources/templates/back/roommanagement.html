@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript">
+	
+	
+	
+	
+	
+	
+	
+	
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		
+
+
+
+
+
+
+
+</script>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet">
+<!-- //font-awesome icons -->
+<!-- js-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<!--webfonts-->
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic'
+	rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css"
+	media="all">
+<script src="js/wow.min.js"></script>
+<script>
+	new WOW().init();
+</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+<link href="css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+</head>
+<body>
+	<div th:fragment="roomManagementPage">
+		<div class="main-page">
+			<div id="alertDiv" class="alert alert-warning"
+				style="position: absolute; z-index: 10; margin-top: 500px;">
+				<a href="#" class="close" data-dismiss="alert"> &times; </a> <strong>警告！</strong>您的网络连接有问题。
+			</div>
+			<div class="tables">
+				<h3 class="title1">房间状态管理</h3>
+				<div th:each="roomTypeInfo : ${lstRoomTypeInfo}"
+					class="table-responsive bs-example widget-shadow">
+					<h4 th:text="${roomTypeInfo.type}">:</h4>
+
+					<table class="table table-bordered">
+
+						<thead>
+							<tr>
+								<th style="display: none">#</th>
+								<th>房间号</th>
+								<th>房间单价</th>
+								<th>房间使用情况</th>
+								<th style="width: 15%;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="roomInfo : ${lstRoomInfo}">
+								<th th:if="${roomTypeInfo.id} == ${roomInfo.roomTypeId}"
+									style="display: none" th:value="${roomInfo.id}">哈哈哈</th>
+								<td th:if="${roomTypeInfo.id} == ${roomInfo.roomTypeId}"
+									th:text="${roomInfo.roomNumber}"></td>
+								<td th:if="${roomTypeInfo.id} == ${roomInfo.roomTypeId}"
+									th:text="${roomInfo.amount}"></td>
+								<td th:if="${roomTypeInfo.id} == ${roomInfo.roomTypeId}"
+									th:text="${roomInfo.status}==0?未使用:(${roomInfo.status}==1?已入住:维护)"></td>
+								<td th:if="${roomTypeInfo.id} == ${roomInfo.roomTypeId}">
+									<button type="button" class="btn btn-primary"
+										style="float: left;" onclick="roomMaintain(this)">维&nbsp&nbsp&nbsp&nbsp护</button>
+									<button type="button" class="btn btn-primary"
+										style="float: right;">启&nbsp&nbsp&nbsp&nbsp用</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<ul class="pagination" style="float: right">
+						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item active"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Classie -->
+	<script src="js/classie.js"></script>
+	<script>
+		var menuLeft = document.getElementById('cbp-spmenu-s1'), showLeftPush = document
+				.getElementById('showLeftPush'), body = document.body;
+
+		showLeftPush.onclick = function() {
+			classie.toggle(this, 'active');
+			classie.toggle(body, 'cbp-spmenu-push-toright');
+			classie.toggle(menuLeft, 'cbp-spmenu-open');
+			disableOther('showLeftPush');
+		};
+
+		function disableOther(button) {
+			if (button !== 'showLeftPush') {
+				classie.toggle(showLeftPush, 'disabled');
+			}
+		}
+	</script>
+	<!--scrolling js-->
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/scripts.js"></script>
+	<!--//scrolling js-->
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.js">
+		
+	</script>
+	<!-- 刘子源写的js -->
+	<script type="text/javascript">
+		$(function() {
+
+		})
+		function roomMaintain(obj) {
+			var roomId = $(obj).parent("td").siblings("th").attr("value");
+
+			$.post("roomMaintenance", {
+				id : roomId
+			}, function() {
+
+			})
+		}
+	</script>
+</body>
+</html>

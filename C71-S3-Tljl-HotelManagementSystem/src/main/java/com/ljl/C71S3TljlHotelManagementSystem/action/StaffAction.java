@@ -34,7 +34,6 @@ public class StaffAction {
 
 	@GetMapping("/back/frame.html")
 	public String frame() {
-
 		return "back/frame";
 	}
 

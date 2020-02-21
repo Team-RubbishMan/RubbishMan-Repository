@@ -6,6 +6,9 @@
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="deposit" jdbcType="DOUBLE" property="deposit" />
   </resultMap>
+  <select id="selectRoomTypebyId" resultMap="BaseResultMap">
+  	select t.id,t.type,t.deposit from room_type t, room r where r.room_type_id = t.id and r.id=#{id}
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
