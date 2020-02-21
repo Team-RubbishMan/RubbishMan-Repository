@@ -3,6 +3,7 @@ package com.ljl.C71S3TljlHotelManagementSystem.action;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -47,10 +48,21 @@ public class StaffAction {
 		m.addAttribute("Department",departmentMapper.selectByExample(null));
 		return "/back/signup";
 	}
-
+	
+	
+	/**
+	 * @author 蒋璐
+	 * 后台职员登录
+	 * @param remeberUsername  记住密码
+	 * @param username  登录职员的用户名
+	 * @param password  登录职员的密码
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@PostMapping("/back/dologin")
 	@ResponseBody
-	public Result dologin(@RequestParam("username") String username, @RequestParam("password") String password,
+	public Result dologin(boolean remeberUsername,@RequestParam("username") String username, @RequestParam("password") String password,
 			HttpServletRequest request, HttpServletResponse response) {
 		//清空session内容
 		request.getSession().invalidate();
@@ -59,6 +71,39 @@ public class StaffAction {
 			Staff objStaff = staffBiz.loginStaff(username, password);
 			System.out.println("objStaff" + objStaff);
 			request.getSession().setAttribute("objStaff", objStaff);
+			System.out.println("头像路径"+objStaff.getProfile());
+			//如果选择记住用户名,则创建cookie,并将账号密码注入cookie
+    		if(remeberUsername == true){
+    		//创建cookie对象
+        		Cookie objUsernameCookie = new Cookie("remeberUsername",username);
+        		//设置Cookie有效时间,单位为妙
+        		objUsernameCookie.setMaxAge(60*60*24*7);
+        		 //设置Cookie的有效范围,/为全部路径
+        		objUsernameCookie.setPath("/");
+        		response.addCookie(objUsernameCookie);
+        		Cookie objCheckboxIsCheckCookie = new Cookie("checkboxIsCheck","checked");
+        		//设置Cookie有效时间,单位为妙
+        		objCheckboxIsCheckCookie.setMaxAge(60*60*24*7);
+        		 //设置Cookie的有效范围,/为全部路径
+        		objCheckboxIsCheckCookie.setPath("/");
+        		response.addCookie(objCheckboxIsCheckCookie);
+        	}else{
+        	//如果没有选中记住用户名,则将已记住密码的cookie失效.即有效时间设为0
+        		Cookie[] cookies = request.getCookies();
+        		for (Cookie cookie : cookies) {
+    				if(cookie.getName().equals("remeberUsername")){
+    					cookie.setMaxAge(0);
+    					cookie.setPath("/");
+    					response.addCookie(cookie);
+    				}
+    				if(cookie.getName().equals("checkboxIsCheck")){
+    					cookie.setMaxAge(0);
+    					cookie.setPath("/");
+    					response.addCookie(cookie);
+    				}
+    			}
+        	}
+    		
 			return new Result(1,"登录成功！",null);
 		} catch (BizException e) {
 			e.printStackTrace();

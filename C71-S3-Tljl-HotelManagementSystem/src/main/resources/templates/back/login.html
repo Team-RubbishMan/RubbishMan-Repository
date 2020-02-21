@@ -65,8 +65,8 @@
 							type="button" name="Sign In" value="登&nbsp&nbsp&nbsp录"
 							onclick="dologin()">
 						<div class="forgot-grid">
-							<label class="checkbox"><input type="checkbox"
-								name="checkbox"><i></i>记住账号</label>
+							<label class="checkbox"><input type="checkbox" 
+								name="remeberUsername" id="remeberUsername"><i></i>记住账号</label>
 							<div class="forgot">
 								<a href="#">忘记密码?</a>
 							</div>
@@ -101,10 +101,22 @@
 				classie.toggle(showLeftPush, 'disabled');
 			}
 		}
+		
+		$(function(){
+			if($.cookie("remeberUsername") != null){
+				var username = $.cookie("remeberUsername");
+				$("#username").val(username);
+				var check = $.cookie("checkboxIsCheck");
+				$("#remeberUsername").attr("checked","checked");
+			}
+			
+		})
 	</script>
 	<!--scrolling js-->
 	<script src="js/jquery.nicescroll.js"></script>
 	<script src="js/scripts.js"></script>
+	<!-- cookie.js文件 -->
+	<script src="js/jquery.cookie.js"></script>
 	<!--//scrolling js-->
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.js">

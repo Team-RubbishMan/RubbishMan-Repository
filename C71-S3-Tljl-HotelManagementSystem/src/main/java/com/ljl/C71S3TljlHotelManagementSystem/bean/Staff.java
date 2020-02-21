@@ -19,7 +19,21 @@ public class Staff {
 
     private Integer departmentId;
 
-    public Integer getId() {
+    private String profile;
+    
+    private Department department;
+    
+    
+
+    public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -91,11 +105,19 @@ public class Staff {
         this.departmentId = departmentId;
     }
 
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile == null ? null : profile.trim();
+    }
+
 	@Override
 	public String toString() {
 		return "Staff [id=" + id + ", username=" + username + ", name=" + name + ", gender=" + gender + ", idCard="
 				+ idCard + ", email=" + email + ", password=" + password + ", telephone=" + telephone
-				+ ", departmentId=" + departmentId + "]";
+				+ ", departmentId=" + departmentId + ", profile=" + profile + "]";
 	}
     
 }

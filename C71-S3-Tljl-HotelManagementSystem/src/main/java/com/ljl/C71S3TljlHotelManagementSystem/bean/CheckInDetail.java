@@ -82,12 +82,4 @@ public class CheckInDetail {
     public void setTemp3(String temp3) {
         this.temp3 = temp3 == null ? null : temp3.trim();
     }
-
-	@Override
-	public String toString() {
-		return "CheckInDetail [id=" + id + ", checkInTime=" + checkInTime + ", checkOutTime=" + checkOutTime
-				+ ", checkInNumber=" + checkInNumber + ", roomId=" + roomId + ", orderId=" + orderId + ", temp2="
-				+ temp2 + ", temp3=" + temp3 + "]";
-	}
-    
 }
