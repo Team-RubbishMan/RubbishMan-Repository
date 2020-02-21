@@ -40,4 +40,10 @@ public class RoomType {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
+
+	@Override
+	public String toString() {
+		return "RoomType [id=" + id + ", type=" + type + ", deposit=" + deposit + ", amount=" + amount + "]";
+	}
+    
 }

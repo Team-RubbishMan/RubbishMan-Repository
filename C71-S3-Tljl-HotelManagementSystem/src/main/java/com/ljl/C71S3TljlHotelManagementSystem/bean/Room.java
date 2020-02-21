@@ -14,8 +14,24 @@ public class Room {
     private String temp2;
 
     private String temp3;
+    
+    private RoomType roomType;
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Room [id=" + id + ", roomTypeId=" + roomTypeId + ", roomNumber=" + roomNumber + ", status=" + status
+				+ ", temp1=" + temp1 + ", temp2=" + temp2 + ", temp3=" + temp3 + ", roomType=" + roomType + "]";
+	}
+
+	public RoomType getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(RoomType roomType) {
+		this.roomType = roomType;
+	}
+
+	public Integer getId() {
         return id;
     }
 
