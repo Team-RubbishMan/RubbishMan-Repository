@@ -21,6 +21,12 @@
 	</properties>
 
 	<dependencies>
+		<!-- 分页查询 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.5</version>
+		</dependency>
 		<!-- 使用邮件依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
