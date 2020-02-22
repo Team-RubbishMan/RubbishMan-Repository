@@ -284,10 +284,10 @@
 		</div>
 		<!-- //header-ends -->
 		<!-- main content start-->
-		<div id="page-wrapper">
+		<div id="page-wrapper" >
 			<!-- th:include="../templates/back/home :: contentPage"  -->
-			<div id="dynamicDisplayDiv"></div>
-
+			<!--   <iframe id="dynamicDisplayDiv"  frameborder="0" style="width:100%;height:720px; line-height: 100%"></iframe>--> 
+			<div id="dynamicDisplayDiv" ></div>
 		</div>
 		<!--footer-->
 		<div class="footer">
@@ -331,8 +331,10 @@
 			$("#dynamicDisplayDiv").load("home.html");
 		};
 		function roomManagement() {
+			
+			//$("#dynamicDisplayDiv").attr("src","roommanagement.html");
+
 			$("#dynamicDisplayDiv").load("roommanagement.html");
-	
 		}
 		function roomPriceManagement(){
 			$("#dynamicDisplayDiv").load("roompricemanagement.html");
