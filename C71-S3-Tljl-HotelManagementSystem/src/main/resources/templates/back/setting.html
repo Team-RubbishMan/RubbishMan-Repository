@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="" />
+		<script type="application/x-javascript">
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		</script>
+		<!-- Bootstrap Core CSS -->
+		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<!-- Custom CSS -->
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+		<!-- font CSS -->
+		<!-- font-awesome icons -->
+		<link href="css/font-awesome.css" rel="stylesheet">
+		<!-- //font-awesome icons -->
+		<!-- js-->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/modernizr.custom.js"></script>
+		<!--webfonts-->
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet'
+		 type='text/css'>
+		<!--//webfonts-->
+		<!--animate-->
+		<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+		<script src="js/wow.min.js"></script>
+		<script>
+			new WOW().init();
+		</script>
+		<!--//end-animate-->
+		<!-- Metis Menu -->
+		<script src="js/metisMenu.min.js"></script>
+		<script src="js/custom.js"></script>
+		<link href="css/custom.css" rel="stylesheet">
+		<!--//Metis Menu -->
+	</head>
+	<body>
+		<!-- main content start-->
+			<div class="main-page">
+				<div class="forms">
+					<h3 class="title1">设置</h3>
+					<div class="form-grids row widget-shadow" data-example-id="basic-forms">
+						<div class="form-title">
+							<h4>员 工 信 息 修 改 :</h4>
+						</div>
+						<div class="form-body">
+							<form>
+								<div class="form-group"> <label for="Email">邮 箱 地 址</label> <input type="email" class="form-control"
+									 id="Email" placeholder="Email"> </div>
+								<div class="form-group"> <label for="telephone">邮 箱 地 址</label> <input type="text" class="form-control"
+									 id="telephone" placeholder="Email"> </div>
+								<div>
+									<div class="form-group"> <label for="originalPassword">原密码</label> <input type="password" class="form-control"
+										 id="originalPassword" placeholder="原密码"> </div>
+									<div class="form-group"> <label for="newPassword">新密码</label> <input type="password" class="form-control"
+										 id="newPassword" placeholder="新密码"> </div>
+									<div class="form-group"> <label for="confirmNewPassword">确认新密码</label> <input type="password" class="form-control"
+										 id="confirmNewPassword" placeholder="确认新密码"> </div>
+									<div class="checkbox"> <label> <input id="changePassword" type="checkbox">修 改 密 码? </label> </div>
+								</div>
+
+								<div class="form-group">
+									<label for="profileModify">头 像 修 改</label>
+									<br />
+									<img src="./images/2.png" style="width:5%; margin-top: 0.5%; margin-bottom: 0.5%;">
+									<br />
+									<input type="file" id="profileModifyFile">
+								</div>
+								<button type="submit" class="btn btn-default">修 改</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Classie -->
+			<script src="js/classie.js"></script>
+			<script>
+				var menuLeft = document.getElementById('cbp-spmenu-s1'),
+					showLeftPush = document.getElementById('showLeftPush'),
+					body = document.body;
+
+				showLeftPush.onclick = function() {
+					classie.toggle(this, 'active');
+					classie.toggle(body, 'cbp-spmenu-push-toright');
+					classie.toggle(menuLeft, 'cbp-spmenu-open');
+					disableOther('showLeftPush');
+				};
+
+				function disableOther(button) {
+					if (button !== 'showLeftPush') {
+						classie.toggle(showLeftPush, 'disabled');
+					}
+				}
+			</script>
+			<!--scrolling js-->
+			<script src="js/jquery.nicescroll.js"></script>
+			<script src="js/scripts.js"></script>
+			<!--//scrolling js-->
+			<!-- Bootstrap Core JavaScript -->
+			<script src="js/bootstrap.js"> </script>
+	</body>
+</html>

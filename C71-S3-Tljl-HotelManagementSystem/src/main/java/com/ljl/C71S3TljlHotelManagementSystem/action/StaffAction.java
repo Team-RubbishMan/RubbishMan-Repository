@@ -48,7 +48,10 @@ public class StaffAction {
 		return "/back/signup";
 	}
 	
-	
+	@GetMapping("/back/setting.html")
+	public String setting() {
+		return "/back/setting";
+	}
 	/**
 	 * @author 蒋璐
 	 * 后台职员登录

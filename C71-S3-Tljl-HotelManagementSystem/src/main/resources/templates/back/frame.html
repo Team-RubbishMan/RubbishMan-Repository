@@ -273,7 +273,7 @@
 								</div>
 						</a>
 							<ul class="dropdown-menu drp-mnu">
-								<li><a href="#"><i class="fa fa-cog"></i> 设置</a></li>
+								<li><a href="#" onclick="setting()"><i class="fa fa-cog"></i> 设置</a></li>
 								<li><a href="#"><i class="fa fa-sign-out"></i> 退出</a></li>
 							</ul></li>
 					</ul>
@@ -330,13 +330,15 @@
 		function home() {
 			$("#dynamicDisplayDiv").load("home.html");
 		};
-		
 		function roomManagement() {
 			$("#dynamicDisplayDiv").load("roommanagement.html");
 	
 		}
 		function roomPriceManagement(){
 			$("#dynamicDisplayDiv").load("roompricemanagement.html");
+		}
+		function setting(){
+			$("#dynamicDisplayDiv").load("setting.html");
 		}
 	</script>
 </body>
