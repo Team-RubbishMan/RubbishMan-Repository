@@ -15,7 +15,8 @@ spring:
       classpath:/static/,
       classpath:/META-INF/resources/,
       classpath:/resources/,
-      classpath:/public/
+      classpath:/public/,
+      file:D:/z-s3
  
   datasource: 
     url: jdbc:mysql://127.0.0.1/C71-S3-tljl-hotelmanagementsystem?useUnicode=true&characterEncoding=UTF-8

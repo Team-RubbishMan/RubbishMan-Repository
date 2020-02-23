@@ -13,20 +13,9 @@
 		<result column="temp1" jdbcType="VARCHAR" property="temp1" />
 		<result column="temp2" jdbcType="VARCHAR" property="temp2" />
 		<result column="temp3" jdbcType="VARCHAR" property="temp3" />
-		<!-- 关联对象 -->
-		<association autoMapping="true" column="room_type_id"
-			property="roomType"
-			select="selectRoomTypebyId"
-			javaType="com.ljl.C71S3TljlHotelManagementSystem.bean.RoomType">
-			<id column="id" jdbcType="INTEGER" property="id" />
-			<result column="type" jdbcType="VARCHAR" property="type" />
-			<result column="deposit" jdbcType="DOUBLE" property="deposit" />
-			<result column="amount" jdbcType="DOUBLE" property="amount" />
-		</association>
+		
 	</resultMap>
-	<select id="selectRoomTypebyId" resultMap="com.ljl.C71S3TljlHotelManagementSystem.dao.RoomTypeMapper.BaseResultMap">
-		select * from room r left join room_type t on r.room_type_id =t.id where r.id=#{id}
-	</select>
+	
 	<sql id="Example_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria"

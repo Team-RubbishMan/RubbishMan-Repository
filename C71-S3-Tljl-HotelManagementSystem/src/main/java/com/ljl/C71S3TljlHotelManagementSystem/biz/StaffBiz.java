@@ -59,31 +59,100 @@ public class StaffBiz {
 			System.out.println(objStaff);
 			return objStaff;
 		}
-		/*if(lstStaff.size()==0) {
-			System.out.println("name=====");
-			objCriteria.andNameEqualTo(username);
-			lstStaff = staffMapper.selectByExample(objStaffExample);
-		}
-		if(lstStaff.size()==0) {
-			System.out.println("idcard=====");
-			objCriteria.andIdCardEqualTo(username);
-			lstStaff = staffMapper.selectByExample(objStaffExample);
-		}
-		if(lstStaff.size()==0) {
-			throw new BizException("员工用户名不正确，请确认后输入！");
-		}else {
-			if( ! lstStaff.get(0).getPassword().equals(password) ) {
-				throw new BizException("输入的密码错误，请重新输入！");
-			}else {
-				objStaff = lstStaff.get(0);
-				objStaff.setPassword("");
-				objStaff.setIdCard(objSensitiveInfoHidingUtil.hidingIdcard(objStaff.getIdCard()));
-				objStaff.setTelephone(objSensitiveInfoHidingUtil.hidingTel(objStaff.getTelephone()));
-				return objStaff;
-			}
-		}*/
 		
 	}
+
+	/**
+	 * @author 蒋璐
+	 * 判断是否修改密码 以及修改密码是否成功
+	 * @param loginedStaff  后台登录职员的信息
+	 * @param check     是否需要修改密码
+	 * @param newPassword    输入的新密码
+	 * @param cofirmPassword   确认新密码
+	 * @param oldPassword      旧密码
+	 * @return      修改成功返回true
+	 * @throws BizException   
+	 */
+	public boolean updatePassword(Staff loginedStaff,boolean check,String newPassword,
+			String cofirmPassword,String oldPassword) throws BizException {
+		StaffExample objStaffExample= new StaffExample();
+		MD5Util objMD5Util = new MD5Util();
+		if( check==false) {
+			return false;
+		}else {
+			loginedStaff=staffMapper.selectByPrimaryKey(loginedStaff.getId());
+			if(	 ! loginedStaff.getPassword().equals(objMD5Util.MD5(oldPassword))) {
+				throw new BizException("原密码输入错误，请认真核对后输入！");
+			}else {
+				if(oldPassword.equals(newPassword)) {
+					throw new BizException("原密码与新密码输入一致，请重新输入！");
+				}else {
+					if(  ! newPassword.equals(cofirmPassword) ) {
+						throw new BizException("输入的两次新密码不一致，请仔细核对后输入");
+					}
+					System.out.println("进入修改密码");
+					Staff objStaff = new Staff();
+					objStaff.setPassword(objMD5Util.MD5(newPassword));
+					objStaff.setId(loginedStaff.getId());
+					staffMapper.updateByPrimaryKeySelective(objStaff);
+					return true;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * @author 蒋璐
+	 * 更新电子邮箱
+	 * @param loginedStaff   后台登录职员的信息
+	 * @param email    电子邮箱
+	 * @return
+	 */
+	public boolean updateEmail(Staff loginedStaff,String Email) {
+		if(Email==null || Email.trim().equals("")) {
+			return false;
+		}else {
+			Staff objStaff = new Staff();
+			objStaff.setId(loginedStaff.getId());
+			objStaff.setEmail(Email);
+			staffMapper.updateByPrimaryKeySelective(objStaff);
+			return true;
+		}
+	}
+	
+	/**
+	 * @author 蒋璐
+	 * 跟新电话号码
+	 * @param loginedStaff 后台登录职员的信息
+	 * @param telephone  电话号码
+	 * @return
+	 */
+	public boolean updateTelephone(Staff loginedStaff,String telephone) {
+		if(telephone==null || telephone.trim().equals("")) {
+			return false;
+		}else {
+			Staff objStaff = new Staff();
+			objStaff.setId(loginedStaff.getId());
+			objStaff.setTelephone(telephone);
+			staffMapper.updateByPrimaryKeySelective(objStaff);
+			return true;
+		}
+	}
+	
+	
+	public boolean updateProfile(Staff loginedStaff,String profile) {
+		if(profile==null) {
+			return false;
+		}else {
+			Staff objStaff = new Staff();
+			objStaff.setId(loginedStaff.getId());
+			objStaff.setProfile(profile);
+			System.out.println("porfile+++++"+objStaff.getProfile());
+			staffMapper.updateByPrimaryKeySelective(objStaff);
+			return true;
+		}
+	}
+
 	/**
 	 * 重置密码，需要验证该账号和邮箱在数据库中是否存在，不存在返回true 存在抛出异常
 	 * @param account 账号： 可以是用户名，姓名，身份证
@@ -104,7 +173,6 @@ public class StaffBiz {
 		 }else {
 			 throw new BizException("该账号不存在，请查验后重新填写");
 		 }
-		
 	}
 	/**
 	 * 发送验证码函数
@@ -173,6 +241,7 @@ public class StaffBiz {
 			throw new BizException("两次密码输入不一致，请确认后重新输入");
 		}
 	}
+	
 	/**
 	 * 判断验证码是否过期
 	 * @param objValidTime
@@ -231,6 +300,7 @@ public class StaffBiz {
 		return 1;
 	}
 	
+	
 	/**
 	 * 验证用户名业务实现
 	 * @param name 用户名
@@ -251,4 +321,5 @@ public class StaffBiz {
 			throw new RuntimeException("业务繁忙！");
 		}
 	}
+
 }

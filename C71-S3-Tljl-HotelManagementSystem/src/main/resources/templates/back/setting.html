@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="application/json" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="" />
 		<script type="application/x-javascript">
 			addEventListener("load", function() {
@@ -53,19 +53,25 @@
 							<h4>员 工 信 息 修 改 :</h4>
 						</div>
 						<div class="form-body">
-							<form>
-								<div class="form-group"> <label for="Email">邮 箱 地 址</label> <input type="email" class="form-control"
-									 id="Email" placeholder="Email"> </div>
-								<div class="form-group"> <label for="telephone">联 系 电 话</label> <input type="text" class="form-control"
-									 id="telephone" placeholder="联系电话"> </div>
+							<form id="updateForm" enctype="multipart/form-data">
+								<div class="form-group"> <label for="Email">邮 箱 地 址</label>
+									 <input type="email" class="form-control"
+									 name="Email" id="Email" placeholder="Email"> </div>
+								<div class="form-group"> <label for="telephone">联 系 电 话</label>
+									 <input type="text" class="form-control"
+									 name="telephone" id="telephone" placeholder="联系电话"> </div>
 								<div>
-									<div class="form-group"> <label for="originalPassword">原密码</label> <input type="password" class="form-control"
-										 id="originalPassword" placeholder="原密码"> </div>
-									<div class="form-group"> <label for="newPassword">新密码</label> <input type="password" class="form-control"
-										 id="newPassword" placeholder="新密码"> </div>
-									<div class="form-group"> <label for="confirmNewPassword">确认新密码</label> <input type="password" class="form-control"
-										 id="confirmNewPassword" placeholder="确认新密码"> </div>
-									<div class="checkbox"> <label> <input id="changePassword" type="checkbox">修 改 密 码? </label> </div>
+									<div class="form-group"> <label for="originalPassword">原密码</label> 
+										<input type="password" class="form-control"
+										 name="originalPassword" id="originalPassword" placeholder="原密码"> </div>
+									<div class="form-group"> <label for="newPassword">新密码</label>
+										 <input type="password" class="form-control"
+										 name="newPassword" id="newPassword" placeholder="新密码"> </div>
+									<div class="form-group"> <label for="confirmNewPassword">确认新密码</label> 
+										<input type="password" class="form-control"
+										name="confirmNewPassword"  id="confirmNewPassword" placeholder="确认新密码"> </div>
+									<div class="checkbox"> <label> 
+										<input name="changePassword" id="changePassword" type="checkbox">修 改 密 码? </label> </div>
 								</div>
 
 								<div class="form-group">
@@ -73,9 +79,14 @@
 									<br />
 									<img src="./images/2.png" style="width:5%; margin-top: 0.5%; margin-bottom: 0.5%;">
 									<br />
-									<input type="file" id="profileModifyFile">
+									<input name="profileModifyFile" type="file" id="profileModifyFile">
 								</div>
-								<button type="submit" class="btn btn-default">修 改</button>
+								<div id="alertDiv" class="alert alert-warning alert-dismissable" style="display:none">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-hidden="true">&times;</button>
+							警告！请不要提交。
+						</div>
+								<button id="update" type="button" class="btn btn-default">修 改</button>
 							</form>
 						</div>
 					</div>
@@ -83,6 +94,67 @@
 			</div>
 			<!-- Classie -->
 			<script src="js/classie.js"></script>
+			<script>
+				
+				$("#update").click(function(){
+					 var formData = new FormData($('#updateForm')[0]);
+					 formData.append('profileModifyFile',$('#profileModifyFile')[0].files[0]);
+						$.ajax({
+							url:'updateInfo',
+							type:'post',
+							data:formData,
+								//$.param({'profileModifyFile':profileModifyFile})+'&'+$('#updateForm').serialize(),
+							async:false,
+							cache:false,
+							contentType:false,
+							processData:false,
+							success:function(result){
+								if(result.resultCode==2){
+									$("#alertDiv").attr("class","alert alert-warning");
+									$("#alertDiv").css("display", "block");
+									$("#alertDiv").html(result.message);
+								}else{
+									$("#alertDiv").attr("class","alert alert-success");
+									$("#alertDiv").css("display", "block");
+									$("#alertDiv").html(result.message+"3秒后跳回主页。");
+									//setTimeout("location.href = 'frame.html'",3000);//3000毫秒后跳转
+								}	
+							}
+						}) 
+					/* var profileModifyFile=$("#profileModifyFile").val();
+					$.ajax({
+						url:'updateInfo',
+						type:'get',
+						data:$.param({'profileModifyFile':profileModifyFile})+'&'+$('#updateForm').serialize(),
+						contentType:false,
+						processData:false,
+						success:function(result){
+							if(result.resultCode==2){
+								$("#alertDiv").attr("class","alert alert-warning");
+								$("#alertDiv").css("display", "block");
+								$("#alertDiv").html(result.message);
+							}else{
+								$("#alertDiv").attr("class","alert alert-success");
+								$("#alertDiv").css("display", "block");
+								$("#alertDiv").html(result.message+"3秒后跳回主页。");
+								//setTimeout("location.href = 'frame.html'",3000);//3000毫秒后跳转
+							}	
+						}
+					}) */
+					/* $.post('updateInfo',$('#updateForm').serialize(),function(result){
+						if(result.resultCode==2){
+							$("#alertDiv").attr("class","alert alert-warning");
+							$("#alertDiv").css("display", "block");
+							$("#alertDiv").html(result.message);
+						}else{
+							$("#alertDiv").attr("class","alert alert-success");
+							$("#alertDiv").css("display", "block");
+							$("#alertDiv").html(result.message);
+							setTimeout("location.href = 'frame.html'",3000);//3000毫秒后跳转
+						}	
+					}) */
+				})
+			</script>
 			<script>
 				var menuLeft = document.getElementById('cbp-spmenu-s1'),
 					showLeftPush = document.getElementById('showLeftPush'),
