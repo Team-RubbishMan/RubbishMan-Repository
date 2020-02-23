@@ -1,5 +1,7 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
+import java.util.List;
+
 public class RoomType {
     private Integer id;
 
@@ -8,8 +10,25 @@ public class RoomType {
     private Double deposit;
 
     private Double amount;
+    
+    private List<Room> roomList;
 
-    public Integer getId() {
+    
+    @Override
+	public String toString() {
+		return "RoomType [id=" + id + ", type=" + type + ", deposit=" + deposit + ", amount=" + amount + ", roomList="
+				+ roomList + "]";
+	}
+
+	public List<Room> getRoomList() {
+		return roomList;
+	}
+
+	public void setRoomList(List<Room> roomList) {
+		this.roomList = roomList;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -41,9 +60,5 @@ public class RoomType {
         this.amount = amount;
     }
 
-	@Override
-	public String toString() {
-		return "RoomType [id=" + id + ", type=" + type + ", deposit=" + deposit + ", amount=" + amount + "]";
-	}
     
 }
