@@ -150,7 +150,6 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$.post("getDate",null,function(result){
-				console.log(result);
 				for(j = 0; j < result.objHistoryDateArr.length; j++) {
 				   result.objHistoryDateArr[j] = result.objHistoryDateArr[j].substr(result.objHistoryDateArr[j].lastIndexOf('-') + 1);
 				} 

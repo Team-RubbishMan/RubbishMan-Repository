@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ljl.C71S3TljlHotelManagementSystem.bean.Room;
@@ -30,14 +31,15 @@ public class RoomAction {
 		// 取出房间信息
 		List<Room> lstRoomInfo = roomBiz.loadRoomInfo();
 		// 取出房间类别信息
-		List<RoomType> lstRoomTypeInfo = roomBiz.loadRoomTypeInfo();
+		//List<RoomType> lstRoomTypeInfo = roomBiz.loadRoomTypeInfo();
 		// 将两个信息存入model 返回给ajax回调函数
 		model.addAttribute("lstRoomInfo", lstRoomInfo);
-		model.addAttribute("lstRoomTypeInfo", lstRoomTypeInfo);
+		//model.addAttribute("lstRoomTypeInfo", lstRoomTypeInfo);
 		return "back/roommanagement";
 	}
 	@GetMapping("back/roompricemanagement.html")
-	public String roomPriceManagement() {
+	public String roomPriceManagement(Model model,@RequestParam(defaultValue = "1")String page) {
+		model.addAttribute("lstRoomTypeInfo", roomBiz.loadRoomTypeInfo(Integer.parseInt(page)));
 		return "back/roompricemanagement";
 	}
 	
@@ -68,9 +70,7 @@ public class RoomAction {
 		} catch (BizException e) {
 			e.printStackTrace();
 			return new Result(0,e.getMessage(),null);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new Result(0,"暂时无法进行操作，请稍后再试哦",null);
 		}
 	}
+	
 }

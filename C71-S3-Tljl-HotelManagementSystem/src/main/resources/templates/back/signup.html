@@ -146,7 +146,7 @@
 						</div>
 						<div class="clearfix"> </div>
 					</div>
-					<div class="alert alert-warning" style="display:">
+					<div id="alertDiv" class="alert alert-warning" style="display:none">
 						<a href="#" class="close" data-dismiss="alert"> &times; </a> <strong id="info">提示：请务必填写所有字段！</strong>
 					</div>
 					<div class="sub_home">
@@ -174,12 +174,16 @@
 			  
 			  $.post('doname', {name:username}, function (result) {
 				  	if(result.resultCode!=1){
-			            $("#info").html("该用户名已被注册，请重新输入");
+				  		$("#alertDiv").attr("class","alert alert-warning");
+						$("#alertDiv").css("display", "block");
+						$("#alertDiv").children("strong").html(result.message);
 						$("#username").val("");
 		            }else if(pwd1!=pwd2){
-		            	$("#info").html("两次密码输入不一致，请重新输入");
-						  $("#pwd1").val("");
-						  $("#pwd2").val("");
+		            	$("#alertDiv").attr("class","alert alert-warning");
+						$("#alertDiv").css("display", "block");
+						$("#alertDiv").children("strong").html("两次密码输入不一致，请重新输入");
+						$("#pwd1").val("");
+						$("#pwd2").val("");
 		            }else{
 		            	//验证成功后提交
 		            	reg();
@@ -190,10 +194,11 @@
 		  function reg(){
 			  $.post('doreg', $('#form').serialize(), function (result) {
 		            if(result.resultCode==1){
-		               alert(result.message);
-		               location.href = "login.html";
+		            	$("#alertDiv").attr("class","alert alert-success");
+						$("#alertDiv").children("strong").html(result.message + " 3秒后跳转到登录页");
+						setTimeout("location.href = 'login.html'",3000);//3000毫秒后跳转
 		            }else{
-		               alert(result.message);
+		            	$("#alertDiv").children("strong").html(result.message);
 		            }
 		        });
 		  }
