@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="keywords" content="" />
-		<script type="application/x-javascript">
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript">
+	
 			addEventListener("load", function() {
 				setTimeout(hideURLbar, 0);
 			}, false);
@@ -14,138 +15,127 @@
 			function hideURLbar() {
 				window.scrollTo(0, 1);
 			}
-		</script>
-		<!-- Bootstrap Core CSS -->
-		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-		<!-- Custom CSS -->
-		<link href="css/style.css" rel='stylesheet' type='text/css' />
-		<!-- font CSS -->
-		<!-- font-awesome icons -->
-		<link href="css/font-awesome.css" rel="stylesheet">
-		<!-- //font-awesome icons -->
-		<!-- js-->
-		<script src="js/jquery-1.11.1.min.js"></script>
-		<script src="js/modernizr.custom.js"></script>
-		<!--webfonts-->
-		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet'
-		 type='text/css'>
-		<!--//webfonts-->
-		<!--animate-->
-		<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
-		<script src="js/wow.min.js"></script>
-		<script>
-			new WOW().init();
-		</script>
-		<!--//end-animate-->
-		<!-- Metis Menu -->
-		<script src="js/metisMenu.min.js"></script>
-		<script src="js/custom.js"></script>
-		<link href="css/custom.css" rel="stylesheet">
-		<!--//Metis Menu -->
-	</head>
-	<body>
-			<div class="main-page">
-				<div class="tables">
-					<h3 class="title1">菜单管理</h3>
-					<div class="table-responsive bs-example widget-shadow">
-						<h4>菜品一览表:</h4>
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>菜&nbsp&nbsp&nbsp名</th>
-									<th>价&nbsp&nbsp&nbsp格</th>
-									<th>所属种类</th>
-									<th style="width: 15%;">操&nbsp&nbsp&nbsp作</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>
-										<button type="button" class="btn btn-primary"
-										style="float: left;" onclick="roomMaintain(this)">改&nbsp&nbsp&nbsp&nbsp价</button>
-									<button type="button" class="btn btn-primary"
-										style="float: right;">修 改 信 息</button>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>
-									<button type="button" class="btn btn-primary"
-										style="float: left;" onclick="roomMaintain(this)">改&nbsp&nbsp&nbsp&nbsp价</button>
-									<button type="button" class="btn btn-primary"
-										style="float: right;">修 改 信 息</button>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>Table cell</td>
-									<td>
-									<button type="button" class="btn btn-primary"
-										style="float: left;" onclick="roomMaintain(this)">改&nbsp&nbsp&nbsp&nbsp价</button>
-									<button type="button" class="btn btn-primary"
-										style="float: right;">修 改 信 息</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<!--分页文字信息  -->
-							<div class="col-md-6">
-								当前第 <span > </span>页, 总共 <span > </span> 页, 共有 <span ></span> 条记录
-							</div>
-							<!-- 分页条信息 -->
-							<div class="col-md-6 ">
-								<nav aria-label="Page navigation">
-									<ul  class="pagination">
-										<li><a href="#" >首页</a></li>
-										<li class="prev"><a href="#" > <i
-												class="ace-icon fa fa-angle-double-left" ></i> 上一页
-										</a></li>
-										<li class="next"><a href="#" > <i
-												class="ace-icon fa fa-angle-double-right" ></i> 下一页
-										</a></li>
-										<li><a href="#" >尾页</a></li>
-									</ul>
-								</nav>
-							</div>
-					</div>
+		
+</script>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet">
+<!-- //font-awesome icons -->
+<!-- js-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<!--webfonts-->
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic'
+	rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css"
+	media="all">
+<script src="js/wow.min.js"></script>
+<script>
+	new WOW().init();
+</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+<link href="css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+</head>
+<body>
+	<div class="main-page">
+		<div class="tables">
+			<h3 class="title1">菜单管理</h3>
+			<div class="table-responsive bs-example widget-shadow">
+				<h4>菜品一览表:</h4>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th style="display:none">#</th>
+							<th>菜&nbsp&nbsp&nbsp名</th>
+							<th>价&nbsp&nbsp&nbsp格</th>
+							<th>所属种类</th>
+							<th style="width: 15%;">操&nbsp&nbsp&nbsp作</th>
+						</tr>
+					</thead>
+					<tbody th:each="food:${lstFood}">
+						<tr>
+							<th scope="row" th:value="${food.id}" style="display:none"></th>
+							<td th:text="${food.name}"></td>
+							<td th:text="${food.price}"></td>
+							<td th:text="${food.foodType.typeName}"></td>
+							<!-- <td th:text="${food.foodType"></td> -->
+							<td>
+								<button type="button" class="btn btn-primary"
+									style="float: left;" onclick="roomMaintain(this)">改&nbsp&nbsp&nbsp&nbsp价</button>
+								<button type="button" class="btn btn-primary"
+									style="float: right;">修 改 信 息</button>
+							</td>
+						</tr>
+						
+					</tbody>
+				</table>
+				<!--分页文字信息  -->
+				<div class="col-md-6">
+					当前第 <span th:text="${lstFood.pageNum}"> </span>页, 总共 <span th:text="${lstFood.pages}"> </span> 页, 共有 <span th:text="${lstFood.total}"></span> 条记录
+				</div>
+				<!-- 分页条信息 -->
+				<div class="col-md-6 ">
+					<nav aria-label="Page navigation">
+						<ul class="pagination">
+							<li><a th:value="1">首页</a></li>
+							<li class="prev"><a href="#" th:value="${lstFood.pageNum}==1 ? ${lstFood.pageNum} :${lstFood.pageNum}-1"> <i
+									class="ace-icon fa fa-angle-double-left"></i> 上一页
+							</a></li>
+							<li class="next"><a href="#" th:value="${lstFood.pageNum}==${lstFood.pages} ? ${lstFood.pageNum} :${lstFood.pageNum}+1"> <i
+									class="ace-icon fa fa-angle-double-right"></i> 下一页
+							</a></li>
+							<li><a href="#">尾页</a></li>
+						</ul>
+					</nav>
 				</div>
 			</div>
-		
-		<!-- Classie -->
-		<script src="js/classie.js"></script>
-		<script>
-			var menuLeft = document.getElementById('cbp-spmenu-s1'),
-				showLeftPush = document.getElementById('showLeftPush'),
-				body = document.body;
+		</div>
+	</div>
 
-			showLeftPush.onclick = function() {
-				classie.toggle(this, 'active');
-				classie.toggle(body, 'cbp-spmenu-push-toright');
-				classie.toggle(menuLeft, 'cbp-spmenu-open');
-				disableOther('showLeftPush');
-			};
+	<!-- Classie -->
+	<script src="js/classie.js"></script>
+	<script>
+		var menuLeft = document.getElementById('cbp-spmenu-s1'), showLeftPush = document
+				.getElementById('showLeftPush'), body = document.body;
 
-			function disableOther(button) {
-				if (button !== 'showLeftPush') {
-					classie.toggle(showLeftPush, 'disabled');
-				}
+		showLeftPush.onclick = function() {
+			classie.toggle(this, 'active');
+			classie.toggle(body, 'cbp-spmenu-push-toright');
+			classie.toggle(menuLeft, 'cbp-spmenu-open');
+			disableOther('showLeftPush');
+		};
+
+		function disableOther(button) {
+			if (button !== 'showLeftPush') {
+				classie.toggle(showLeftPush, 'disabled');
 			}
-		</script>
-		<!--scrolling js-->
-		<script src="js/jquery.nicescroll.js"></script>
-		<script src="js/scripts.js"></script>
-		<!--//scrolling js-->
-		<!-- Bootstrap Core JavaScript -->
-		<script src="js/bootstrap.js"> </script>
-	</body>
+		}
+	</script>
+	<script>
+	$(".pagination a").click(function(){
+		var page=$(this).attr("value");
+		console.log("page"+page);
+		$("#dynamicDisplayDiv").load("foodmanagement.html?page="+page);
+	})
+	</script>
+	<!--scrolling js-->
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.js">
+		
+	</script>
+</body>
 </html>
