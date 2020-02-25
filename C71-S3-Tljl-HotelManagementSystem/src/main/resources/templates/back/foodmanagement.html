@@ -53,6 +53,54 @@
 			<h3 class="title1">菜单管理</h3>
 			<div class="table-responsive bs-example widget-shadow">
 				<h4>菜品一览表:</h4>
+				<div id="toolbar" class="btn-group"
+						style="margin-bottom: 0.5%; width: 100%;">
+						<div style="float: left; width: 50%;">
+							<button style="width: 16%;" id="btn_add" type="button"
+								class="btn btn-default" data-target="#addModal"
+								data-toggle="modal">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增房间
+								           
+							</button>
+							<button style="width: 16%;" id="btn_edit" type="button"
+								class="btn btn-default" data-target="#modifyModal"
+								data-toggle="modal">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>选择修改
+							</button>
+							<button style="width: 16%;" id="btn_delete" type="button"
+								class="btn btn-default">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>选择删除
+							</button>
+						</div>
+						<div style="float: left; width: 50%;">
+							<form style="margin-top: -4.5%; margin-left: -30%;"
+								class="bs-example bs-example-form" role="form">
+								<div class="input-group" style="width: 25%; float: left;">
+									<span class="input-group-addon">房间类型</span> <select
+										class="form-control" name="product_line" id="productLine">
+										<option value="0">请选择房型</option>
+										<option th:each="roomType:${roomTypeInfo}"
+											th:value="${roomType.id}" th:text="${roomType.type}"></option>
+									</select>
+								</div>
+								<div class="input-group"
+									style="margin-left: 2%; width: 23%; float: left;">
+									<span class="input-group-addon">价&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp格</span>
+									<input type="number" class="form-control">
+								</div>
+								<div class="input-group"
+									style="margin-right: 2%; width: 23%; float: left;">
+									<span class="input-group-addon">一</span> <input type="number"
+										class="form-control">
+								</div>
+								<div class="input-group" style="widhth: 25%; float: left;">
+									<button type="button" class="btn btn-primary"
+										style="float: left;" onclick="roomMaintain(this)">筛&nbsp&nbsp&nbsp&nbsp选</button>
+								</div>
+
+							</form>
+						</div>
+					</div>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -102,7 +150,89 @@
 			</div>
 		</div>
 	</div>
-
+<!-- 模态框（Modal） -->
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">新 增 房 间</h4>
+					</div>
+					<div class="modal-body">
+							<div class="form-body">
+								<form>
+									<div class="form-group">
+										<label for="exampleInputEmail1">房间号</label>
+										<input type="text" class="form-control" id="exampleInputEmail1"
+											placeholder="房间号">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">房间类型</label>
+										<select class="form-control">
+										<option value="0">请选择房型</option>
+										<option th:each="roomType:${roomTypeInfo}"
+											th:value="${roomType.id}" th:text="${roomType.type}"></option>
+										</select>
+									</div>
+								</form>
+							</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary">提交更改</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
+		</div>
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="modifyModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">修 改 房 间</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-grids row widget-shadow"
+							data-example-id="basic-forms">
+							<div class="form-title">
+								<h4>修 改 房 间 :</h4>
+							</div>
+							<div class="form-body">
+								<form>
+									<div class="form-group">
+										<label for="exampleInputEmail1">房间号</label>
+										<input type="text" disabled="disabled" class="form-control" id="exampleInputEmail1"
+											placeholder="房间号">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">房间类型</label>
+										<select class="form-control">
+										<option value="0">请选择房型</option>
+										<option th:each="roomType:${roomTypeInfo}"
+											th:value="${roomType.id}" th:text="${roomType.type}"></option>
+										</select>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary">提交更改</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
+		</div>
 	<!-- Classie -->
 	<script src="js/classie.js"></script>
 	<script>
