@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+	<head>
+		<title>登录</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="Eminent Login Form Widget Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+		<script type="application/x-javascript">
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		</script>
+		<!-- font files -->
+		<!--<link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>-->
+		<!--<link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>-->
+		<!-- /font files -->
+		<!-- css files -->
+		<link href="css/signInStyle.css" rel='stylesheet' type='text/css' media="all" />
+		<!-- /css files -->
+	</head>
+	<body>
+		<h1>Welcome to Paradise Hotel</h1>
+		<div class="form-w3ls">
+			<ul class="tab-group cl-effect-4">
+				<li class="tab active"><a href="#signin-agile">登 录</a></li>
+				<li class="tab"><a href="#signup-agile">注 册</a></li>
+				<li class="tab"><a href="#forget-agile">忘记密码</a></li>
+			</ul>
+			<div class="tab-content">
+				<div id="signin-agile">
+					<form id="signInForm">
+
+						<p class="header">用 户 名</p>
+						<input type="text" name="user" value="User Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User Name';}">
+
+						<p class="header">密 码</p>
+						<input type="password" name="password" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+
+						<input type="checkbox" id="rememberUsername" name="rememberUsername" value="">
+						<label for="brand"><span></span> 记住我?</label>
+ 
+						<input type="button" onclck="signIn()" class="sign-in" value="Sign In">
+
+						<ul class="links">
+							<li class="pass-w3ls"><a href="#">使用第三方登录 ？</a></li>
+						</ul>
+					</form>
+				</div>
+				<div id="signup-agile">
+					<form id="signUpForm">
+
+						<p class="header">用 户 名</p>
+						<input type="text" name="username" value="Your Full Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Full Name';}">
+
+						<p class="header">性 别</p>
+						<div id="">
+							<label style="float:left;width: 50%;"><input name="gender" type="radio" value="1" />男 </label> 
+							<label style="float:right;width: 50%;"><input name="gender" type="radio" value="0" />女 </label> 
+						</div>
+						
+						<p class="header">联 系 电 话</p>
+						<input type="tel" name="telephone" value="Your Phone Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Phone Number';}">
+						
+						<p class="header">身 份 证 号</p>
+						<input type="tel" name="idCard" value="Your ID Card Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your ID Card Number';}">
+						
+						<p class="header">邮 箱 地 址</p>
+						<input type="email" name="email" value="Email@address.com" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email@address.com';}">
+						
+						<p class="header">密 码</p>
+						<input type="password" name="password" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+
+						<p class="header">确 认 密 码</p>
+						<input type="password" name="confirmPassword" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+
+						<input type="button" onclick="signUp()" class="register" value="Register">
+					</form>
+				</div>
+				<div id="forget-agile">
+					<form action="#" method="post">
+				
+						<p class="header">用 户 名</p>
+						<input type="text" name="user" value="Your Full Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Full Name';}">
+						
+						<div>
+						<p class="header">邮 箱 地 址</p>
+						<input type="email"  name="email" value="Email@address.com" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email@address.com';}">
+						
+						<div>	
+							<p class="header">验 证 码</p>
+							<input type="text" style="width:70%;" name="verificationCode" value="Verification Code" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Verification Code';}"><button id="verification" onclick="sendVerificationCode">发送验证码</button>
+						</div>
+						
+						<p class="header">请 输 入 新 密 码</p>
+						<input type="password" name="password" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+				
+						<p class="header">请 确 认 新 密 码</p>
+						<input type="password" name="confirmpassword" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+				
+						<input type="button" onclick="resetPassword()" class="forget" value="Reset">
+					</form>
+				</div>
+			</div><!-- tab-content -->
+		</div> <!-- /form -->
+		<p class="copyright">© 垃圾佬团队版权所有</p>
+		<!-- js files -->
+		<script src='js/jquery.min.js'></script>
+		<script src="js/index.js"></script>
+		<!-- /js files -->
+		<script type="text/javascript">
+			function signIn(){
+				
+				}
+			function signUp(){
+				
+			}
+			function sendVerificationCode(){
+				
+			}
+			function resetPassword(){
+				
+		</script>
+	</body>
+</html>
