@@ -25,11 +25,13 @@ public class RoomBiz {
 		return roomMapper.selectByExample(null);
 	}
 
-
-	public PageInfo<RoomType> loadRoomTypeInfo(int page) {
-		PageHelper.startPage(page,5);
-		PageInfo<RoomType> pageinfoRoomTypeInfo = new PageInfo<>(roomTypeMapper.selectByExample(null),5);
-		return pageinfoRoomTypeInfo;
+	/**
+	 * 加载房型信息
+	 * @author Da
+	 * @return
+	 */
+	public List<RoomType> loadRoomTypeInfo() {
+		return roomTypeMapper.selectByExample(null);
 	}
 	
 	private boolean roomWasUsed(int id) throws BizException {
@@ -52,6 +54,12 @@ public class RoomBiz {
 		}
 	}
 
+	/**
+	 * 修改房型信息
+	 * @author Da
+	 * @param roomType
+	 * @throws BizException
+	 */
 	public void updateRoomTypeInfo(RoomType roomType) throws BizException {
 		try {
 			RoomTypeExample objRoomTypeExample=new RoomTypeExample();
@@ -62,4 +70,84 @@ public class RoomBiz {
 			throw new BizException("修改失败");
 		}
 	}
+
+	/**
+	 * 新增房型信息
+	 * @author Da
+	 * @param roomType
+	 * @throws BizException
+	 */
+	public void addRoomType(RoomType roomType) throws BizException {
+		try {
+			roomTypeMapper.insert(roomType);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BizException("添加失败");
+		}
+	}
+	
+	/**
+	 * 删除房型信息
+	 * @author Da
+	 * @param roomTypeid
+	 * @throws BizException
+	 */
+	public void deleteRoomTypeInfo(Integer roomTypeid) throws BizException {
+		try {
+			roomTypeMapper.deleteByPrimaryKey(roomTypeid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BizException("删除失败");
+		}
+	}
+	
+	/**
+	 * 删除多个房型信息
+	 * @author Da
+	 * @param roomTypeids id数组
+	 * @throws BizException
+	 */
+	public void deleteRoomTypeInfo(String[] roomTypeids) throws BizException {
+		try {
+			for (String roomTypeid : roomTypeids) {
+				roomTypeMapper.deleteByPrimaryKey(Integer.parseInt(roomTypeid));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BizException("删除失败");
+		}
+	}
+
+	/**
+	 * 使用PageHelper封装房型信息
+	 * @author Da
+	 * @param page 当前页
+	 * @param pageSize	页面大小
+	 * @return
+	 */
+
+	public PageInfo<RoomType> getPage(Integer page,Integer pageSize){
+		PageHelper.startPage(page,pageSize);
+		return new PageInfo<RoomType>(roomTypeMapper.selectByExample(null));
+	}
+
+	/**
+	 * 判断房型是否存在
+	 * @author Da
+	 * @param typeName
+	 * @return
+	 * @throws BizException
+	 */
+	public boolean selectTypeName(String typeName) throws BizException {
+		RoomTypeExample objRoomTypeExample=new RoomTypeExample();
+		objRoomTypeExample.createCriteria().andTypeEqualTo(typeName);
+		roomTypeMapper.selectByExample(objRoomTypeExample);
+		
+		if(roomTypeMapper.selectByExample(objRoomTypeExample).size()==0) {
+			return true;
+		}else {
+			throw new BizException("改房型已经存在！");
+		}
+	}
+
 }
