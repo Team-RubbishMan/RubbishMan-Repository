@@ -8,8 +8,25 @@ public class Food {
     private Double price;
 
     private Integer foodTypeId;
+    
+    private FoodType foodType;
 
-    public Integer getId() {
+    
+    @Override
+	public String toString() {
+		return "Food [id=" + id + ", name=" + name + ", price=" + price + ", foodTypeId=" + foodTypeId + ", foodType="
+				+ foodType + "]";
+	}
+
+	public FoodType getFoodType() {
+		return foodType;
+	}
+
+	public void setFoodType(FoodType foodType) {
+		this.foodType = foodType;
+	}
+
+	public Integer getId() {
         return id;
     }
 

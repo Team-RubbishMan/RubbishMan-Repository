@@ -17,6 +17,8 @@
 			}
 		
 </script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap-table.css" />
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
@@ -41,9 +43,7 @@
 	new WOW().init();
 </script>
 <!--//end-animate-->
-<!-- Metis Menu -->
-<script src="js/metisMenu.min.js"></script>
-<script src="js/custom.js"></script>
+
 <link href="css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
 </head>
@@ -53,188 +53,352 @@
 			<h3 class="title1">菜单管理</h3>
 			<div class="table-responsive bs-example widget-shadow">
 				<h4>菜品一览表:</h4>
-				<div id="toolbar" class="btn-group"
-						style="margin-bottom: 0.5%; width: 100%;">
-						<div style="float: left; width: 50%;">
-							<button style="width: 16%;" id="btn_add" type="button"
-								class="btn btn-default" data-target="#addModal"
-								data-toggle="modal">
-								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增房间
-								           
-							</button>
-							<button style="width: 16%;" id="btn_edit" type="button"
-								class="btn btn-default" data-target="#modifyModal"
-								data-toggle="modal">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>选择修改
-							</button>
-							<button style="width: 16%;" id="btn_delete" type="button"
-								class="btn btn-default">
-								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>选择删除
-							</button>
-						</div>
-						<div style="float: left; width: 50%;">
-							<form style="margin-top: -4.5%; margin-left: -30%;"
-								class="bs-example bs-example-form" role="form">
-								<div class="input-group" style="width: 25%; float: left;">
-									<span class="input-group-addon">房间类型</span> <select
-										class="form-control" name="product_line" id="productLine">
-										<option value="0">请选择房型</option>
-										<option th:each="roomType:${roomTypeInfo}"
-											th:value="${roomType.id}" th:text="${roomType.type}"></option>
-									</select>
-								</div>
-								<div class="input-group"
-									style="margin-left: 2%; width: 23%; float: left;">
-									<span class="input-group-addon">价&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp格</span>
-									<input type="number" class="form-control">
-								</div>
-								<div class="input-group"
-									style="margin-right: 2%; width: 23%; float: left;">
-									<span class="input-group-addon">一</span> <input type="number"
-										class="form-control">
-								</div>
-								<div class="input-group" style="widhth: 25%; float: left;">
-									<button type="button" class="btn btn-primary"
-										style="float: left;" onclick="roomMaintain(this)">筛&nbsp&nbsp&nbsp&nbsp选</button>
-								</div>
+				<div id="toolbar" class="btn-group">
+					<button id="btn_add" type="button" class="btn btn-default"
+						onclick="addFoodBtn()">
+						 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+						           
+					</button>
 
-							</form>
+					<button id="btn_delete" type="button" class="btn btn-default"
+						onclick="deleteMany()">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>选择删除
+					</button>
+				</div>
+				<table id="foodInfoTable" class="table table-bordered">
+				</table>
+			</div>
+			<!-- 新增菜品模态框（Modal） -->
+			<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">新 增 菜 品</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-body">
+								<form id="addFoodForm">
+									<div class="form-group">
+										<label for="exampleInputEmail1">菜品名称</label> <input
+											type="text" class="form-control" name="name"
+											placeholder="菜品名称">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">菜品价格</label> <input
+											type="number" class="form-control" name="price"
+											placeholder="菜品价格">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">菜品类型</label> <select
+											class="form-control" name="foodTypeId">
+											<option value="0">请选择菜品类型</option>
+											<option th:each="foodType:${lstFoodType}"
+												th:value="${foodType.id}" th:text="${foodType.typeName}"></option>
+										</select>
+									</div>
+								</form>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary"
+								onclick="addNewFood()">提交更改</button>
 						</div>
 					</div>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th style="display:none">#</th>
-							<th>菜&nbsp&nbsp&nbsp名</th>
-							<th>价&nbsp&nbsp&nbsp格</th>
-							<th>所属种类</th>
-							<th style="width: 15%;">操&nbsp&nbsp&nbsp作</th>
-						</tr>
-					</thead>
-					<tbody th:each="food:${lstFood}">
-						<tr>
-							<th scope="row" th:value="${food.id}" style="display:none"></th>
-							<td th:text="${food.name}"></td>
-							<td th:text="${food.price}"></td>
-							<td th:text="${food.foodType.typeName}"></td>
-							<!-- <td th:text="${food.foodType"></td> -->
-							<td>
-								<button type="button" class="btn btn-primary"
-									style="float: left;" onclick="roomMaintain(this)">改&nbsp&nbsp&nbsp&nbsp价</button>
-								<button type="button" class="btn btn-primary"
-									style="float: right;">修 改 信 息</button>
-							</td>
-						</tr>
-						
-					</tbody>
-				</table>
-				<!--分页文字信息  -->
-				<div class="col-md-6">
-					当前第 <span th:text="${lstFood.pageNum}"> </span>页, 总共 <span th:text="${lstFood.pages}"> </span> 页, 共有 <span th:text="${lstFood.total}"></span> 条记录
+					<!-- /.modal-content -->
 				</div>
-				<!-- 分页条信息 -->
-				<div class="col-md-6 ">
-					<nav aria-label="Page navigation">
-						<ul class="pagination">
-							<li><a th:value="1">首页</a></li>
-							<li class="prev"><a href="#" th:value="${lstFood.pageNum}==1 ? ${lstFood.pageNum} :${lstFood.pageNum}-1"> <i
-									class="ace-icon fa fa-angle-double-left"></i> 上一页
-							</a></li>
-							<li class="next"><a href="#" th:value="${lstFood.pageNum}==${lstFood.pages} ? ${lstFood.pageNum} :${lstFood.pageNum}+1"> <i
-									class="ace-icon fa fa-angle-double-right"></i> 下一页
-							</a></li>
-							<li><a href="#">尾页</a></li>
-						</ul>
-					</nav>
+				<!-- /.modal -->
+			</div>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">修 改 菜 品</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-grids row widget-shadow"
+								data-example-id="basic-forms">
+
+								<div class="form-body">
+									<form id="updateFoodForm">
+										<div class="form-group">
+											<input id="id" name="id" type="hidden"> <label
+												for="exampleInputEmail1">菜品名称</label> <input type="text"
+												readonly="readonly" class="form-control" name="name"
+												id="name" placeholder="菜品名称">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputEmail1">菜品价格</label> <input
+												type="text" class="form-control" name="price" id="price"
+												placeholder="菜品价格">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">菜品类型</label> <select
+												class="form-control" id="foodTypeId" name="foodTypeId">
+												<option th:each="foodType:${lstFoodType}"
+													th:value="${foodType.id}" th:text="${foodType.typeName}"></option>
+											</select>
+										</div>
+										<input type="hidden" name="typeName" id="typeName">
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary"
+								onclick="updateFood()">提交更改</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
 				</div>
+				<!-- /.modal -->
 			</div>
 		</div>
 	</div>
-<!-- 模态框（Modal） -->
-		<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">新 增 房 间</h4>
-					</div>
-					<div class="modal-body">
-							<div class="form-body">
-								<form>
-									<div class="form-group">
-										<label for="exampleInputEmail1">房间号</label>
-										<input type="text" class="form-control" id="exampleInputEmail1"
-											placeholder="房间号">
-									</div>
-									<div class="form-group">
-										<label for="exampleInputPassword1">房间类型</label>
-										<select class="form-control">
-										<option value="0">请选择房型</option>
-										<option th:each="roomType:${roomTypeInfo}"
-											th:value="${roomType.id}" th:text="${roomType.type}"></option>
-										</select>
-									</div>
-								</form>
-							</div>
-						
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary">提交更改</button>
-					</div>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal -->
-		</div>
-		<!-- 模态框（Modal） -->
-		<div class="modal fade" id="modifyModal" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">修 改 房 间</h4>
-					</div>
-					<div class="modal-body">
-						<div class="form-grids row widget-shadow"
-							data-example-id="basic-forms">
-							<div class="form-title">
-								<h4>修 改 房 间 :</h4>
-							</div>
-							<div class="form-body">
-								<form>
-									<div class="form-group">
-										<label for="exampleInputEmail1">房间号</label>
-										<input type="text" disabled="disabled" class="form-control" id="exampleInputEmail1"
-											placeholder="房间号">
-									</div>
-									<div class="form-group">
-										<label for="exampleInputPassword1">房间类型</label>
-										<select class="form-control">
-										<option value="0">请选择房型</option>
-										<option th:each="roomType:${roomTypeInfo}"
-											th:value="${roomType.id}" th:text="${roomType.type}"></option>
-										</select>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary">提交更改</button>
-					</div>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal -->
-		</div>
+
 	<!-- Classie -->
+	<script src="js/jquery-1.11.1.min.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="js/bootstrap-table.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="js/bootstrap-table-zh-CN.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script type="text/javascript" src="js/bootbox.js"></script>
 	<script src="js/classie.js"></script>
+	<!-- Metis Menu -->
+	<script src="js/metisMenu.min.js"></script>
+	<script src="js/custom.js"></script>
+	<script>
+		$(function() {
+			$('#foodInfoTable')
+					.bootstrapTable(
+							{
+								method : "POST",
+								contentType : "application/x-www-form-urlencoded",
+								dataType : "json",
+								url : "loadFoodInfo",
+								pagination : true, //分页
+								search : false, //显示搜索框
+								sidePagination : "server", //服务端处理分页
+								showRefresh : true,
+								pageNumber : 1, //初始化加载第一页，默认第一页
+								pageSize : 5, //每页的记录行数（*）
+								pageList : [ 5, 10 ],
+								toolbar : '#toolbar',
+								queryParams : function queryParams(params) {
+									params.pageNumber = this.pageNumber;
+									return params;
+								},
+								sidePagination : "server",
+								responseHandler : function(result) {
+									//console.log(result);
+									return {
+										"total" : result.total,//总页数
+										"rows" : result.list
+									//数据
+									}
+								},
+								columns : [
+										{
+											checkbox : true,
+											visible : true
+										},
+										{
+											field : 'name',
+											sortable : true,
+											title : '菜名'
+										},
+										{
+											field : 'price',
+											sortable : true,
+											title : '菜品价格'
+										},
+										{
+											field : 'foodType.typeName',
+											sortable : true,
+											title : '菜品类型'
+										},
+										{
+											filed : 'id',
+											title : '操作',
+											formatter : function(value, row,
+													index) {
+												//通过formatter可以自定义列显示的内容
+												//value：当前field的值，即id
+												//row：当前行的数据
+												var food = JSON.stringify(row);
+												var result = "";
+												result += "<a class='btn btn-xs blue'  title='编辑' onclick='EditViewById("
+														+ food
+														+ ")'><span class='glyphicon glyphicon-pencil'></span></a>";
+												result += "<a class='btn btn-xs red' title='删除' onclick='DeleteById("
+														+ food
+														+ ")'><span class='glyphicon glyphicon-remove'></span></a>";
+												return result;
+											}
+										} ]
+
+							});
+		})
+
+		//展示修改菜品模态框 并且将数据回填到form表单
+		function EditViewById(food) {
+			$("#id").val(food.id);
+			$("#name").val(food.name);
+			$("#price").val(food.price);
+			$("#typeName").val(food.foodType.typeName);
+			var oldFoodTypeId = food.foodType.id;
+			$("#foodTypeId option").each(function() {
+				if ($(this).attr("value") == oldFoodTypeId) {
+					$(this).attr("selected", "selected");
+				} else {
+					$(this).removeAttr("selected");
+				}
+			})
+			$("#editModal").modal('show');
+
+		}
+		//按id修改某一菜品
+		function updateFood() {
+			$.post("updateFood", $('#updateFoodForm').serialize(), function(
+					result) {
+				if (result.resultCode == 1) {
+					$("#editModal").modal('hide');
+					bootbox.alert(result.message);
+					$("#foodInfoTable").bootstrapTable('refresh');
+				} else {
+					bootbox.alert(result.message);
+				}
+			})
+
+		}
+
+		//按id删除每一菜品
+		function DeleteById(food) {
+			var foodId = food.id;
+			bootbox.confirm({
+				size : "big",
+				message : "您确定删除该菜品？",
+				buttons : {
+					confirm : {
+						label : "是",
+						className : "btn-success"
+					},
+					cancel : {
+						label : "否",
+						className : "btn-danger"
+					}
+				},
+				callback : function(result) {
+					if (result) {
+						$.post("deleteOneFood", {
+							id : foodId
+						}, function(result) {
+							if (result.resultCode == 0) {
+								bootbox.alert({
+									size : "small",
+									title : "提示",
+									message : result.message
+								})
+							} else {
+								bootbox.alert({
+									size : "small",
+									title : "提示",
+									message : result.message
+								});
+								$("#foodInfoTable").bootstrapTable('refresh');
+							}
+						})
+					}
+				}
+			})
+		}
+		//打开新增模态框
+		function addFoodBtn() {
+			$("#addModal").modal('show');
+		}
+		//新增菜品
+		function addNewFood() {
+			$.post("addNewFood", $("#addFoodForm").serialize(),
+					function(result) {
+						if (result.resultCode == 1) {
+							$("#addModal").modal('hide');
+							bootbox.alert(result.message);
+							$("#foodInfoTable").bootstrapTable('refresh');
+						} else if (result.resultCode == 2) {
+							bootbox.alert(result.message);
+						} else {
+							bootbox.alert(result.message);
+						}
+					})
+		}
+		//选择删除
+		function deleteMany() {
+			var getRows = $("#foodInfoTable").bootstrapTable('getSelections');
+			if (getRows.length == 0) {
+				bootbox.alert("请选择要删除的行。");
+			} else {
+				var foodIds = new Array();
+				$(getRows).each(function() {
+					foodIds.push(this.id);
+				});
+				deleteFoods(foodIds);
+			}
+		}
+		//删除多项功能实现
+		function deleteFoods(foodIds) {
+			bootbox.confirm({
+				size : "big",
+				message : "您确定删除选择的所有菜品？",
+				buttons : {
+					confirm : {
+						label : "是",
+						className : "btn-success"
+					},
+					cancel : {
+						label : "否",
+						className : "btn-danger"
+					}
+				},
+				callback : function(result) {
+					if (result) {
+						$.ajax({
+							url : "deleteFoods",
+							method : "post",
+							async:true,
+							traditional : true,
+							data : {
+								ids:foodIds,
+							},
+							success : function(result) {
+								if(result.resultCode==1){
+									bootbox.alert(result.message);
+									$("#foodInfoTable").bootstrapTable('refresh');
+								}else{
+									bootbox.alert(result.message);
+								}
+							}
+								
+						})
+					}
+				}
+			})
+		}
+	</script>
+
 	<script>
 		var menuLeft = document.getElementById('cbp-spmenu-s1'), showLeftPush = document
 				.getElementById('showLeftPush'), body = document.body;
@@ -252,13 +416,7 @@
 			}
 		}
 	</script>
-	<script>
-	$(".pagination a").click(function(){
-		var page=$(this).attr("value");
-		console.log("page"+page);
-		$("#dynamicDisplayDiv").load("foodmanagement.html?page="+page);
-	})
-	</script>
+
 	<!--scrolling js-->
 	<script src="js/jquery.nicescroll.js"></script>
 	<script src="js/scripts.js"></script>
