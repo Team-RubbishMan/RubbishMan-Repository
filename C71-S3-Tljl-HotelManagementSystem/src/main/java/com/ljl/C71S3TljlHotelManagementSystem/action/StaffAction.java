@@ -122,27 +122,40 @@ public class StaffAction {
 
 	}
 
+	/**
+	 * @author 蒋璐
+	 * 修改员工信息
+	 * @param objStaff   会话中登录员工信息
+	 * @param Email      邮箱
+	 * @param telephone  电话
+	 * @param originalPassword   原密码
+	 * @param confirmNewPassword   新密码
+	 * @param newPassword        确认新密码
+	 * @param changePassword     是否更改密码
+	 * @param profileModifyFile     头像
+	 * @param request 
+	 * @param response
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	@PostMapping("back/updateInfo")
 	@ResponseBody
 	public Result updateInfo(@SessionAttribute("objStaff") Staff objStaff, String Email, String telephone,
 			String originalPassword, String confirmNewPassword, String newPassword, boolean changePassword,
 			MultipartFile profileModifyFile,HttpServletRequest request,
 			HttpServletResponse response) throws IllegalStateException, IOException {
-		System.out.println("email" + Email);
-		System.out.println("telephone" + telephone);
-		System.out.println("originalPassword" + originalPassword);
-		System.out.println("confirmNewPassword" + confirmNewPassword);
-		System.out.println("newPassword" + newPassword);
-		System.out.println("changePassword" + changePassword);
-		
 		try {
+			//获取文件名
 			String strFilename=profileModifyFile.getOriginalFilename();
+			//获取磁盘路径
 			String strDiskPath = "D:/z-s3/originalImg/"+strFilename;
-			
+			//以磁盘路径创建文件
 			File objFile = new File(strDiskPath);
 			profileModifyFile.transferTo(objFile);
-			
+			//使用ThumbnailatiorUtil工具类 进行图片的像素(50*50）压缩
 			ThumbnailatorUtil objThumbnailatorUtil =new ThumbnailatorUtil();
+			//创建文件夹存放压缩后的图片
 			String strProfileDiskPath = "D:/z-s3/back/"+strFilename;
 			objThumbnailatorUtil.changeImgSize(strDiskPath, strProfileDiskPath);
 			
