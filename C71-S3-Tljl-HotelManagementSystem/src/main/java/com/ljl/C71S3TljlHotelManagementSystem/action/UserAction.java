@@ -30,6 +30,17 @@ public class UserAction {
 		return "front/signIn";
 	}
 	
+	
+	/**
+	 * @author 蒋璐
+	 * 前台用户登录功能
+	 * @param remeberUsername    记住账号是否勾选
+	 * @param username    用户名
+	 * @param password    密码
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/front/dologin")
 	@ResponseBody
 	public Result dologin(boolean remeberUsername, @RequestParam("username") String username,

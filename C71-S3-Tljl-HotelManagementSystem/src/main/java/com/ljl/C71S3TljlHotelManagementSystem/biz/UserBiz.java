@@ -17,7 +17,15 @@ public class UserBiz {
 
 	@Resource
 	private UserMapper userMapper;
-
+	
+	/**
+	 * @author 蒋璐
+	 * 用户登录
+	 * @param username  用户名
+	 * @param password   密码
+	 * @return
+	 * @throws BizException
+	 */
 	public User loginUser(String username, String password) throws BizException {
 		SensitiveInfoHidingUtil objSensitiveInfoHidingUtil = new SensitiveInfoHidingUtil();
 		MD5Util objMD5Util = new MD5Util();
