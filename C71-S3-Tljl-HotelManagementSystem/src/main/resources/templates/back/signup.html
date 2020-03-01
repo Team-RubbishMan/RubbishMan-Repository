@@ -166,54 +166,79 @@
 		<!--//footer-->
 		<!-- Classie -->
 		<script src="js/classie.js"></script>
-		<script>
-		  $("#sub").click(function () { 
-			  var username = $("#username").val();
-			  var pwd1 = $("#pwd1").val();
-			  var pwd2 = $("#pwd2").val();
-			  
-			  $.post('doname', {name:username}, function (result) {
-				  	if(result.resultCode!=1){
-				  		$("#alertDiv").attr("class","alert alert-warning");
-						$("#alertDiv").css("display", "block");
-						$("#alertDiv").children("strong").html(result.message);
-						$("#username").val("");
-		            }else if(pwd1!=pwd2){
-		            	$("#alertDiv").attr("class","alert alert-warning");
-						$("#alertDiv").css("display", "block");
-						$("#alertDiv").children("strong").html("两次密码输入不一致，请重新输入");
-						$("#pwd1").val("");
-						$("#pwd2").val("");
-		            }else{
-		            	//验证成功后提交
-		            	reg();
-		            }
-			  }) 	
-			});
-		  //提交表单数据
-		  function reg(){
-			  $.post('doreg', $('#form').serialize(), function (result) {
-		            if(result.resultCode==1){
-		            	$("#alertDiv").attr("class","alert alert-success");
-						$("#alertDiv").children("strong").html(result.message + " 3秒后跳转到登录页");
-						setTimeout("location.href = 'login.html'",3000);//3000毫秒后跳转
-		            }else{
-		            	$("#alertDiv").children("strong").html(result.message);
-		            }
-		        });
-		  }
-			var menuLeft = document.getElementById('cbp-spmenu-s1'),
-				showLeftPush = document.getElementById('showLeftPush'),
-				body = document.body;
-
-
-			function disableOther(button) {
-				if (button !== 'showLeftPush') {
-					classie.toggle(showLeftPush, 'disabled');
-				}
+	<script>
+		function check() {
+			if (form['telephone'] == '') {
+				alert("用户名不能为空!");
+				return false;
 			}
-		</script>
-		<!--scrolling js-->
+			if (form['telephone'].value == '') {
+				alert("联系电话不能为空!");
+				return false;
+			}
+			if (form['idCard'].value == '') {
+				alert("身份证号不能为空!");
+				return false;
+			}
+			if (form['email'].value == '') {
+				alert("邮箱地址不能为空!");
+				return false;
+			}
+			if (form['password'].value == '') {
+				alert("密码不能为空!");
+				return false;
+			}
+		}
+		$("#sub").click(function() {
+			var username = $("#username").val();
+			var pwd1 = $("#pwd1").val();
+			var pwd2 = $("#pwd2").val();
+
+			$.post('doname', {
+				name : username
+			}, function(result) {
+				if (result.resultCode != 1) {
+					$("#alertDiv").attr("class", "alert alert-warning");
+					$("#alertDiv").css("display", "block");
+					$("#alertDiv").children("strong").html(result.message);
+					$("#username").val("");
+				} else if (pwd1 != pwd2) {
+					$("#alertDiv").attr("class", "alert alert-warning");
+					$("#alertDiv").css("display", "block");
+					$("#alertDiv").children("strong").html("两次密码输入不一致，请重新输入");
+					$("#pwd1").val("");
+					$("#pwd2").val("");
+				} else {
+					//验证成功后提交
+					if(check()){
+						reg();
+					}
+				}
+			})
+		});
+		//提交表单数据
+		function reg() {
+			$.post('doreg', $('#form').serialize(), function(result) {
+				if (result.resultCode == 1) {
+					$("#alertDiv").attr("class", "alert alert-success");
+					$("#alertDiv").children("strong").html(
+							result.message + " 3秒后跳转到登录页");
+					setTimeout("location.href = 'login.html'", 3000);//3000毫秒后跳转
+				} else {
+					$("#alertDiv").children("strong").html(result.message);
+				}
+			});
+		}
+		var menuLeft = document.getElementById('cbp-spmenu-s1'), showLeftPush = document
+				.getElementById('showLeftPush'), body = document.body;
+
+		function disableOther(button) {
+			if (button !== 'showLeftPush') {
+				classie.toggle(showLeftPush, 'disabled');
+			}
+		}
+	</script>
+	<!--scrolling js-->
 		<script src="js/jquery.nicescroll.js"></script>
 		<script src="js/scripts.js"></script>
 		<!--//scrolling js-->

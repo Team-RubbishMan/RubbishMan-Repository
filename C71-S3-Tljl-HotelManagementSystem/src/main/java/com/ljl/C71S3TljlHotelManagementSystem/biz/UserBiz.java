@@ -53,4 +53,41 @@ public class UserBiz {
 		}
 
 	}
+	
+	/**
+	 * 注册方法实现
+	 * @author Da
+	 * @param user
+	 * @return
+	 * @throws BizException 
+	 */
+	public boolean register(User user) throws BizException {
+		try {
+			userMapper.insertSelective(user);
+			return true;
+		} catch (Exception e) {
+			throw new BizException("业务繁忙！");
+		}
+	}
+
+	/**
+	 * 判断用户名是否被注册
+	 * @author Da
+	 * @param name
+	 * @return
+	 * @throws BizException 
+	 */
+	public boolean validation(String name) throws BizException {
+		try {
+			UserExample objUserExample = new UserExample();
+			objUserExample.createCriteria().andUsernameEqualTo(name);
+			if(userMapper.selectByExample(objUserExample).size()==0) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (Exception e) {
+			throw new BizException("业务繁忙！");
+		}
+	}
 }

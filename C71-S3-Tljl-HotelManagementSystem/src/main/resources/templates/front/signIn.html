@@ -54,28 +54,28 @@
 					<form id="signUpForm">
 
 						<p class="header">用 户 名</p>
-						<input type="text" name="username" value="Your Full Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Full Name';}">
+						<input type="text" id="username" name="username" value="Your Full Name"  required>
 
 						<p class="header">性 别</p>
-						<div id="">
-							<label style="float:left;width: 50%;"><input name="gender" type="radio" value="1" />男 </label> 
+						<div>
+							<label style="float:left;width: 50%;"><input name="gender" checked="checked" type="radio" value="1" />男 </label> 
 							<label style="float:right;width: 50%;"><input name="gender" type="radio" value="0" />女 </label> 
 						</div>
 						
 						<p class="header">联 系 电 话</p>
-						<input type="tel" name="telephone" value="Your Phone Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Phone Number';}">
+						<input type="tel" name="telephone" value="Your Phone Number" required>
 						
 						<p class="header">身 份 证 号</p>
-						<input type="tel" name="idCard" value="Your ID Card Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your ID Card Number';}">
+						<input type="tel" name="idCard" value="Your ID Card Number" required>
 						
 						<p class="header">邮 箱 地 址</p>
-						<input type="email" name="email" value="Email@address.com" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email@address.com';}">
+						<input type="email" name="email" value="Email@address.com"  required>
 						
 						<p class="header">密 码</p>
-						<input type="password" name="password" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+						<input type="password" name="password"  required>
 
 						<p class="header">确 认 密 码</p>
-						<input type="password" name="confirmPassword" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+						<input type="password" name="confirmPassword" value="" required>
 
 						<input type="button" onclick="signUp()" class="register" value="Register">
 					</form>
@@ -128,13 +128,82 @@
 					}
 				})
 			}
-			function signUp(){
-				
-			}
 			function sendVerificationCode(){
 				
 			}
 			function resetPassword(){
+			}
+			
+			$("#username").change(function () {
+				var userName = signUpForm['username'].value;
+				$.post("doname",{name:userName},function(result){
+					if(result.resultCode==1){
+						$("#username").css("color","green");
+					}else{
+						$("#username").css("color","red");
+						/* var dialogInfo = bootbox.dialog({
+		            	    message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>'+result.message+'</p>',
+		            	    closeButton: false
+		            	});
+		            	setTimeout(function(){ dialogInfo.modal('hide'); },1200); */
+						$("#username").val("");
+					}
+				})
+			});
+			
+			function check() {
+				var name = document.getElementById("username").value;
+				if (name == '' || name == 'Your Full Name') {
+					alert("用户名不能为空!");
+					return false;
+				}
+				if (signUpForm['telephone'].value == ''
+						|| signUpForm['telephone'].value == 'Your Phone Number') {
+					alert("联系电话不能为空!");
+					return false;
+				}
+				if (signUpForm['idCard'].value == ''
+						|| signUpForm['idCard'].value == 'Your ID Card Number') {
+					alert("身份证号不能为空!");
+					return false;
+				}
+				if (signUpForm['email'].value == ''
+						|| signUpForm['email'].value == 'Email@address.com') {
+					alert("邮箱地址不能为空!");
+					return false;
+				}
+				if (signUpForm['password'].value == '') {
+					alert("密码不能为空!");
+					return false;
+				}
+			}
+			function signUp() {
+				if (check()) {
+					if (signUpForm['password'].value == signUpForm['confirmPassword'].value) {
+						$.post("doreg", $("#signUpForm").serialize(), function(
+								result) {
+							if (result.resultCode == 1) {
+								alert("cg")
+								/* var dialogInfo = bootbox.dialog({
+								    message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>'+result.message+'</p>',
+								    closeButton: false
+								});
+								setTimeout(function(){ dialogInfo.modal('hide'); },1200);
+								$("#roomTypeTable").bootstrapTable('refresh'); */
+							} else {
+								alert("sb")
+								/* var dialogInfo = bootbox.dialog({
+								    message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>'+result.message+'</p>',
+								    closeButton: false
+								});
+								setTimeout(function(){ dialogInfo.modal('hide'); },1200); */
+							}
+						});
+					} else {
+						alert("两次密码输入不一致")
+					}
+				}
+
 			}
 		</script>
 	</body>

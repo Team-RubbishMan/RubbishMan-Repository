@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ljl.C71S3TljlHotelManagementSystem.bean.User;
 import com.ljl.C71S3TljlHotelManagementSystem.biz.BizException;
 import com.ljl.C71S3TljlHotelManagementSystem.biz.UserBiz;
+import com.ljl.C71S3TljlHotelManagementSystem.utils.MD5Util;
 import com.ljl.C71S3TljlHotelManagementSystem.vo.Result;
 
 @Controller
@@ -62,5 +64,46 @@ public class UserAction {
 				}
 		
 	
+	}
+	
+	/**
+	 * 验证用户名是否被注册
+	 * @author Da
+	 * @param name 用户名
+	 * @return
+	 */
+	@PostMapping("/front/doname")
+	@ResponseBody
+	public Result validation(@RequestParam String name) {
+		try {
+			if (userBiz.validation(name)) {
+				return new Result(1);
+			}
+		} catch (BizException e) {
+			e.printStackTrace();
+		}
+		return new Result(0);
+	}
+
+	/**
+	 * 实现注册业务方法
+	 * @author Da
+	 * @param user 接收实体类对象
+	 * @return
+	 */
+	@PostMapping("/front/doreg")
+	@ResponseBody
+	public Result doreg(User user) {
+		System.out.println(user.getPassword());
+		String pwd = new MD5Util().MD5(user.getPassword());
+		user.setPassword(pwd);
+		try {
+			if (userBiz.register(user)) {
+				return new Result(1, "注册成功");
+			}
+		} catch (BizException e) {
+			e.printStackTrace();
+		}
+		return new Result(0, "注册失败");
 	}
 }
