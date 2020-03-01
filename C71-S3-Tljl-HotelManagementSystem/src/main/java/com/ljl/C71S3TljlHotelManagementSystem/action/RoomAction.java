@@ -24,20 +24,22 @@ public class RoomAction {
 	@Resource
 	private RoomBiz roomBiz;
 
+
 	/**
 	 * @author 刘子源 加载房间管理网页
 	 * @return 返回所需网页的路径 -- 房间管理
 	 */
 	@GetMapping("back/roommanagement.html")
-	public String roomManagement(Model model) {
-		// 取出房间信息
-		List<Room> lstRoomInfo = roomBiz.loadRoomInfo();
-		// 取出房间类别信息
-		//List<RoomType> lstRoomTypeInfo = roomBiz.loadRoomTypeInfo();
-		// 将两个信息存入model 返回给ajax回调函数
-		model.addAttribute("lstRoomInfo", lstRoomInfo);
-		//model.addAttribute("lstRoomTypeInfo", lstRoomTypeInfo);
+	public String roomManagement(Model model,@RequestParam(defaultValue = "1")int page) {
+		model.addAttribute("roomInfo", roomBiz.loadRoomInfo(page));
+		model.addAttribute("roomTypeInfo", roomBiz.loadRoomTypeInfo());
 		return "back/roommanagement";
+	}
+	@PostMapping("back/loadRoomInfoTable")
+	@ResponseBody
+	public PageInfo<Room> loadRoomInfoTable(@RequestParam(defaultValue = "10") int limit,@RequestParam(defaultValue = "1")int pageNumber) {
+		PageInfo<Room> loadRoomInfo = roomBiz.loadRoomInfo(pageNumber,limit);
+		return loadRoomInfo;
 	}
 	
 	@GetMapping("back/roompricemanagement.html")
@@ -168,5 +170,54 @@ public class RoomAction {
 			return new Result(0,e.getMessage(),null);
 		}
 	}
-	
+	@PostMapping("back/addRoomInfo")
+	@ResponseBody
+	public Result addRoom(Room room) {
+		try {
+			roomBiz.addRoom(room);
+			return new Result(1,"添加成功",null);
+		} catch (BizException e) {
+			e.printStackTrace();
+			return new Result(2,e.getMessage(),null);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new Result(0,"暂时无法进行操作，请稍后再试哦",null);
+		}
+	}
+	@PostMapping("back/editRoomInfo")
+	@ResponseBody
+	public Result editRoomInfo(Room room) {
+		try {
+			roomBiz.editRoomInfo(room);
+			return new Result(1,"修改成功",null);
+		} catch (BizException e) {
+			e.printStackTrace();
+			return new Result(2,e.getMessage(),null);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new Result(0,"暂时无法进行操作，请稍后再试哦",null);
+		}
+	}
+	@PostMapping("back/deleteRoomByIds")
+	@ResponseBody
+	public Result deleteRoomByIds(String[] roomIds) {
+		for(int i=0;i<roomIds.length;i++) {
+			if(i==0) {
+				roomIds[i]=roomIds[i].substring(1);
+			}
+			if(i==roomIds.length-1) {
+				roomIds[i]=roomIds[i].substring(0,roomIds[i].length()-1);
+			}
+		}
+		try {
+			roomBiz.deleteRoomByIds(roomIds);
+		} catch (BizException e) {
+			e.printStackTrace();
+			return new Result(2,e.getMessage(),null);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new Result(0,"暂时无法进行操作，请稍后再试哦",null);
+		}
+		return null;
+	}
 }

@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- menu -->
+<link href="css/component.css" rel="stylesheet" type="text/css"  />
+<!-- //menu -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<!-- fonts -->
+<link href='http://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<!-- //fonts -->
+	<!-- start-smoth-scrolling -->
+		<script type="text/javascript" src="js/move-top.js"></script>
+		<script type="text/javascript" src="js/easing.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
+	<!-- start-smoth-scrolling -->
+	<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+
+</head>
+<body class="cbp-spmenu-push">
+	 <!--top-header-->
+		<!--bottom-->
+		  <section class="button">
+					<button id="showLeftPush"><img src="images/menu.png" alt=""></button>
+		   </section>
+			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+				<h3>Menu</h3>
+				<div class="logo">
+					<a class=" link link--yaku active" href="index.html"><span>H</span><span>o</span><span>m</span><span>e</span></a>
+					<a class=" link link--yaku" href="about.html"><span>A</span><span>b</span><span>o</span><span>u</span><span>t</span></a>
+					<a class=" link link--yaku" href="services.html"><span>S</span><span>e</span><span>r</span><span>v</span><span>i</span><span>c</span><span>e</span><span>s</span></a>
+					<a class=" link link--yaku" href="shortcodes.html"><span>S</span><span>h</span><span>o</span><span>r</span><span>t</span><span>c</span><span>o</span><span>d</span><span>e</span><span>s</span></a>
+					<a class=" link link--yaku" href="gallery.html"><span>G</span><span>a</span><span>l</span><span>l</span><span>e</span><span>r</span><span>y</span></a>
+					<a class=" link link--yaku" href="contact.html"><span>C</span><span>o</span><span>n</span><span>t</span><span>a</span><span>c</span><span>t</span></a>
+				</div>
+				
+					
+			</nav>
+		  
+		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+		<script src="js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				showRightPush = document.getElementById( 'showRightPush' ),
+				body = document.body;
+
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+				if( button !== 'showRightPush' ) {
+					classie.toggle( showRightPush, 'disabled' );
+				}
+			}
+		</script>
+<!-- banner -->
+<div class="banner">
+	<div class="banner-left">
+		<div class="grid__item wow fadeInDown animated" data-wow-delay=".5s">
+			<h1><a class="link link--ilin" href="index.html"><span>Paradise  </span><span> Hotel</span></a></h1>
+		</div>
+		<div class="clearfix"></div>
+		<div class="banner-info wow fadeInUp animated" data-wow-delay=".5s">
+			<h3>Step your feet in a perfect place</h3>
+			<p>Sed ut perspiciatis unde omnis iste natus error
+			sit voluptatem accusantium doloremque laudantium, 
+			totam rem aperiam. </p>
+		</div>
+		<div class="banner-right wow fadeInRight animated" data-wow-delay=".5s">
+			<div class="banner-text">
+				<h3>选 择 您 需 要 的 房 间</h3>
+				<form>
+					<div class="best-hot">
+						<h5>您 的 姓 名</h5>
+						<input type="text" value="在此处输入" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '在此处输入';}" required="">
+					</div>
+					<div class="best-hot">
+						<h5>Email</h5>
+						<input type="text" value="在此处输入" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '在此处输入';}" required="">
+					</div>
+					<div class="best-hot">
+						<h5>房间类型</h5>
+						<select>
+							<option>请选择您需要的房间类型</option>
+						</select>
+					</div>
+					<div class="best-hot">
+						<h5>房间数量</h5>
+						<select>
+							<option>请选择您需要的房间数量</option>
+						</select>
+					</div>
+					<div class="best-hot">
+						<h5>预计入住时间</h5>
+						<div class="book_date">							
+							<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+							<input type="date" value="Select date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Select date';}">													
+						</div>
+					</div>
+					<div class="best-hot">
+						<h5>预计离店时间</h5>
+						<div class="book_date">							
+							<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+							<input type="date" value="Select date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Select date';}">													
+						</div>
+					</div>
+					<input type="submit" value="Book Now">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="banner-bot">
+	<div class="container">
+		<div class="col-md-3 bottom-one btm-two wow fadeInLeft animated" data-wow-delay=".5s">
+			<h3>Choose Your Perfect Place Any Where</h3>
+			<p> Neque porro quisquam est, 
+			qui dolorem ipsum quia dolor sit amet, 
+			consectetur.</p>
+		</div>
+		<div class="col-md-3 bottom-gd wow fadeInRight animated" data-wow-delay=".5s">
+			<div class="item item-type-double">
+				<div class="item-hover">
+					<div class="item-info">
+						<div class="date">Royal Shine</div>			
+						<div class="line"></div>			
+						<div class="headline">Doloremque laudantium</div>
+						<div class="line"></div>
+					</div>
+					<div class="mask"></div>
+				</div>
+				<div class="item-img"><img class="img-responsive" src="images/c1.jpg" alt=" " /></div>
+			</div>
+		</div>
+		<div class="col-md-3 bottom-one wow fadeInLeft animated" data-wow-delay=".5s">
+			<h3>Any Time Any Where We Are Here With You</h3>
+			<p> Neque porro quisquam est, 
+			qui dolorem ipsum quia.</p>
+		</div>
+		<div class="col-md-3 bottom-gd wow fadeInRight animated" data-wow-delay=".5s">
+			<div class="item item-type-double">
+				<div class="item-hover">
+					<div class="item-info">
+						<div class="date">Royal Shine</div>			
+						<div class="line"></div>			
+						<div class="headline">Doloremque laudantium</div>
+						<div class="line"></div>
+					</div>
+					<div class="mask"></div>
+				</div>
+				<div class="item-img"><img class="img-responsive" src="images/c2.jpg" alt=" " /></div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div class="content">
+	<div class="content-wid">
+		<div class="col-md-5 content-left wow fadeInRight animated" data-wow-delay=".5s">
+			<ul id="sti-menu" class="sti-menu">
+				<li data-hovercolor="#fff">
+					<a href="#">
+						<h4 data-type="mText" class="sti-item">Accusantium </h4>
+						<p data-type="sText" class="sti-item">Voluptatem quia voluptas</p>
+						<span data-type="icon" class="sti-icon glyphicon glyphicon-pencil sti-item"></span>
+					</a>
+				</li>
+				<li data-hovercolor="#fff">
+					<a href="#">
+						<h4 data-type="mText" class="sti-item">Voluptatem</h4>
+						<p data-type="sText" class="sti-item">Voluptatem quia voluptas</p>
+						<span data-type="icon" class="sti-icon glyphicon glyphicon-map-marker sti-item"></span>
+					</a>
+				</li>
+			</ul>
+			<script type="text/javascript" src="js/jquery.iconmenu.js"></script>
+				<script type="text/javascript">
+					$(function() {
+						$('#sti-menu').iconmenu({
+							animMouseenter	: {
+								'mText' : {speed : 400, easing : 'easeOutExpo', delay : 140, dir : 1},
+								'sText' : {speed : 400, easing : 'easeOutExpo', delay : 0, dir : 1},
+								'icon'  : {speed : 800, easing : 'easeOutBounce', delay : 280, dir : 1}
+							},
+							animMouseleave	: {
+								'mText' : {speed : 400, easing : 'easeInExpo', delay : 140, dir : 1},
+								'sText' : {speed : 400, easing : 'easeInExpo', delay : 280, dir : 1},
+								'icon'  : {speed : 400, easing : 'easeInExpo', delay : 0, dir : 1}
+							}
+						});
+					});
+				</script>
+		</div>
+		<div class="col-md-7 content-right wow fadeInLeft animated" data-wow-delay=".5s">
+			
+			<div class="wrapper">
+				  <div class="link" href="#"></div>
+				  <div class="overlay">
+					<div class="arrow-left"></div>
+					<div class="rectangle"></div>
+				  </div>
+				  <div class="description">
+					<h3>Royal Shine</h3>
+					<p>Sed ut perspiciatis unde omnis iste natus error
+					sit voluptatem accusantium doloremque laudantium, 
+					totam rem aperiam, eaque ipsa quae.</p>
+				  </div>
+				  <img class="img-responsive" src="images/11.jpg" alt=" " />
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<div class="content-bottom">
+	<div class="container">
+		<div class="col-md-6 con-btm-right wow fadeInRight animated" data-wow-delay=".5s">
+			<h4>Personalised Service and Advice</h4>
+			<p>Sed ut perspiciatis unde omnis iste natus error
+				sit voluptatem accusantium doloremque laudantium, 
+				totam rem aperiam, eaque ipsa quae. Ut enim ad minima veniam,
+				quis nostrum.</p>
+			<a href="about.html" class="hvr-outline-out button2">More About Us</a>
+		</div>
+		<div class="col-md-6 con-btm-gds wow fadeInLeft animated" data-wow-delay=".5s">
+			<div class="text-center">
+				<img src="images/test1.png" alt=" " />
+				<h3>Martin H. Jhonsons</h3>
+			</div>
+			<div class="stars-rate">
+				<span class="starRating">
+					<input id="rating5" type="radio" name="rating" value="5">
+					<label for="rating5">5</label>
+					<input id="rating4" type="radio" name="rating" value="4">
+					<label for="rating4">4</label>
+					<input id="rating3" type="radio" name="rating" value="3" >
+					<label for="rating3">3</label>
+					<input id="rating2" type="radio" name="rating" value="2" checked>
+					<label for="rating2">2</label>
+					<input id="rating1" type="radio" name="rating" value="1">
+					<label for="rating1">1</label>
+				</span>
+			</div>
+			<div class="text-center">
+				<p> Ut enim ad minima veniam, quis nostrum exercitationem
+				ullam corporis suscipit laboriosam, nisi ut aliquid ex ea
+				commodi consequatur.</p>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div class="we-focus">
+	<div class="container">
+		<div class="focus-grids">
+			<div class="col-md-6 focus-grid wow fadeInDown animated" data-wow-delay=".5s">
+				<h3>Our Best Restaurants and Hotels</h3>
+				<p>Donec nulla justo, pharetra nulla, lacinia pulvinar nunc rutrum nisi vel nib  impedit quo minus id quod maxime placeat facere
+			possimus, omnis voluptas assumenda est, omnis dolor repellendus. </p>
+			</div>
+			<div class="col-md-3 focus-grid wow fadeInDown animated" data-wow-delay=".5s">
+				<div class="focus-border">
+					<div class="focus-layout">
+						<div class="focus-image a">
+							<span class="glyphicon glyphicon-road" aria-hidden="true"></span>
+						</div>
+						<h4>Repellendus</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 focus-grid wow fadeInDown animated" data-wow-delay=".5s">
+				<div class="focus-border">
+					<div class="focus-layout">
+						<div class="focus-image b"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+						<h4>Laboriosam</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 focus-grid wow fadeInUp animated" data-wow-delay=".5s">
+				<div class="focus-border">
+					<div class="focus-layout">
+						<div class="focus-image c"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></div>
+						<h4>Consequatur</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 focus-grid wow fadeInUp animated" data-wow-delay=".5s">
+				<div class="focus-border">
+					<div class="focus-layout">
+						<div class="focus-image d"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></div>
+						<h4>Repellendus</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 focus-grid wow fadeInUp animated" data-wow-delay=".5s">
+				<div class="focus-border">
+					<div class="focus-layout">
+						<div class="focus-image e"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
+						<h4>Laboriosam</h4>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 focus-grid wow fadeInUp animated" data-wow-delay=".5s">
+				<div class="focus-border">
+					<div class="focus-layout">
+						<div class="focus-image f"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span></div>
+						<h4>Consequatur</h4>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<div class="experience">
+	<div class="container">
+		<h3>Our Best Popularised Services</h3>
+		<p class="exp-text">Donec nulla justo, pharetra nulla, lacinia pulvinar nunc rutrum nisi vel nib  impedit quo minus id quod maxime placeat facere
+			possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+		<div class="col-md-4 exp-grids wow fadeInRight animated" data-wow-delay=".5s">
+			<div class="exp-gd-info one">
+				<div class="exp-info-text hvr-rectangle-out">
+					<h4>Lacinia pulvinar nunc rutrum</h4>
+					<p>Donec nulla justo, pharetra nulla, lacinia pulvinar nunc rutrum nisi vel nib  impedit quo minus id quod maxime placeat facere
+			possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 exp-grids wow fadeInUp animated" data-wow-delay=".5s">
+			<div class="exp-gd-info two">
+				<div class="exp-info-text hvr-rectangle-out">
+					<h4>Lacinia pulvinar nunc rutrum</h4>
+					<p>Donec nulla justo, pharetra nulla, lacinia pulvinar nunc rutrum nisi vel nib  impedit quo minus id quod maxime placeat facere
+			possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 exp-grids wow fadeInLeft animated" data-wow-delay=".5s">
+			<div class="exp-gd-info three">
+				<div class="exp-info-text hvr-rectangle-out">
+					<h4>Lacinia pulvinar nunc rutrum</h4>
+					<p>Donec nulla justo, pharetra nulla, lacinia pulvinar nunc rutrum nisi vel nib  impedit quo minus id quod maxime placeat facere
+			possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div class="footer">
+	<div class="container">
+		<div class="col-md-4 footer-grids wow fadeInRight animated" data-wow-delay=".5s">
+			<h3>Get in touch</h3>
+			<p>Donec nulla justo, pharetra nulla, lacinia pulvinar nunc rutrum nisi vel nib  impedit quo minus id quod maxime placeat facere
+			possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+			<ul>
+				<li><a class="ico1" href="#"></a></li>
+				<li><a class="ico2" href="#"></a></li>
+				<li><a class="ico3" href="#"></a></li>
+				<li><a class="ico4" href="#"></a></li>
+			</ul>
+		</div>
+		<div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".5s">
+			<h3>Subscribe For Newsletter</h3>
+			<form>
+				<input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+				<input type="submit" value="Subscribe">
+			</form>
+		</div>
+		<div class="col-md-4 footer-grids wow fadeInLeft animated" data-wow-delay=".5s">
+			<h3>Address</h3>
+			<p>8901 Marmora Road <br>
+				Glasgow, DO4 89GR.<br>
+				Freephone: +1 234 456 7890<br>
+				Telephone: +1 234 456 7890<br>
+				FAX: +1 989 889 9898</p>
+			<p>E-mail : <a href="mailto:info@example.com">mail@demolink.org</a></p>
+		</div>		
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div class="footer-bot wow fadeInRight animated" data-wow-delay=".5s">
+	<div class="container">
+			<div class="logo2">
+				<h2><a href="index.html">Royal Shine</a></h2>
+			</div>
+			<div class="ftr-menu">
+				 <ul>
+					<li><a href="index.html">HOME </a></li>
+					<li><a href="about.html">ABOUT</a></li>
+					<li><a href="services.html">SERVICES</a></li>
+					<li><a href="gallery.html">GALLERY</a></li>
+					<li><a href="contact.html">CONTACT</a></li>
+				 </ul>
+			</div>
+			<div class="clearfix"></div>
+	</div>
+</div>
+<div class="copy-right wow fadeInLeft animated" data-wow-delay=".5s">
+	<div class="container">
+			<p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+	</div>
+</div>
+<!-- for bootstrap working -->
+	<script src="js/bootstrap.js"></script>
+<!-- //for bootstrap working -->
+<!-- smooth scrolling -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+		/*
+			var defaults = {
+			containerID: 'toTop', // fading element id
+			containerHoverID: 'toTopHover', // fading element hover id
+			scrollSpeed: 1200,
+			easingType: 'linear' 
+			};
+		*/								
+		$().UItoTop({ easingType: 'easeOutQuart' });
+		});
+	</script>
+	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!-- //smooth scrolling -->
+
+</body>
+</html>

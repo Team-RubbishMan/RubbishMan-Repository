@@ -21,8 +21,13 @@ public class RoomBiz {
 	@Resource
 	private RoomTypeMapper roomTypeMapper;
 	
-	public List<Room> loadRoomInfo() {
+	public List<Room> loadRoomInfo(int page) {
+		PageHelper.startPage(page,8);//这行是重点，表示从pageNum页开始，每页pageSize条数据
 		return roomMapper.selectByExample(null);
+	}
+	public PageInfo<Room> loadRoomInfo(int page,int pageSize) {
+		PageHelper.startPage(page, pageSize);
+		return new PageInfo<Room>(roomMapper.selectByExample(null));
 	}
 
 	/**
@@ -149,5 +154,56 @@ public class RoomBiz {
 			throw new BizException("改房型已经存在！");
 		}
 	}
-
+	
+	public void addRoom(Room room) throws BizException {
+		if(infoIsValid(room)) {
+			room.setStatus("0");
+			roomMapper.insert(room);
+		}
+	}
+	private boolean infoIsValid(Room room) throws BizException {
+		if(room.getRoomNumber()==null) {
+			throw new BizException("请输入房间号");
+		}
+		if(room.getRoomTypeId()==0) {
+			throw new BizException("请选择房型");
+		}
+		RoomExample objRoomExample =new RoomExample();
+		objRoomExample.createCriteria().andRoomNumberEqualTo(room.getRoomNumber());
+		List<Room> lstRoomInfo = roomMapper.selectByExample(objRoomExample);
+		if(lstRoomInfo.size()>0) {
+			throw new BizException("该房间号已经存在，请重新输入房间号");
+		}
+		return true;
+	}
+	public void editRoomInfo(Room room) throws BizException {
+		if(roomWasUsed(room)==false) {
+			roomMapper.updateByPrimaryKeySelective(room);
+		}
+	}
+	private boolean roomWasUsed(Room room) throws BizException {
+		Room objRoom=roomMapper.selectByPrimaryKey(room.getId());
+		if(!objRoom.getStatus().equals("0")) {
+			return false;
+		}else {
+			throw new BizException("该房间正在被使用，不能修改信息");
+		}
+	}
+	public void deleteRoomByIds(String[] roomIds) throws BizException {
+		if(roomWasUsed(roomIds)==false){
+			for(String id:roomIds) {
+				roomMapper.deleteByPrimaryKey(Integer.parseInt(id));
+			}
+		}
+	}
+	private boolean roomWasUsed(String[] roomIds) throws BizException {
+		for(String id:roomIds) {
+			Room objRoom=roomMapper.selectByPrimaryKey(Integer.parseInt(id));
+			if(objRoom.getStatus().equals("0")) {
+				throw new BizException(objRoom.getRoomNumber()+"正在被使用，房间信息不能被删除");
+			}
+		}
+		return false;
+		
+	}
 }

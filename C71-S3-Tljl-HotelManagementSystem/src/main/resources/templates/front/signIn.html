@@ -81,7 +81,7 @@
 					</form>
 				</div>
 				<div id="forget-agile">
-					<form action="#" method="post">
+					<form id="resetPasswordForm">
 				
 						<p class="header">用 户 名</p>
 						<input type="text" name="user" value="Your Full Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Full Name';}">
@@ -90,14 +90,14 @@
 						<input type="email"  name="email" value="Email@address.com" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email@address.com';}">
 						<div>	
 							<p class="header">验 证 码</p>
-							<input type="text" style="width:70%;" name="verificationCode" value="Verification Code" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Verification Code';}"><button id="verification" onclick="sendVerificationCode">发送验证码</button>
+							<input type="text" style="width:70%;" name="verificationCode" value="Verification Code" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Verification Code';}"><button type="button" id="verification" onclick="sendVerificationCode()">发送验证码</button>
 						</div>
 						
 						<p class="header">请 输 入 新 密 码</p>
 						<input type="password" name="password" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
 				
 						<p class="header">请 确 认 新 密 码</p>
-						<input type="password" name="confirmpassword" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+						<input type="password" name="confirmPassword" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
 				
 						<input type="button" onclick="resetPassword()" class="forget" value="Reset">
 					</form>
@@ -109,6 +109,7 @@
 		<script src='js/jquery.min.js'></script>
 		<script src="js/index.js"></script>
 		<!-- bootbox.js -->
+		<script type="text/javascript" src="js/bootstrap.js"></script>
 		<script type="text/javascript" src="js/bootbox.js"></script>
 		<!-- /js files -->
 		<script type="text/javascript">
@@ -129,9 +130,35 @@
 				})
 			}
 			function sendVerificationCode(){
-				
+				var user=$("#resetPasswordForm>input[name='user']").val();
+				var email=$("#resetPasswordForm>input[name='email']").val();
+				$.post("getVerificationCode",{user:user,email:email},function(result){
+					if(result.resultCode==1){
+						if (result.resultCode == 1) {
+							alert(result.message);
+						}
+						if (result.resultCode == 2) {
+							alert(result.message);
+						}
+						if (result.resultCode == 0) {
+							alert(result.message);
+						}
+					}
+				})
 			}
 			function resetPassword(){
+				$.post("resetPassword",$("#resetPasswordForm").serialize(),function(result){
+					if (result.resultCode == 1) {
+						alert(result.message);
+						setTimeout("location.href = 'signIn.html'",3000);//3000毫秒后跳转
+					}
+					if (result.resultCode == 2) {
+						alert(result.message);
+					}
+					if (result.resultCode == 0) {
+						alert(result.message);
+					}
+				})
 			}
 			
 			$("#username").change(function () {

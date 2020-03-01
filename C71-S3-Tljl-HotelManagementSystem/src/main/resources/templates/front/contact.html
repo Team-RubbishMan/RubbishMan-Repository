@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- menu -->
+<link href="css/component.css" rel="stylesheet" type="text/css"  />
+<!-- //menu -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<!-- fonts -->
+<link href='http://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<!-- //fonts -->
+	<!-- start-smoth-scrolling -->
+		<script type="text/javascript" src="js/move-top.js"></script>
+		<script type="text/javascript" src="js/easing.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
+	<!-- start-smoth-scrolling -->
+<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+</head>
+<body class="cbp-spmenu-push">
+	 <!--top-header-->
+		<!--bottom-->
+		  <section class="button">
+					<button id="showLeftPush" class="wow fadeInDown animated" data-wow-delay=".5s"><img src="images/menu.png" alt=""></button>
+		   </section>
+			<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+				<h3>Menu</h3>
+				<div class="logo">
+					<a class=" link link--yaku " href="index.html"><span>H</span><span>o</span><span>m</span><span>e</span></a>
+					<a class=" link link--yaku " href="about.html"><span>A</span><span>b</span><span>o</span><span>u</span><span>t</span></a>
+					<a class=" link link--yaku" href="services.html"><span>S</span><span>e</span><span>r</span><span>v</span><span>i</span><span>c</span><span>e</span><span>s</span></a>
+					<a class=" link link--yaku" href="shortcodes.html"><span>S</span><span>h</span><span>o</span><span>r</span><span>t</span><span>c</span><span>o</span><span>d</span><span>e</span><span>s</span></a>
+					<a class=" link link--yaku" href="gallery.html"><span>G</span><span>a</span><span>l</span><span>l</span><span>e</span><span>r</span><span>y</span></a>
+					<a class=" link link--yaku active" href="contact.html"><span>C</span><span>o</span><span>n</span><span>t</span><span>a</span><span>c</span><span>t</span></a>
+				</div>
+				
+					
+			</nav>
+		  
+		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+		<script src="js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				showRightPush = document.getElementById( 'showRightPush' ),
+				body = document.body;
+
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+				if( button !== 'showRightPush' ) {
+					classie.toggle( showRightPush, 'disabled' );
+				}
+			}
+		</script>
+<!-- banner -->
+<div class="banner ">
+	<div class="banner-left page-head">
+		<div class="grid__item wow fadeInDown animated" data-wow-delay=".5s">
+			<h1><a class="link link--ilin" href="index.html"><span>Royal  </span><span>Shine</span></a></h1>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<!-- contact -->
+<div class="contact">
+	<div class="container">
+		
+		<h3 class="tittle">Contact</h3>
+		<div class="contact-grids">
+			
+			<div class="col-md-6 contact-grid wow fadeInRight animated" data-wow-delay=".5s">
+				<form>
+					<input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+					<input type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+					<input type="text" value="Mobile number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mobile number';}" required="">
+					<textarea type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+					<input type="submit" value="Send" >
+				</form>
+			</div>
+			<div class="col-md-6 contact-grid wow fadeInLeft animated" data-wow-delay=".5s">
+				<div class="newsletter">
+					<h3><span></span>Newsletter</h3>
+				</div>
+				<form>
+					<input type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+					<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+					<input type="submit" value="Subscribe" >
+				</form>
+			</div>
+			<div class="clearfix"> </div>
+		
+		</div>
+		<h3 class="tittle">View On map</h3>
+		<div class="map wow fadeInDown animated" data-wow-delay=".5s">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d2482.432383990807!2d0.028213999961443994!3d51.52362882484525!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1423469959819" frameborder="0" style="border:0"></iframe>
+		</div>
+	</div>
+</div>
+<!-- //contact -->
+<div class="footer">
+	<div class="container">
+		<div class="col-md-4 footer-grids wow fadeInRight animated" data-wow-delay=".5s">
+			<h3>Get in touch</h3>
+			<p>Donec nulla justo, pharetra nulla, lacinia pulvinar nunc rutrum nisi vel nib  impedit quo minus id quod maxime placeat facere
+			possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+			<ul>
+				<li><a class="ico1" href="#"></a></li>
+				<li><a class="ico2" href="#"></a></li>
+				<li><a class="ico3" href="#"></a></li>
+				<li><a class="ico4" href="#"></a></li>
+			</ul>
+		</div>
+		<div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".5s">
+			<h3>Subscribe For Newsletter</h3>
+			<form>
+				<input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+				<input type="submit" value="Subscribe">
+			</form>
+		</div>
+		<div class="col-md-4 footer-grids wow fadeInLeft animated" data-wow-delay=".5s">
+			<h3>Address</h3>
+			<p>8901 Marmora Road <br>
+				Glasgow, DO4 89GR.<br>
+				Freephone: +1 234 456 7890<br>
+				Telephone: +1 234 456 7890<br>
+				FAX: +1 989 889 9898</p>
+			<p>E-mail : <a href="mailto:info@example.com">mail@demolink.org</a></p>
+		</div>		
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div class="footer-bot wow fadeInRight animated" data-wow-delay=".5s">
+	<div class="container">
+			<div class="logo2">
+				<h2><a href="index.html">Royal Shine</a></h2>
+			</div>
+			<div class="ftr-menu">
+				 <ul>
+					<li><a href="index.html">HOME </a></li>
+					<li><a href="about.html">ABOUT</a></li>
+					<li><a href="services.html">SERVICES</a></li>
+					<li><a href="gallery.html">GALLERY</a></li>
+					<li><a href="contact.html">CONTACT</a></li>
+				 </ul>
+			</div>
+			<div class="clearfix"></div>
+	</div>
+</div>
+<div class="copy-right wow fadeInLeft animated" data-wow-delay=".5s">
+	<div class="container">
+			<p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+	</div>
+</div>
+<!-- for bootstrap working -->
+	<script src="js/bootstrap.js"></script>
+<!-- //for bootstrap working -->
+<!-- smooth scrolling -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+		/*
+			var defaults = {
+			containerID: 'toTop', // fading element id
+			containerHoverID: 'toTopHover', // fading element hover id
+			scrollSpeed: 1200,
+			easingType: 'linear' 
+			};
+		*/								
+		$().UItoTop({ easingType: 'easeOutQuart' });
+		});
+	</script>
+	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!-- //smooth scrolling -->
+
+</body>
+</html>
