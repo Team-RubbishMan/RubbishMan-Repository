@@ -42,7 +42,11 @@ public class StaffBiz {
 		//存放登录职员的信息
 		Staff objStaff = null;
 		StaffExample objStaffExample = new StaffExample();
-		
+		//判断username和password是否为空
+		if(username==null || password == null) {
+			throw new BizException("请输入用户名或密码！");
+		}
+
 		objStaffExample.or().andUsernameEqualTo(username).andPasswordEqualTo(objMD5Util.MD5(password));
 		objStaffExample.or().andNameEqualTo(username).andPasswordEqualTo(objMD5Util.MD5(password));
 		objStaffExample.or().andIdCardEqualTo(username).andPasswordEqualTo(objMD5Util.MD5(password));
