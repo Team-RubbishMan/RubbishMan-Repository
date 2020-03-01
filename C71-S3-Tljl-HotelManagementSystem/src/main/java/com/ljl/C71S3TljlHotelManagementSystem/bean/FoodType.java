@@ -4,13 +4,8 @@ public class FoodType {
     private Integer id;
 
     private String typeName;
-    
-    @Override
-	public String toString() {
-		return "FoodType [id=" + id + ", typeName=" + typeName + "]";
-	}
 
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -21,11 +21,12 @@
         <id jdbcType="INTEGER" column="id" property="id"/>
         <result jdbcType="VARCHAR" column="name" property="name"/>
     </association>
+    
   </resultMap>
-   <select id="selectById" resultMap="com.ljl.C71S3TljlHotelManagementSystem.dao.DepartmentMapper.BaseResultMap">
+  <select id="selectById" resultMap="com.ljl.C71S3TljlHotelManagementSystem.dao.DepartmentMapper.BaseResultMap">
   	select  department.name from staff left join department on staff.department_id = department.id where staff.id=#{id}
-
   </select>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

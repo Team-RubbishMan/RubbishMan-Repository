@@ -23,6 +23,7 @@ public class Staff {
     
     private Department department;
     
+    
 
     @Override
 	public String toString() {

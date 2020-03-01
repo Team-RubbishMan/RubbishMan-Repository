@@ -15,8 +15,6 @@ public class User {
 
     private String gender;
 
-    private String profile;
-
     private Integer vipId;
 
     private String status;
@@ -81,14 +79,6 @@ public class User {
         this.gender = gender == null ? null : gender.trim();
     }
 
-    public String getProfile() {
-        return profile;
-    }
-
-    public void setProfile(String profile) {
-        this.profile = profile == null ? null : profile.trim();
-    }
-
     public Integer getVipId() {
         return vipId;
     }
@@ -120,13 +110,4 @@ public class User {
     public void setTemp3(String temp3) {
         this.temp3 = temp3 == null ? null : temp3.trim();
     }
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", telephone=" + telephone
-				+ ", email=" + email + ", idCard=" + idCard + ", gender=" + gender + ", profile=" + profile + ", vipId="
-				+ vipId + ", status=" + status + ", temp2=" + temp2 + ", temp3=" + temp3 + "]";
-	}
-    
-    
 }

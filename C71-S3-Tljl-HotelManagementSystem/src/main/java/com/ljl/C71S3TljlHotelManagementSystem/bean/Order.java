@@ -11,6 +11,10 @@ public class Order {
 
     private Date orderTime;
 
+    private Date eCheckInTime;
+
+    private Date eCheckOutTime;
+
     private Double consumptionAmount;
 
     private String status;
@@ -51,6 +55,22 @@ public class Order {
 
     public void setOrderTime(Date orderTime) {
         this.orderTime = orderTime;
+    }
+
+    public Date geteCheckInTime() {
+        return eCheckInTime;
+    }
+
+    public void seteCheckInTime(Date eCheckInTime) {
+        this.eCheckInTime = eCheckInTime;
+    }
+
+    public Date geteCheckOutTime() {
+        return eCheckOutTime;
+    }
+
+    public void seteCheckOutTime(Date eCheckOutTime) {
+        this.eCheckOutTime = eCheckOutTime;
     }
 
     public Double getConsumptionAmount() {

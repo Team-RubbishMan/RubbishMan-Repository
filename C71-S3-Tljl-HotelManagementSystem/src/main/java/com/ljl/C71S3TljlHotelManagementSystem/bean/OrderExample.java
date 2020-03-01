@@ -345,6 +345,126 @@ public class OrderExample {
             return (Criteria) this;
         }
 
+        public Criteria andECheckInTimeIsNull() {
+            addCriterion("e_check_in_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckInTimeIsNotNull() {
+            addCriterion("e_check_in_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckInTimeEqualTo(Date value) {
+            addCriterion("e_check_in_time =", value, "eCheckInTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckInTimeNotEqualTo(Date value) {
+            addCriterion("e_check_in_time <>", value, "eCheckInTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckInTimeGreaterThan(Date value) {
+            addCriterion("e_check_in_time >", value, "eCheckInTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckInTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("e_check_in_time >=", value, "eCheckInTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckInTimeLessThan(Date value) {
+            addCriterion("e_check_in_time <", value, "eCheckInTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckInTimeLessThanOrEqualTo(Date value) {
+            addCriterion("e_check_in_time <=", value, "eCheckInTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckInTimeIn(List<Date> values) {
+            addCriterion("e_check_in_time in", values, "eCheckInTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckInTimeNotIn(List<Date> values) {
+            addCriterion("e_check_in_time not in", values, "eCheckInTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckInTimeBetween(Date value1, Date value2) {
+            addCriterion("e_check_in_time between", value1, value2, "eCheckInTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckInTimeNotBetween(Date value1, Date value2) {
+            addCriterion("e_check_in_time not between", value1, value2, "eCheckInTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeIsNull() {
+            addCriterion("e_check_out_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeIsNotNull() {
+            addCriterion("e_check_out_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeEqualTo(Date value) {
+            addCriterion("e_check_out_time =", value, "eCheckOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeNotEqualTo(Date value) {
+            addCriterion("e_check_out_time <>", value, "eCheckOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeGreaterThan(Date value) {
+            addCriterion("e_check_out_time >", value, "eCheckOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("e_check_out_time >=", value, "eCheckOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeLessThan(Date value) {
+            addCriterion("e_check_out_time <", value, "eCheckOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeLessThanOrEqualTo(Date value) {
+            addCriterion("e_check_out_time <=", value, "eCheckOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeIn(List<Date> values) {
+            addCriterion("e_check_out_time in", values, "eCheckOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeNotIn(List<Date> values) {
+            addCriterion("e_check_out_time not in", values, "eCheckOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeBetween(Date value1, Date value2) {
+            addCriterion("e_check_out_time between", value1, value2, "eCheckOutTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andECheckOutTimeNotBetween(Date value1, Date value2) {
+            addCriterion("e_check_out_time not between", value1, value2, "eCheckOutTime");
+            return (Criteria) this;
+        }
+
         public Criteria andConsumptionAmountIsNull() {
             addCriterion("consumption_amount is null");
             return (Criteria) this;

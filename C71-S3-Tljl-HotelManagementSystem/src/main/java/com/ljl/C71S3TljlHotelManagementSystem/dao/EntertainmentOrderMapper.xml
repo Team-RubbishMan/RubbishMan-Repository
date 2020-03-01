@@ -3,8 +3,15 @@
 <mapper namespace="com.ljl.C71S3TljlHotelManagementSystem.dao.EntertainmentOrderMapper">
   <resultMap id="BaseResultMap" type="com.ljl.C71S3TljlHotelManagementSystem.bean.EntertainmentOrder">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="entertainment_order_number" jdbcType="INTEGER" property="entertainmentOrderNumber" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
     <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="status" jdbcType="INTEGER" property="status" />
     <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="temp1" jdbcType="VARCHAR" property="temp1" />
+    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
+    <result column="temp3" jdbcType="VARCHAR" property="temp3" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, amount, order_id
+    id, entertainment_order_number, create_time, pay_time, amount, status, order_id, 
+    temp1, temp2, temp3
   </sql>
   <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.EntertainmentOrderExample" resultMap="BaseResultMap">
     select
@@ -101,8 +109,14 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into entertainment_order (amount, order_id)
-    values (#{amount,jdbcType=DOUBLE}, #{orderId,jdbcType=INTEGER})
+    insert into entertainment_order (entertainment_order_number, create_time, 
+      pay_time, amount, status, 
+      order_id, temp1, temp2, 
+      temp3)
+    values (#{entertainmentOrderNumber,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{amount,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=INTEGER}, #{temp1,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, 
+      #{temp3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.EntertainmentOrder">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -110,19 +124,61 @@
     </selectKey>
     insert into entertainment_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="entertainmentOrderNumber != null">
+        entertainment_order_number,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
       <if test="amount != null">
         amount,
+      </if>
+      <if test="status != null">
+        status,
       </if>
       <if test="orderId != null">
         order_id,
       </if>
+      <if test="temp1 != null">
+        temp1,
+      </if>
+      <if test="temp2 != null">
+        temp2,
+      </if>
+      <if test="temp3 != null">
+        temp3,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="entertainmentOrderNumber != null">
+        #{entertainmentOrderNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="amount != null">
         #{amount,jdbcType=DOUBLE},
       </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
       <if test="orderId != null">
         #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="temp1 != null">
+        #{temp1,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        #{temp3,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -138,11 +194,32 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
+      <if test="record.entertainmentOrderNumber != null">
+        entertainment_order_number = #{record.entertainmentOrderNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payTime != null">
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.amount != null">
         amount = #{record.amount,jdbcType=DOUBLE},
       </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
       <if test="record.orderId != null">
         order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.temp1 != null">
+        temp1 = #{record.temp1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp2 != null">
+        temp2 = #{record.temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temp3 != null">
+        temp3 = #{record.temp3,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -152,8 +229,15 @@
   <update id="updateByExample" parameterType="map">
     update entertainment_order
     set id = #{record.id,jdbcType=INTEGER},
+      entertainment_order_number = #{record.entertainmentOrderNumber,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      pay_time = #{record.payTime,jdbcType=TIMESTAMP},
       amount = #{record.amount,jdbcType=DOUBLE},
-      order_id = #{record.orderId,jdbcType=INTEGER}
+      status = #{record.status,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      temp1 = #{record.temp1,jdbcType=VARCHAR},
+      temp2 = #{record.temp2,jdbcType=VARCHAR},
+      temp3 = #{record.temp3,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -161,19 +245,47 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.EntertainmentOrder">
     update entertainment_order
     <set>
+      <if test="entertainmentOrderNumber != null">
+        entertainment_order_number = #{entertainmentOrderNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="amount != null">
         amount = #{amount,jdbcType=DOUBLE},
       </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
       <if test="orderId != null">
         order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="temp1 != null">
+        temp1 = #{temp1,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        temp2 = #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        temp3 = #{temp3,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.EntertainmentOrder">
     update entertainment_order
-    set amount = #{amount,jdbcType=DOUBLE},
-      order_id = #{orderId,jdbcType=INTEGER}
+    set entertainment_order_number = #{entertainmentOrderNumber,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      amount = #{amount,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER},
+      temp1 = #{temp1,jdbcType=VARCHAR},
+      temp2 = #{temp2,jdbcType=VARCHAR},
+      temp3 = #{temp3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

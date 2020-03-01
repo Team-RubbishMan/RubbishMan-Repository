@@ -1,7 +1,5 @@
 package com.ljl.C71S3TljlHotelManagementSystem.action;
 
-import java.util.Date;
-
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -49,23 +47,51 @@ public class UserAction {
 	@ResponseBody
 	public Result dologin(boolean remeberUsername, @RequestParam("username") String username,
 			@RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) {
-				// 清空session内容
-				request.getSession().invalidate();
-				try {
-					// 获取staffBiz中已登录的职员信息
-					User objUser=userBiz.loginUser(username,password);
-					request.getSession().setAttribute("objUser", objUser);
-					
-
-					return new Result(1, "登录成功！", null);
-				} catch (BizException e) {
-					e.printStackTrace();
-					return new Result(2, e.getMessage(), username);
-				} catch (Exception e) {
-					return new Result(0, "系统繁忙，请稍后再试！", null);
+		// 清空session内容
+		request.getSession().invalidate();
+		try {
+			// 获取staffBiz中已登录的职员信息
+			User objUser=userBiz.loginUser(username,password);
+			request.getSession().setAttribute("objUser", objUser);
+			// 如果选择记住用户名,则创建cookie,并将账号密码注入cookie
+			if (remeberUsername == true) {
+				// 创建cookie对象
+				Cookie objUsernameCookie = new Cookie("remeberUsername", username);
+				// 设置Cookie有效时间,单位为妙
+				objUsernameCookie.setMaxAge(60 * 60 * 24 * 7);
+				// 设置Cookie的有效范围,/为全部路径
+				objUsernameCookie.setPath("/");
+				response.addCookie(objUsernameCookie);
+				Cookie objCheckboxIsCheckCookie = new Cookie("checkboxIsCheck", "checked");
+				// 设置Cookie有效时间,单位为妙
+				objCheckboxIsCheckCookie.setMaxAge(60 * 60 * 24 * 7);
+				// 设置Cookie的有效范围,/为全部路径
+				objCheckboxIsCheckCookie.setPath("/");
+				response.addCookie(objCheckboxIsCheckCookie);
+			} else {
+				// 如果没有选中记住用户名,则将已记住密码的cookie失效.即有效时间设为0
+				Cookie[] cookies = request.getCookies();
+				for (Cookie cookie : cookies) {
+					if (cookie.getName().equals("remeberUsername")) {
+						cookie.setMaxAge(0);
+						cookie.setPath("/");
+						response.addCookie(cookie);
+					}
+					if (cookie.getName().equals("checkboxIsCheck")) {
+						cookie.setMaxAge(0);
+						cookie.setPath("/");
+						response.addCookie(cookie);
+					}
 				}
-		
-	
+			}
+
+			return new Result(1, "登录成功！", null);
+		} catch (BizException e) {
+			e.printStackTrace();
+			return new Result(2, e.getMessage(), username);
+		} catch (Exception e) {
+			return new Result(0, "系统繁忙，请稍后再试！", null);
+		}
 	}
 	
 	/**
@@ -107,72 +133,5 @@ public class UserAction {
 			e.printStackTrace();
 		}
 		return new Result(0, "注册失败");
-	}
-	
-	/**
-	 * 发送验证码邮件
-	 * @author 刘子源
-	 * @param user
-	 * @param email
-	 * @param httpServletRequest
-	 * @return
-	 */
-	@PostMapping("front/getVerificationCode")
-	@ResponseBody
-	public Result getVerificationCode(String user, String email, HttpServletRequest httpServletRequest) {
-		httpServletRequest.getSession().invalidate();
-		System.out.println(user);
-		System.out.println(email);
-		try {
-			if (userBiz.userAndEmaiIsValid(user, email)) {
-				String strVerificationCode = userBiz.sendVerificationCode(email);
-				System.out.println("验证码是========" + strVerificationCode);
-				// 向session插入验证码，用于和用户输入的验证码进行比对
-				httpServletRequest.getSession().setAttribute("verificationCode", strVerificationCode);
-				httpServletRequest.getSession().setAttribute("validTime",
-						new Date(System.currentTimeMillis() + 3 * 60 * 1000));
-				httpServletRequest.getSession().setAttribute("orginalUser", user);
-				// 1代表成功
-				return new Result(1, "验证码已发送，请及时查收！", null);
-			}
-		} catch (BizException e) {
-			e.printStackTrace();
-			return new Result(2, e.getMessage(), null);
-		}
-		return null;
-	}
-	/**
-	 * 重置密码
-	 * @param user
-	 * @param email
-	 * @param verificationCode
-	 * @param password
-	 * @param confirmPassword
-	 * @param httpServletRequest
-	 * @return
-	 */
-	@PostMapping("front/resetPassword")
-	@ResponseBody
-	public Result resetPassword(String user, String email, String verificationCode, String password,
-			String confirmPassword, HttpServletRequest httpServletRequest) {
-		System.out.println("user=" + user);
-		System.out.println("email" + email);
-		System.out.println("verificationCode====" + verificationCode);
-		System.out.println("password" + password);
-		System.out.println("cofirmPassword" + confirmPassword);
-		// 在session中取出 获取验证码的用户名，验证码，有效时间
-		String strOrginalUser = String.valueOf(httpServletRequest.getSession().getAttribute("orginalUser"));
-		String strReallyVerificationCode = String
-				.valueOf(httpServletRequest.getSession().getAttribute("verificationCode"));
-		Date objValidTime = (Date) httpServletRequest.getSession().getAttribute("validTime");
-		try {
-			userBiz.resetPasswordInfoValid(user, email, verificationCode, password, 
-					confirmPassword, strOrginalUser,strReallyVerificationCode, 
-					objValidTime, new Date(System.currentTimeMillis()));
-			return new Result(1,"修改成功，3s后跳转登录页面",null);
-		} catch (BizException e) {
-			e.printStackTrace();
-			return new Result(2,e.getMessage(),null);
-		}
 	}
 }

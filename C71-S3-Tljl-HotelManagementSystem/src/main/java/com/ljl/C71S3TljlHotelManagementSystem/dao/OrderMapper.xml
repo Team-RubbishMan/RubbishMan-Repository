@@ -6,6 +6,8 @@
     <result column="order_number" jdbcType="INTEGER" property="orderNumber" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="e_check_in_time" jdbcType="TIMESTAMP" property="eCheckInTime" />
+    <result column="e_check_out_time" jdbcType="TIMESTAMP" property="eCheckOutTime" />
     <result column="consumption_amount" jdbcType="DOUBLE" property="consumptionAmount" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="temp1" jdbcType="VARCHAR" property="temp1" />
@@ -71,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, order_number, user_id, order_time, consumption_amount, status, temp1, temp2, 
-    temp3
+    id, order_number, user_id, order_time, e_check_in_time, e_check_out_time, consumption_amount, 
+    status, temp1, temp2, temp3
   </sql>
   <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.OrderExample" resultMap="BaseResultMap">
     select
@@ -109,11 +111,13 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into order (order_number, user_id, order_time, 
-      consumption_amount, status, temp1, 
-      temp2, temp3)
+      e_check_in_time, e_check_out_time, consumption_amount, 
+      status, temp1, temp2, 
+      temp3)
     values (#{orderNumber,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}, 
-      #{consumptionAmount,jdbcType=DOUBLE}, #{status,jdbcType=VARCHAR}, #{temp1,jdbcType=VARCHAR}, 
-      #{temp2,jdbcType=VARCHAR}, #{temp3,jdbcType=VARCHAR})
+      #{eCheckInTime,jdbcType=TIMESTAMP}, #{eCheckOutTime,jdbcType=TIMESTAMP}, #{consumptionAmount,jdbcType=DOUBLE}, 
+      #{status,jdbcType=VARCHAR}, #{temp1,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, 
+      #{temp3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Order">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -129,6 +133,12 @@
       </if>
       <if test="orderTime != null">
         order_time,
+      </if>
+      <if test="eCheckInTime != null">
+        e_check_in_time,
+      </if>
+      <if test="eCheckOutTime != null">
+        e_check_out_time,
       </if>
       <if test="consumptionAmount != null">
         consumption_amount,
@@ -155,6 +165,12 @@
       </if>
       <if test="orderTime != null">
         #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eCheckInTime != null">
+        #{eCheckInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eCheckOutTime != null">
+        #{eCheckOutTime,jdbcType=TIMESTAMP},
       </if>
       <if test="consumptionAmount != null">
         #{consumptionAmount,jdbcType=DOUBLE},
@@ -194,6 +210,12 @@
       <if test="record.orderTime != null">
         order_time = #{record.orderTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.eCheckInTime != null">
+        e_check_in_time = #{record.eCheckInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.eCheckOutTime != null">
+        e_check_out_time = #{record.eCheckOutTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.consumptionAmount != null">
         consumption_amount = #{record.consumptionAmount,jdbcType=DOUBLE},
       </if>
@@ -220,6 +242,8 @@
       order_number = #{record.orderNumber,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       order_time = #{record.orderTime,jdbcType=TIMESTAMP},
+      e_check_in_time = #{record.eCheckInTime,jdbcType=TIMESTAMP},
+      e_check_out_time = #{record.eCheckOutTime,jdbcType=TIMESTAMP},
       consumption_amount = #{record.consumptionAmount,jdbcType=DOUBLE},
       status = #{record.status,jdbcType=VARCHAR},
       temp1 = #{record.temp1,jdbcType=VARCHAR},
@@ -240,6 +264,12 @@
       </if>
       <if test="orderTime != null">
         order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eCheckInTime != null">
+        e_check_in_time = #{eCheckInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eCheckOutTime != null">
+        e_check_out_time = #{eCheckOutTime,jdbcType=TIMESTAMP},
       </if>
       <if test="consumptionAmount != null">
         consumption_amount = #{consumptionAmount,jdbcType=DOUBLE},
@@ -264,6 +294,8 @@
     set order_number = #{orderNumber,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
       order_time = #{orderTime,jdbcType=TIMESTAMP},
+      e_check_in_time = #{eCheckInTime,jdbcType=TIMESTAMP},
+      e_check_out_time = #{eCheckOutTime,jdbcType=TIMESTAMP},
       consumption_amount = #{consumptionAmount,jdbcType=DOUBLE},
       status = #{status,jdbcType=VARCHAR},
       temp1 = #{temp1,jdbcType=VARCHAR},

@@ -10,8 +10,8 @@ public class Food {
     private Integer foodTypeId;
     
     private FoodType foodType;
-
     
+
     @Override
 	public String toString() {
 		return "Food [id=" + id + ", name=" + name + ", price=" + price + ", foodTypeId=" + foodTypeId + ", foodType="

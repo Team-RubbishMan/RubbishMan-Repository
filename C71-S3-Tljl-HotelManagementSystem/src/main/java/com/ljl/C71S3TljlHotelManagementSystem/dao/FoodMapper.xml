@@ -9,8 +9,8 @@
     <association property="foodType" column="food_type_id" select="com.ljl.C71S3TljlHotelManagementSystem.dao.FoodTypeMapper.selectByPrimaryKey">
     	
     </association>
+    
   </resultMap>
-   
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
