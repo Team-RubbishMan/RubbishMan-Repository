@@ -3,7 +3,7 @@ package com.ljl.C71S3TljlHotelManagementSystem.bean;
 import java.util.Date;
 import java.util.List;
 
-public class Order {
+public class Indent {
     private Integer id;
 
     private Integer orderNumber;
@@ -25,25 +25,23 @@ public class Order {
     private String temp2;
 
     private String temp3;
-    
-    private List<CheckInDetail> checkInDetailList;
-    
-    
 
-    @Override
+    private User user;
+
+	@Override
 	public String toString() {
-		return "Order [id=" + id + ", orderNumber=" + orderNumber + ", userId=" + userId + ", orderTime=" + orderTime
+		return "Indent [id=" + id + ", orderNumber=" + orderNumber + ", userId=" + userId + ", orderTime=" + orderTime
 				+ ", eCheckInTime=" + eCheckInTime + ", eCheckOutTime=" + eCheckOutTime + ", consumptionAmount="
 				+ consumptionAmount + ", status=" + status + ", temp1=" + temp1 + ", temp2=" + temp2 + ", temp3="
-				+ temp3 + ", checkInDetail=" + checkInDetailList + "]";
+				+ temp3 + ", user=" + user + "]";
 	}
 
-	public List<CheckInDetail> getCheckInDetail() {
-		return checkInDetailList;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCheckInDetail(List<CheckInDetail> checkInDetailList) {
-		this.checkInDetailList = checkInDetailList;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Integer getId() {

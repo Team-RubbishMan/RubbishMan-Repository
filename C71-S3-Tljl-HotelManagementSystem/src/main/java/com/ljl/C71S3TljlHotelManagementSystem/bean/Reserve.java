@@ -34,8 +34,29 @@ public class Reserve {
     private String temp2;
 
     private String temp3;
+    
+    private User user;
+    
+    
+    @Override
+	public String toString() {
+		return "Reserve [id=" + id + ", reserveNumber=" + reserveNumber + ", userId=" + userId + ", payAmount="
+				+ payAmount + ", payStatus=" + payStatus + ", consumptionFigures=" + consumptionFigures
+				+ ", consumptionType=" + consumptionType + ", roomTypeId=" + roomTypeId + ", numberOfRooms="
+				+ numberOfRooms + ", numberOfEntertaiment=" + numberOfEntertaiment + ", dinnerTime=" + dinnerTime
+				+ ", reserveCheckInTime=" + reserveCheckInTime + ", reserveCheckOutTime=" + reserveCheckOutTime
+				+ ", email=" + email + ", temp2=" + temp2 + ", temp3=" + temp3 + ", user=" + user + "]";
+	}
 
-    public Integer getId() {
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getId() {
         return id;
     }
 

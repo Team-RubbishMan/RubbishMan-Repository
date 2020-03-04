@@ -18,6 +18,9 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="temp2" jdbcType="VARCHAR" property="temp2" />
     <result column="temp3" jdbcType="VARCHAR" property="temp3" />
+    <association property="user" column="user_id" select="com.ljl.C71S3TljlHotelManagementSystem.dao.UserMapper.selectByPrimaryKey">
+			
+	</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
