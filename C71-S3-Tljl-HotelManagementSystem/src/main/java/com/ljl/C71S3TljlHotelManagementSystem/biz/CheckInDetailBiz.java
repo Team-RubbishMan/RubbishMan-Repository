@@ -95,7 +95,7 @@ public class CheckInDetailBiz {
 	@Transactional
 	public void setReserveStatus(Integer reserveId) {
 		Reserve objReserve=new Reserve();
-		objReserve.setStatus(0);
+		objReserve.setStatus(1);
 		ReserveExample objReserveExample = new ReserveExample();
 		objReserveExample.createCriteria().andIdEqualTo(reserveId);
 		reserveMapper.updateByExampleSelective(objReserve, objReserveExample);

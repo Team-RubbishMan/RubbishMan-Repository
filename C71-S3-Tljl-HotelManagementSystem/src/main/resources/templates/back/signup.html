@@ -168,7 +168,7 @@
 		<script src="js/classie.js"></script>
 	<script>
 		function check() {
-			if (form['telephone'] == '') {
+			if (form['username'] == '') {
 				alert("用户名不能为空!");
 				return false;
 			}
@@ -188,6 +188,7 @@
 				alert("密码不能为空!");
 				return false;
 			}
+			return true;
 		}
 		$("#sub").click(function() {
 			var username = $("#username").val();
@@ -220,12 +221,10 @@
 		function reg() {
 			$.post('doreg', $('#form').serialize(), function(result) {
 				if (result.resultCode == 1) {
-					$("#alertDiv").attr("class", "alert alert-success");
-					$("#alertDiv").children("strong").html(
-							result.message + " 3秒后跳转到登录页");
+					bootbox.alert(result.message + " 3秒后跳转到登录页");
 					setTimeout("location.href = 'login.html'", 3000);//3000毫秒后跳转
 				} else {
-					$("#alertDiv").children("strong").html(result.message);
+					bootbox.alert(result.message);
 				}
 			});
 		}

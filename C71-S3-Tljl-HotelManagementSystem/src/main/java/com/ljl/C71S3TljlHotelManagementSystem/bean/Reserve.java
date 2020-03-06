@@ -39,10 +39,10 @@ public class Reserve {
     
     private RoomType roomType;
     
-    private EntertainmentDevice entertaiment;
+    private EntertainmentDevice entertainmentDevice;
     
-    
-    @Override
+
+	@Override
 	public String toString() {
 		return "Reserve [id=" + id + ", reserveNumber=" + reserveNumber + ", userId=" + userId + ", payAmount="
 				+ payAmount + ", payStatus=" + payStatus + ", consumptionFigures=" + consumptionFigures
@@ -50,8 +50,19 @@ public class Reserve {
 				+ numberOfRooms + ", numberOfEntertaiment=" + numberOfEntertaiment + ", dinnerTime=" + dinnerTime
 				+ ", reserveCheckInTime=" + reserveCheckInTime + ", reserveCheckOutTime=" + reserveCheckOutTime
 				+ ", email=" + email + ", status=" + status + ", temp3=" + temp3 + ", user=" + user + ", roomType="
-				+ roomType + ", entertaiment=" + entertaiment + "]";
+				+ roomType + ", entertaimentDevice=" + entertainmentDevice + "]";
 	}
+
+
+	public EntertainmentDevice getEntertainmentDevice() {
+		return entertainmentDevice;
+	}
+
+
+	public void setEntertainmentDevice(EntertainmentDevice entertainmentDevice) {
+		this.entertainmentDevice = entertainmentDevice;
+	}
+
 
 	public User getUser() {
 		return user;
@@ -69,13 +80,6 @@ public class Reserve {
 		this.roomType = roomType;
 	}
 
-	public EntertainmentDevice getEntertaiment() {
-		return entertaiment;
-	}
-
-	public void setEntertaiment(EntertainmentDevice entertaiment) {
-		this.entertaiment = entertaiment;
-	}
 
 	public Integer getId() {
         return id;

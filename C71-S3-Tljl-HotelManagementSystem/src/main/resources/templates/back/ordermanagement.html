@@ -172,7 +172,7 @@
 											sortable : true,
 											title : '用户'
 										},{
-											field : 'temp1',
+											field : 'consumptionType',
 											sortable : true,
 											title : '账单类型',
 											formatter : function formatStatus(
@@ -248,7 +248,7 @@
 										//$detail：当前行下面创建的新行里面的td对象。
 						                onExpandRow: function (index, row, $detail) {
 						                	//console.log(row);
-						                	if(row.temp1==1){
+						                	if(row.consumptionType==1){
 						                		InitSubTable(index, row, $detail);
 						                	}
 						                } 
@@ -326,8 +326,8 @@
     	$.post('checkAccount',{indentId:indentId},function(result){
     		$("#userid").val(result.data.user.username);
     		$("#account").val(result.data.consumptionAmount);
-    		$("#realpay").val(result.data.temp1);
-    		$("#finalpay").val(result.data.temp2);
+    		$("#realpay").val(result.data.receivedAmount);
+    		$("#finalpay").val(result.data.refundOrSupplement);
     		$("#time").val(formatTime(result.data.recordTime));
     		var staffName='[[${session.objStaff.name}]]';
     		$("#staffid").val(staffName);

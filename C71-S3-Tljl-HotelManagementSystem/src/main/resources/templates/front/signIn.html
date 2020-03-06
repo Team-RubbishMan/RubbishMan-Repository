@@ -54,7 +54,7 @@
 					<form id="signUpForm">
 
 						<p class="header">用 户 名</p>
-						<input type="text" id="username" name="username" value="Your Full Name"  required>
+						<input type="text" id="username" name="username" value="Your Full Name"  onfocus="this.value = '';" required>
 
 						<p class="header">性 别</p>
 						<div>
@@ -63,16 +63,16 @@
 						</div>
 						
 						<p class="header">联 系 电 话</p>
-						<input type="tel" name="telephone" value="Your Phone Number" required>
+						<input type="tel" name="telephone" value="Your Phone Number" onfocus="this.value = '';" required>
 						
 						<p class="header">身 份 证 号</p>
-						<input type="tel" name="idCard" value="Your ID Card Number" required>
+						<input type="tel" name="idCard" value="Your ID Card Number" onfocus="this.value = '';" required>
 						
 						<p class="header">邮 箱 地 址</p>
-						<input type="email" name="email" value="Email@address.com"  required>
+						<input type="email" name="email" value="Email@address.com" onfocus="this.value = '';"  required>
 						
 						<p class="header">密 码</p>
-						<input type="password" name="password"  required>
+						<input type="password" name="password"   required>
 
 						<p class="header">确 认 密 码</p>
 						<input type="password" name="confirmPassword" value="" required>
@@ -124,8 +124,7 @@
 						//$("#alertDiv").css({"display":"block"});
 						//$("#alertDiv").html(result.message);
 					}else{
-						alert("登录成功")
-						//window.location.href = "frame.html";
+						window.location.href = "index.html";
 					}
 				})
 			}
@@ -203,6 +202,7 @@
 					alert("密码不能为空!");
 					return false;
 				}
+				return true;
 			}
 			function signUp() {
 				if (check()) {
@@ -210,7 +210,7 @@
 						$.post("doreg", $("#signUpForm").serialize(), function(
 								result) {
 							if (result.resultCode == 1) {
-								alert("cg")
+								alert("成功")
 								/* var dialogInfo = bootbox.dialog({
 								    message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>'+result.message+'</p>',
 								    closeButton: false
@@ -218,7 +218,7 @@
 								setTimeout(function(){ dialogInfo.modal('hide'); },1200);
 								$("#roomTypeTable").bootstrapTable('refresh'); */
 							} else {
-								alert("sb")
+								alert("失败")
 								/* var dialogInfo = bootbox.dialog({
 								    message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i>'+result.message+'</p>',
 								    closeButton: false

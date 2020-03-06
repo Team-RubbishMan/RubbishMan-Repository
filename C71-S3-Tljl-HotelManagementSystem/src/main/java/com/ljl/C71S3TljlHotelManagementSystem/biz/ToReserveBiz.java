@@ -43,7 +43,7 @@ public class ToReserveBiz {
 		reserve.setRoomTypeId(orderForm.getRoomTypeId());
 		reserve.setNumberOfRooms(orderForm.getNumber());
 		reserve.setReserveCheckInTime(dateUtil.toDate(orderForm.getInTime()));
-		reserve.setReserveCheckOutTime(dateUtil.toDate(orderForm.getInTime()));
+		reserve.setReserveCheckOutTime(dateUtil.toDate(orderForm.getOutTime()));
 		return reserve;
 	}
 

@@ -1,5 +1,7 @@
 package com.ljl.C71S3TljlHotelManagementSystem.action;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -133,5 +135,71 @@ public class UserAction {
 			e.printStackTrace();
 		}
 		return new Result(0, "注册失败");
+	}
+	/**
+	 * 发送验证码邮件
+	 * @author 刘子源
+	 * @param user
+	 * @param email
+	 * @param httpServletRequest
+	 * @return
+	 */
+	@PostMapping("front/getVerificationCode")
+	@ResponseBody
+	public Result getVerificationCode(String user, String email, HttpServletRequest httpServletRequest) {
+		httpServletRequest.getSession().invalidate();
+		System.out.println(user);
+		System.out.println(email);
+		try {
+			if (userBiz.userAndEmaiIsValid(user, email)) {
+				String strVerificationCode = userBiz.sendVerificationCode(email);
+				System.out.println("验证码是========" + strVerificationCode);
+				// 向session插入验证码，用于和用户输入的验证码进行比对
+				httpServletRequest.getSession().setAttribute("verificationCode", strVerificationCode);
+				httpServletRequest.getSession().setAttribute("validTime",
+						new Date(System.currentTimeMillis() + 3 * 60 * 1000));
+				httpServletRequest.getSession().setAttribute("orginalUser", user);
+				// 1代表成功
+				return new Result(1, "验证码已发送，请及时查收！", null);
+			}
+		} catch (BizException e) {
+			e.printStackTrace();
+			return new Result(2, e.getMessage(), null);
+		}
+		return null;
+	}
+	/**
+	 * 重置密码
+	 * @param user
+	 * @param email
+	 * @param verificationCode
+	 * @param password
+	 * @param confirmPassword
+	 * @param httpServletRequest
+	 * @return
+	 */
+	@PostMapping("front/resetPassword")
+	@ResponseBody
+	public Result resetPassword(String user, String email, String verificationCode, String password,
+			String confirmPassword, HttpServletRequest httpServletRequest) {
+		System.out.println("user=" + user);
+		System.out.println("email" + email);
+		System.out.println("verificationCode====" + verificationCode);
+		System.out.println("password" + password);
+		System.out.println("cofirmPassword" + confirmPassword);
+		// 在session中取出 获取验证码的用户名，验证码，有效时间
+		String strOrginalUser = String.valueOf(httpServletRequest.getSession().getAttribute("orginalUser"));
+		String strReallyVerificationCode = String
+				.valueOf(httpServletRequest.getSession().getAttribute("verificationCode"));
+		Date objValidTime = (Date) httpServletRequest.getSession().getAttribute("validTime");
+		try {
+			userBiz.resetPasswordInfoValid(user, email, verificationCode, password, 
+					confirmPassword, strOrginalUser,strReallyVerificationCode, 
+					objValidTime, new Date(System.currentTimeMillis()));
+			return new Result(1,"修改成功，3s后跳转登录页面",null);
+		} catch (BizException e) {
+			e.printStackTrace();
+			return new Result(2,e.getMessage(),null);
+		}
 	}
 }

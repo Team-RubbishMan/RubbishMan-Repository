@@ -386,18 +386,18 @@
 											},
 										},
 										{
-											field : 'temp2',
+											field : 'status',
 											title : '订单状态',
 											sortable : true,
 											formatter : function formatStatus(
 													value, row, index) {
 												var str;
 												switch (value) {
-												case "0":
-													str = "已完成";
-													break;
-												case "1":
+												case 0:
 													str = "未办理";
+													break;
+												case 1:
+													str = "已完成";
 													break;
 												default:
 													str = "其他";
@@ -443,7 +443,7 @@
 			var obj=reserve;
 			console.log(obj);
 			console.log(reserve.consumptionType);
-			if(reserve.temp2=="1"){
+			if(reserve.status=="0"){
 				if(reserve.consumptionType==1){
 					$("#reserveId").val(reserve.id);
 					$("#userId").val(reserve.userId);
@@ -472,7 +472,7 @@
 					$("#entertainmentModal").modal('show');
 				}	
 			}
-			if(reserve.temp2=="0"){
+			if(reserve.status=="1"){
 				bootbox.alert("该订单已完成，无需办理");
 			}
 		}
