@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript">
+	
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap-table.css" />
+
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet">
+<!-- //font-awesome icons -->
+<!-- js-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<!--webfonts-->
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic'
+	rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css"
+	media="all">
+<script src="js/wow.min.js"></script>
+<script>
+	new WOW().init();
+</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+<link href="css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+</head>
+<body>
+	<div th:fragment="roomManagementPage">
+		<div class="main-page">
+			<div class="tables">
+				<h3 class="title1">预定单管理</h3>
+				<div class="table-responsive bs-example widget-shadow">
+					<h4>预定信息表:</h4>
+					<table id="reserveInfoTable" class="table table-bordered">
+
+					</table>
+				</div>
+			</div>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="checkInModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">办理入住</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-body">
+								<form id="checkInForm">
+									<div class="form-group">
+										 <input  type="hidden" class="form-control" id="reserveId" name="reserveId">
+									</div>
+									<div class="form-group">
+										 <input  type="hidden" class="form-control" id="userId" name="userId">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">客户姓名</label> <input
+											 type="text"  readonly="readonly" class="form-control" id="username" name="username">
+									</div>
+									<div class="form-group">
+										 <input  type="hidden" class="form-control" id="roomTypeId" name="roomTypeId">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">入住房间类型</label> 
+										<input type="text"  readonly="readonly" class="form-control" id="roomType" name="roomType">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">房间数量（间）</label> 
+										<input type="number"  readonly="readonly" class="form-control" id="numberOfRooms" name="numberOfRooms">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">付款金额（元）</label> 
+										<input type="number"  readonly="readonly" class="form-control" id="payAmount" name="payAmount">
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">关闭</button>
+							<button type="button" onclick="checkIn()"
+								class="btn btn-primary">办理订单</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+			
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="dinnerModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">餐饮接待</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-body"> 
+								<form id="dinnerForm">
+									<div class="form-group">
+										 <input  type="hidden" class="form-control" id="reserveId" name="reserveId">
+									</div>
+									<div class="form-group">
+										 <input  type="hidden" class="form-control" id="userId" name="userId">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">客户姓名</label> <input
+											 type="text"  readonly="readonly" class="form-control" id="username" name="username">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">用餐人数</label> 
+										<input type="text"  readonly="readonly" class="form-control" id="consumptionFigures" name="consumptionFigures">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">付款金额（元）</label> 
+										<input type="number"  readonly="readonly" class="form-control" id="payAmount" name="payAmount">
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">关闭</button>
+							<button type="button" onclick="catering()"
+								class="btn btn-primary">办理订单</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+			
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="entertainmentModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">娱乐接待</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-body"> 
+								<form id="entertainmentForm">
+									<div class="form-group">
+										 <input  type="hidden" class="form-control" id="reserveId" name="reserveId">
+									</div>
+									<div class="form-group">
+										 <input  type="hidden" class="form-control" id="userId" name="userId">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">客户姓名</label> <input
+											 type="text"  readonly="readonly" class="form-control" id="username" name="username">
+									</div>
+									<div class="form-group">
+										 <input  type="hidden" class="form-control" id="entertainmentDeviceId" name="entertainmentDeviceId">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">预定项目</label> 
+										<input type="text"  readonly="readonly" class="form-control" id=entertainmentDeviceName name="entertainmentDeviceName">
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">付款金额（元）</label> 
+										<input type="number"  readonly="readonly" class="form-control" id="payAmount" name="payAmount">
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">关闭</button>
+							<button type="button" onclick="processEntertainment()"
+								class="btn btn-primary">办理订单</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+			
+		</div>
+	</div>
+	<script src="js/bootstrap.min.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="js/bootstrap-table.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="js/bootstrap-table-zh-CN.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script type="text/javascript" src="js/bootbox.js"></script>
+
+	<!-- Classie -->
+	<script src="js/classie.js"></script>
+	<script>
+		var menuLeft = document.getElementById('cbp-spmenu-s1'), showLeftPush = document
+				.getElementById('showLeftPush'), body = document.body;
+
+		showLeftPush.onclick = function() {
+			classie.toggle(this, 'active');
+			classie.toggle(body, 'cbp-spmenu-push-toright');
+			classie.toggle(menuLeft, 'cbp-spmenu-open');
+			disableOther('showLeftPush');
+		};
+
+		function disableOther(button) {
+			if (button !== 'showLeftPush') {
+				classie.toggle(showLeftPush, 'disabled');
+			}
+		}
+	</script>
+	<!--scrolling js-->
+	<script src="js/jquery.nicescroll.js"></script>
+	<script src="js/scripts.js"></script>
+	<!--//scrolling js-->
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.js">
+		
+	</script>
+
+
+	<!-- 刘子源写的js -->
+	<script type="text/javascript">
+		$(function() {
+			var oTableInit = new Object();
+			//初始化bootstrap-table的内容
+			//记录页面bootstrap-table全局变量$table，方便应用
+			$('#reserveInfoTable')
+					.bootstrapTable(
+							{
+								url : 'loadReserveInfoTable', //请求后台的URL（*）
+								contentType : "application/x-www-form-urlencoded",
+								method : 'POST', //请求方式（*）
+								//toolbar: '#toolbar',              //工具按钮用哪个容器
+								/*  showRefresh:true,					//显示刷新按钮
+								 striped: true,                      //是否显示行间隔色
+								 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+								 pagination: true,                   //是否显示分页（*）
+								 sortable: true,                     //是否启用排序
+								 sortOrder: "asc",                   //排序方式
+								 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+								 pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录
+								 pageList: [5, 10, 15, 20],        //可供选择的每页的行数（*）
+								 search: false,                      //是否显示表格搜索
+								 showColumns: true,                  //是否显示所有的列（选择显示的列）
+								 clickToSelect: true,                //是否启用点击选中行
+								 //queryParamsType的默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+								 //设置为 ''  在这种情况下传给服务器的参数为：pageSize,pageNumber 
+								 queryParamsType:'limit',
+								 queryParams:queryParams,  */
+								search : false, //是否显示表格搜索
+								pagination : true, // 分页
+								striped : true, // 是否显示行间隔色
+								pageSize:5,
+								queryParams :
+								/**查询条件与分页数据 */
+								function queryParams(pageReqeust) {
+									pageReqeust.pageNumber = this.pageNumber;
+									return pageReqeust;
+								},
+								cache : false, // 是否使用缓存
+								pageList : [ 5, 10, 20 ],
+								toolbar : "#toolbar",// 指定工具栏
+								showColumns : true, // 显示隐藏列
+								showRefresh : true, // 显示刷新按钮
+								uniqueId : "userName", // 每一行的唯一标识
+								sidePagination : "server", // 服务端处理分页
+								detailView: true,
+								detailFormatter: function(index,row){
+									var html = [];
+									var str;
+									switch (row.consumptionType) {
+									case 1:
+										str = '<p><b>预定房间类型:</b> ' + row.roomType.type + '</p>'+
+											  '<p><b>预定房间数量:</b> ' + row.numberOfRooms + '</p>'+
+											  '<p><b>预定入住时间:</b> ' + formatDate(row.reserveCheckInTime)+ '</p>'+
+											  '<p><b>预定离开时间时间:</b> ' + formatDate(row.reserveCheckOutTime) + '</p>'+
+											  '<p><b>付款金额:</b> ' + row.payAmount + '</p>';
+										html.push(str);
+										break;
+									case 2:
+									 	str='<p><b>预定用餐时间:</b> ' + formatDate(row.dinnerTime) + '</p>'+
+									  	'<p><b>付款金额:</b> ' + row.payAmount + '</p>';
+									  	html.push(str);
+										break;
+									case 3:
+										str = '<p><b>预定项目:</b> ' + row.entertainmentDevice.name + '</p>'+
+										'<p><b>预计使用时间:</b> ' + formatDate(row.reserveCheckInTime)+'——'+ formatDate(row.reserveCheckOutTime)+ '</p>'+
+									  	'<p><b>付款金额:</b> ' + row.payAmount + '</p>';
+									  	html.push(str);
+										break;
+									default:
+										str = "其他";
+										break;
+									}
+									
+									
+									/*  console.log(row);
+										
+								        $.each(row, function (key, value) {
+								            html.push('<p><b>' + row.title + ':</b> ' + value + '</p>');
+								        }); */
+								        return html.join('');
+								},
+								//处理控制器返回的数据
+								responseHandler : function(result) {
+									return {
+										"total" : result.total,
+										"rows" : result.list,
+									}
+								},
+								columns : [
+										{
+											checkbox : true,
+											visible : true
+										//是否显示复选框  
+										},
+										{
+											field : 'reserveNumber',
+											title : '预订单号',
+											sortable : true
+										},
+										{
+											field : 'user.username',
+											title : '预定用户',
+											sortable : true
+										},
+										{
+											field : 'consumptionFigures',
+											title : '预定人数',
+											sortable : true
+										},
+										{
+											field : 'consumptionType',
+											title : '预定类型',
+											sortable : true,
+											formatter : function formatStatus(
+													value, row, index) {
+												var str;
+												switch (value) {
+												case 1:
+													str = "订房";
+													break;
+												case 2:
+													str = "订餐";
+													break;
+												case 3:
+													str = "娱乐";
+													break;
+												default:
+													str = "其他";
+													break;
+												}
+												return str;
+											},
+										},
+										{
+											field : 'temp2',
+											title : '订单状态',
+											sortable : true,
+											formatter : function formatStatus(
+													value, row, index) {
+												var str;
+												switch (value) {
+												case "0":
+													str = "已完成";
+													break;
+												case "1":
+													str = "未办理";
+													break;
+												default:
+													str = "其他";
+													break;
+												}
+												return str;
+											},
+										},
+										{
+											field : 'id',
+											title : '操作',
+											algin : 'center',
+											valign : 'middle',
+											formatter : function(value, row,
+													index) {
+												//通过formatter可以自定义列显示的内容
+												//value：当前field的值，即id
+												//row：当前行的数据
+												var reserve = JSON.stringify(row);
+												var result = "";
+												result += "<a href=\"javascript:void(0);\" class='btn btn-xs blue'  title='办理订单' onclick='dealWithOrder("
+														+ reserve
+														+ ")'><span class='glyphicon glyphicon-pencil'></span></a>";
+												return result;
+											}
+
+										}, ],
+								onLoadSuccess : function() {
+								},
+								onLoadError : function() {
+									showTips("数据加载失败！");
+								},
+								onDblClickRow : function(row, $element) {
+									/*                     var id = row.ID;
+									 EditViewById(id, 'view');
+									 */},
+							});
+			
+
+		});
+
+		function dealWithOrder(reserve){
+			var obj=reserve;
+			console.log(obj);
+			console.log(reserve.consumptionType);
+			if(reserve.temp2=="1"){
+				if(reserve.consumptionType==1){
+					$("#reserveId").val(reserve.id);
+					$("#userId").val(reserve.userId);
+					$("#username").val(reserve.user.username);
+					$("#roomTypeId").val(reserve.roomTypeId);
+					$("#roomType").val(reserve.roomType.type);
+					$("#numberOfRooms").val(reserve.numberOfRooms);
+					$("#payAmount").val(reserve.payAmount);
+					$("#checkInModal").modal('show');
+				}
+				if(reserve.consumptionType==2){
+					$("#dinnerModal input[name=reserveId]").val(reserve.id);
+					$("#dinnerModal input[name=userId]").val(reserve.userId);
+					$("#dinnerModal input[name=username]").val(reserve.user.username);
+					$("#dinnerModal input[name=consumptionFigures]").val(reserve.consumptionFigures);
+					$("#dinnerModal input[name=payAmount]").val(reserve.payAmount);
+					$("#dinnerModal").modal('show');
+				}
+				if(reserve.consumptionType==3){
+					$("#entertainmentModal input[name=reserveId]").val(reserve.id);
+					$("#entertainmentModal input[name=userId]").val(reserve.userId);
+					$("#entertainmentModal input[name=username]").val(reserve.user.username);
+					$("#entertainmentModal input[name=entertainmentDeviceId]").val(reserve.numberOfEntertaiment);
+					$("#entertainmentModal input[name=entertainmentDeviceName]").val(reserve.entertainmentDevice.name);
+					$("#entertainmentModal input[name=payAmount]").val(reserve.payAmount);
+					$("#entertainmentModal").modal('show');
+				}	
+			}
+			if(reserve.temp2=="0"){
+				bootbox.alert("该订单已完成，无需办理");
+			}
+		}
+		//办理入住
+		function checkIn(){
+			$.post("checkIn",$("#checkInForm").serialize(),function(result){
+				console.log(result);
+				if(result.resultCode==1){
+					var str="";
+					for(var i=0;i<result.data.length;i++){
+						str+=result.data[i].roomNumber+",";
+					}
+					bootbox.alert(result.message+"!入住房间号是："+str);
+					$("#checkInModal").modal('hide');
+				}
+				if(result.resultCode==0){
+					bootbox.alert(result.message);
+				}
+			})
+		}
+		//餐饮预定办理
+		function catering(){
+			$.post("catering",$("#dinnerForm").serialize(),function(result){
+				console.log(result);
+				if(result.resultCode==1){
+					var time=formatDate(result.data.diningTime)
+					bootbox.alert(result.message+"！请在"+time+"到酒店的宴会厅用餐");
+					$("#dinnerModal").modal('hide');
+				}
+				if(result.resultCode==0){
+					bootbox.alert(result.message);
+				}
+			})
+		}
+		//娱乐订单办理
+		function processEntertainment(){
+			$.post("processEntertainment",$("#entertainmentForm").serialize(),function(result){
+				if(result.resultCode==1){
+					bootbox.alert(result.message);
+					$("#entertainmentModal").modal('hide');
+				}
+				if(result.resultCode==0){
+					bootbox.alert(result.message);
+				}
+			})
+		}
+		function formatDate(value){
+			var d = new Date(value);
+			var times=d.getFullYear() + '年' 
+			+ (d.getMonth() + 1) + '月' + d.getDate() 
+			+ '日 ' + d.getHours() + ':' + d.getMinutes() 
+			+ ':' + d.getSeconds();
+			return times;
+		}
+	</script>
+</body>
+</html>

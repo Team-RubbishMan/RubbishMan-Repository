@@ -3,9 +3,8 @@
 <mapper namespace="com.ljl.C71S3TljlHotelManagementSystem.dao.EntertainmentDetailMapper">
   <resultMap id="BaseResultMap" type="com.ljl.C71S3TljlHotelManagementSystem.bean.EntertainmentDetail">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
     <result column="entertainment_device_id" jdbcType="INTEGER" property="entertainmentDeviceId" />
-    <result column="entertainment_order_id" jdbcType="INTEGER" property="entertainmentOrderId" />
+    <result column="indent_id" jdbcType="INTEGER" property="indentId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, pay_time, entertainment_device_id, entertainment_order_id
+    id, entertainment_device_id, indent_id
   </sql>
   <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.EntertainmentDetailExample" resultMap="BaseResultMap">
     select
@@ -102,10 +101,8 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into entertainment_detail (pay_time, entertainment_device_id, 
-      entertainment_order_id)
-    values (#{payTime,jdbcType=TIMESTAMP}, #{entertainmentDeviceId,jdbcType=INTEGER}, 
-      #{entertainmentOrderId,jdbcType=INTEGER})
+    insert into entertainment_detail (entertainment_device_id, indent_id)
+    values (#{entertainmentDeviceId,jdbcType=INTEGER}, #{indentId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.EntertainmentDetail">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -113,25 +110,19 @@
     </selectKey>
     insert into entertainment_detail
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="payTime != null">
-        pay_time,
-      </if>
       <if test="entertainmentDeviceId != null">
         entertainment_device_id,
       </if>
-      <if test="entertainmentOrderId != null">
-        entertainment_order_id,
+      <if test="indentId != null">
+        indent_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="payTime != null">
-        #{payTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="entertainmentDeviceId != null">
         #{entertainmentDeviceId,jdbcType=INTEGER},
       </if>
-      <if test="entertainmentOrderId != null">
-        #{entertainmentOrderId,jdbcType=INTEGER},
+      <if test="indentId != null">
+        #{indentId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -147,14 +138,11 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.payTime != null">
-        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="record.entertainmentDeviceId != null">
         entertainment_device_id = #{record.entertainmentDeviceId,jdbcType=INTEGER},
       </if>
-      <if test="record.entertainmentOrderId != null">
-        entertainment_order_id = #{record.entertainmentOrderId,jdbcType=INTEGER},
+      <if test="record.indentId != null">
+        indent_id = #{record.indentId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -164,9 +152,8 @@
   <update id="updateByExample" parameterType="map">
     update entertainment_detail
     set id = #{record.id,jdbcType=INTEGER},
-      pay_time = #{record.payTime,jdbcType=TIMESTAMP},
       entertainment_device_id = #{record.entertainmentDeviceId,jdbcType=INTEGER},
-      entertainment_order_id = #{record.entertainmentOrderId,jdbcType=INTEGER}
+      indent_id = #{record.indentId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -174,23 +161,19 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.EntertainmentDetail">
     update entertainment_detail
     <set>
-      <if test="payTime != null">
-        pay_time = #{payTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="entertainmentDeviceId != null">
         entertainment_device_id = #{entertainmentDeviceId,jdbcType=INTEGER},
       </if>
-      <if test="entertainmentOrderId != null">
-        entertainment_order_id = #{entertainmentOrderId,jdbcType=INTEGER},
+      <if test="indentId != null">
+        indent_id = #{indentId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.EntertainmentDetail">
     update entertainment_detail
-    set pay_time = #{payTime,jdbcType=TIMESTAMP},
-      entertainment_device_id = #{entertainmentDeviceId,jdbcType=INTEGER},
-      entertainment_order_id = #{entertainmentOrderId,jdbcType=INTEGER}
+    set entertainment_device_id = #{entertainmentDeviceId,jdbcType=INTEGER},
+      indent_id = #{indentId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

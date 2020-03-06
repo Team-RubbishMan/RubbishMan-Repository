@@ -3,20 +3,18 @@
 <mapper namespace="com.ljl.C71S3TljlHotelManagementSystem.dao.IndentMapper">
   <resultMap id="BaseResultMap" type="com.ljl.C71S3TljlHotelManagementSystem.bean.Indent">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="order_number" jdbcType="INTEGER" property="orderNumber" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
     <result column="e_check_in_time" jdbcType="TIMESTAMP" property="eCheckInTime" />
     <result column="e_check_out_time" jdbcType="TIMESTAMP" property="eCheckOutTime" />
     <result column="consumption_amount" jdbcType="DOUBLE" property="consumptionAmount" />
     <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="temp1" jdbcType="VARCHAR" property="temp1" />
-    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
+    <result column="consumption_type" jdbcType="VARCHAR" property="consumptionType" />
+    <result column="consumption_figures" jdbcType="VARCHAR" property="consumptionFigures" />
     <result column="temp3" jdbcType="VARCHAR" property="temp3" />
-	<association property="user" column="user_id" select="com.ljl.C71S3TljlHotelManagementSystem.dao.UserMapper.selectByPrimaryKey">
-    </association>
+    <association property="user" column="user_id" select="com.ljl.C71S3TljlHotelManagementSystem.dao.UserMapper.selectByPrimaryKey"> </association>
   </resultMap>
-  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -77,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, order_number, user_id, order_time, e_check_in_time, e_check_out_time, consumption_amount, 
-    status, temp1, temp2, temp3
+    status, consumption_type, consumption_figures, temp3
   </sql>
   <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.IndentExample" resultMap="BaseResultMap">
     select
@@ -115,11 +113,11 @@
     </selectKey>
     insert into indent (order_number, user_id, order_time, 
       e_check_in_time, e_check_out_time, consumption_amount, 
-      status, temp1, temp2, 
+      status, consumption_type, consumption_figures, 
       temp3)
-    values (#{orderNumber,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}, 
+    values (#{orderNumber,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}, 
       #{eCheckInTime,jdbcType=TIMESTAMP}, #{eCheckOutTime,jdbcType=TIMESTAMP}, #{consumptionAmount,jdbcType=DOUBLE}, 
-      #{status,jdbcType=VARCHAR}, #{temp1,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{consumptionType,jdbcType=VARCHAR}, #{consumptionFigures,jdbcType=VARCHAR}, 
       #{temp3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Indent">
@@ -149,11 +147,11 @@
       <if test="status != null">
         status,
       </if>
-      <if test="temp1 != null">
-        temp1,
+      <if test="consumptionType != null">
+        consumption_type,
       </if>
-      <if test="temp2 != null">
-        temp2,
+      <if test="consumptionFigures != null">
+        consumption_figures,
       </if>
       <if test="temp3 != null">
         temp3,
@@ -161,7 +159,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderNumber != null">
-        #{orderNumber,jdbcType=INTEGER},
+        #{orderNumber,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
@@ -181,11 +179,11 @@
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
       </if>
-      <if test="temp1 != null">
-        #{temp1,jdbcType=VARCHAR},
+      <if test="consumptionType != null">
+        #{consumptionType,jdbcType=VARCHAR},
       </if>
-      <if test="temp2 != null">
-        #{temp2,jdbcType=VARCHAR},
+      <if test="consumptionFigures != null">
+        #{consumptionFigures,jdbcType=VARCHAR},
       </if>
       <if test="temp3 != null">
         #{temp3,jdbcType=VARCHAR},
@@ -205,7 +203,7 @@
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.orderNumber != null">
-        order_number = #{record.orderNumber,jdbcType=INTEGER},
+        order_number = #{record.orderNumber,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
@@ -225,11 +223,11 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=VARCHAR},
       </if>
-      <if test="record.temp1 != null">
-        temp1 = #{record.temp1,jdbcType=VARCHAR},
+      <if test="record.consumptionType != null">
+        consumption_type = #{record.consumptionType,jdbcType=VARCHAR},
       </if>
-      <if test="record.temp2 != null">
-        temp2 = #{record.temp2,jdbcType=VARCHAR},
+      <if test="record.consumptionFigures != null">
+        consumption_figures = #{record.consumptionFigures,jdbcType=VARCHAR},
       </if>
       <if test="record.temp3 != null">
         temp3 = #{record.temp3,jdbcType=VARCHAR},
@@ -242,15 +240,15 @@
   <update id="updateByExample" parameterType="map">
     update indent
     set id = #{record.id,jdbcType=INTEGER},
-      order_number = #{record.orderNumber,jdbcType=INTEGER},
+      order_number = #{record.orderNumber,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
       order_time = #{record.orderTime,jdbcType=TIMESTAMP},
       e_check_in_time = #{record.eCheckInTime,jdbcType=TIMESTAMP},
       e_check_out_time = #{record.eCheckOutTime,jdbcType=TIMESTAMP},
       consumption_amount = #{record.consumptionAmount,jdbcType=DOUBLE},
       status = #{record.status,jdbcType=VARCHAR},
-      temp1 = #{record.temp1,jdbcType=VARCHAR},
-      temp2 = #{record.temp2,jdbcType=VARCHAR},
+      consumption_type = #{record.consumptionType,jdbcType=VARCHAR},
+      consumption_figures = #{record.consumptionFigures,jdbcType=VARCHAR},
       temp3 = #{record.temp3,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -260,7 +258,7 @@
     update indent
     <set>
       <if test="orderNumber != null">
-        order_number = #{orderNumber,jdbcType=INTEGER},
+        order_number = #{orderNumber,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
@@ -280,11 +278,11 @@
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
       </if>
-      <if test="temp1 != null">
-        temp1 = #{temp1,jdbcType=VARCHAR},
+      <if test="consumptionType != null">
+        consumption_type = #{consumptionType,jdbcType=VARCHAR},
       </if>
-      <if test="temp2 != null">
-        temp2 = #{temp2,jdbcType=VARCHAR},
+      <if test="consumptionFigures != null">
+        consumption_figures = #{consumptionFigures,jdbcType=VARCHAR},
       </if>
       <if test="temp3 != null">
         temp3 = #{temp3,jdbcType=VARCHAR},
@@ -294,15 +292,15 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Indent">
     update indent
-    set order_number = #{orderNumber,jdbcType=INTEGER},
+    set order_number = #{orderNumber,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER},
       order_time = #{orderTime,jdbcType=TIMESTAMP},
       e_check_in_time = #{eCheckInTime,jdbcType=TIMESTAMP},
       e_check_out_time = #{eCheckOutTime,jdbcType=TIMESTAMP},
       consumption_amount = #{consumptionAmount,jdbcType=DOUBLE},
       status = #{status,jdbcType=VARCHAR},
-      temp1 = #{temp1,jdbcType=VARCHAR},
-      temp2 = #{temp2,jdbcType=VARCHAR},
+      consumption_type = #{consumptionType,jdbcType=VARCHAR},
+      consumption_figures = #{consumptionFigures,jdbcType=VARCHAR},
       temp3 = #{temp3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

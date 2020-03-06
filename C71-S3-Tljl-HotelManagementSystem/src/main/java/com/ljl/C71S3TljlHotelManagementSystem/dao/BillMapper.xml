@@ -8,8 +8,8 @@
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="consumption_amount" jdbcType="DOUBLE" property="consumptionAmount" />
     <result column="indent_id" jdbcType="INTEGER" property="indentId" />
-    <result column="temp1" jdbcType="VARCHAR" property="temp1" />
-    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
+    <result column="received_amount" jdbcType="DOUBLE" property="receivedAmount" />
+    <result column="refund_or_supplement" jdbcType="DOUBLE" property="refundOrSupplement" />
     <result column="temp3" jdbcType="VARCHAR" property="temp3" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -71,8 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, record_time, staff_id, user_id, consumption_amount, indent_id, temp1, temp2, 
-    temp3
+    id, record_time, staff_id, user_id, consumption_amount, indent_id, received_amount, 
+    refund_or_supplement, temp3
   </sql>
   <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.BillExample" resultMap="BaseResultMap">
     select
@@ -109,11 +109,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into bill (record_time, staff_id, user_id, 
-      consumption_amount, indent_id, temp1, 
-      temp2, temp3)
+      consumption_amount, indent_id, received_amount, 
+      refund_or_supplement, temp3)
     values (#{recordTime,jdbcType=TIMESTAMP}, #{staffId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
-      #{consumptionAmount,jdbcType=DOUBLE}, #{indentId,jdbcType=INTEGER}, #{temp1,jdbcType=VARCHAR}, 
-      #{temp2,jdbcType=VARCHAR}, #{temp3,jdbcType=VARCHAR})
+      #{consumptionAmount,jdbcType=DOUBLE}, #{indentId,jdbcType=INTEGER}, #{receivedAmount,jdbcType=DOUBLE}, 
+      #{refundOrSupplement,jdbcType=DOUBLE}, #{temp3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Bill">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -136,11 +136,11 @@
       <if test="indentId != null">
         indent_id,
       </if>
-      <if test="temp1 != null">
-        temp1,
+      <if test="receivedAmount != null">
+        received_amount,
       </if>
-      <if test="temp2 != null">
-        temp2,
+      <if test="refundOrSupplement != null">
+        refund_or_supplement,
       </if>
       <if test="temp3 != null">
         temp3,
@@ -162,11 +162,11 @@
       <if test="indentId != null">
         #{indentId,jdbcType=INTEGER},
       </if>
-      <if test="temp1 != null">
-        #{temp1,jdbcType=VARCHAR},
+      <if test="receivedAmount != null">
+        #{receivedAmount,jdbcType=DOUBLE},
       </if>
-      <if test="temp2 != null">
-        #{temp2,jdbcType=VARCHAR},
+      <if test="refundOrSupplement != null">
+        #{refundOrSupplement,jdbcType=DOUBLE},
       </if>
       <if test="temp3 != null">
         #{temp3,jdbcType=VARCHAR},
@@ -200,11 +200,11 @@
       <if test="record.indentId != null">
         indent_id = #{record.indentId,jdbcType=INTEGER},
       </if>
-      <if test="record.temp1 != null">
-        temp1 = #{record.temp1,jdbcType=VARCHAR},
+      <if test="record.receivedAmount != null">
+        received_amount = #{record.receivedAmount,jdbcType=DOUBLE},
       </if>
-      <if test="record.temp2 != null">
-        temp2 = #{record.temp2,jdbcType=VARCHAR},
+      <if test="record.refundOrSupplement != null">
+        refund_or_supplement = #{record.refundOrSupplement,jdbcType=DOUBLE},
       </if>
       <if test="record.temp3 != null">
         temp3 = #{record.temp3,jdbcType=VARCHAR},
@@ -222,8 +222,8 @@
       user_id = #{record.userId,jdbcType=INTEGER},
       consumption_amount = #{record.consumptionAmount,jdbcType=DOUBLE},
       indent_id = #{record.indentId,jdbcType=INTEGER},
-      temp1 = #{record.temp1,jdbcType=VARCHAR},
-      temp2 = #{record.temp2,jdbcType=VARCHAR},
+      received_amount = #{record.receivedAmount,jdbcType=DOUBLE},
+      refund_or_supplement = #{record.refundOrSupplement,jdbcType=DOUBLE},
       temp3 = #{record.temp3,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -247,11 +247,11 @@
       <if test="indentId != null">
         indent_id = #{indentId,jdbcType=INTEGER},
       </if>
-      <if test="temp1 != null">
-        temp1 = #{temp1,jdbcType=VARCHAR},
+      <if test="receivedAmount != null">
+        received_amount = #{receivedAmount,jdbcType=DOUBLE},
       </if>
-      <if test="temp2 != null">
-        temp2 = #{temp2,jdbcType=VARCHAR},
+      <if test="refundOrSupplement != null">
+        refund_or_supplement = #{refundOrSupplement,jdbcType=DOUBLE},
       </if>
       <if test="temp3 != null">
         temp3 = #{temp3,jdbcType=VARCHAR},
@@ -266,8 +266,8 @@
       user_id = #{userId,jdbcType=INTEGER},
       consumption_amount = #{consumptionAmount,jdbcType=DOUBLE},
       indent_id = #{indentId,jdbcType=INTEGER},
-      temp1 = #{temp1,jdbcType=VARCHAR},
-      temp2 = #{temp2,jdbcType=VARCHAR},
+      received_amount = #{receivedAmount,jdbcType=DOUBLE},
+      refund_or_supplement = #{refundOrSupplement,jdbcType=DOUBLE},
       temp3 = #{temp3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

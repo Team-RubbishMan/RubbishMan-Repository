@@ -5,7 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="dining_time" jdbcType="TIMESTAMP" property="diningTime" />
     <result column="dish_id" jdbcType="INTEGER" property="dishId" />
-    <result column="food_order_id" jdbcType="INTEGER" property="foodOrderId" />
+    <result column="indent_id" jdbcType="INTEGER" property="indentId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, dining_time, dish_id, food_order_id
+    id, dining_time, dish_id, indent_id
   </sql>
   <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.FoodDetailExample" resultMap="BaseResultMap">
     select
@@ -102,9 +102,9 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into food_detail (dining_time, dish_id, food_order_id
+    insert into food_detail (dining_time, dish_id, indent_id
       )
-    values (#{diningTime,jdbcType=TIMESTAMP}, #{dishId,jdbcType=INTEGER}, #{foodOrderId,jdbcType=INTEGER}
+    values (#{diningTime,jdbcType=TIMESTAMP}, #{dishId,jdbcType=INTEGER}, #{indentId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.FoodDetail">
@@ -119,8 +119,8 @@
       <if test="dishId != null">
         dish_id,
       </if>
-      <if test="foodOrderId != null">
-        food_order_id,
+      <if test="indentId != null">
+        indent_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -130,8 +130,8 @@
       <if test="dishId != null">
         #{dishId,jdbcType=INTEGER},
       </if>
-      <if test="foodOrderId != null">
-        #{foodOrderId,jdbcType=INTEGER},
+      <if test="indentId != null">
+        #{indentId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -153,8 +153,8 @@
       <if test="record.dishId != null">
         dish_id = #{record.dishId,jdbcType=INTEGER},
       </if>
-      <if test="record.foodOrderId != null">
-        food_order_id = #{record.foodOrderId,jdbcType=INTEGER},
+      <if test="record.indentId != null">
+        indent_id = #{record.indentId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -166,7 +166,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       dining_time = #{record.diningTime,jdbcType=TIMESTAMP},
       dish_id = #{record.dishId,jdbcType=INTEGER},
-      food_order_id = #{record.foodOrderId,jdbcType=INTEGER}
+      indent_id = #{record.indentId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -180,8 +180,8 @@
       <if test="dishId != null">
         dish_id = #{dishId,jdbcType=INTEGER},
       </if>
-      <if test="foodOrderId != null">
-        food_order_id = #{foodOrderId,jdbcType=INTEGER},
+      <if test="indentId != null">
+        indent_id = #{indentId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -190,7 +190,7 @@
     update food_detail
     set dining_time = #{diningTime,jdbcType=TIMESTAMP},
       dish_id = #{dishId,jdbcType=INTEGER},
-      food_order_id = #{foodOrderId,jdbcType=INTEGER}
+      indent_id = #{indentId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

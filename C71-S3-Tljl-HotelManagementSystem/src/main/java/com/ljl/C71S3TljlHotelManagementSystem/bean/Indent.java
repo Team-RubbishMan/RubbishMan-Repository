@@ -1,12 +1,11 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
 import java.util.Date;
-import java.util.List;
 
 public class Indent {
     private Integer id;
 
-    private Integer orderNumber;
+    private String orderNumber;
 
     private Integer userId;
 
@@ -20,20 +19,21 @@ public class Indent {
 
     private String status;
 
-    private String temp1;
+    private String consumptionType;
 
-    private String temp2;
+    private String consumptionFigures;
 
     private String temp3;
 
     private User user;
-
-	@Override
+    
+    
+    @Override
 	public String toString() {
 		return "Indent [id=" + id + ", orderNumber=" + orderNumber + ", userId=" + userId + ", orderTime=" + orderTime
 				+ ", eCheckInTime=" + eCheckInTime + ", eCheckOutTime=" + eCheckOutTime + ", consumptionAmount="
-				+ consumptionAmount + ", status=" + status + ", temp1=" + temp1 + ", temp2=" + temp2 + ", temp3="
-				+ temp3 + ", user=" + user + "]";
+				+ consumptionAmount + ", status=" + status + ", consumptionType=" + consumptionType
+				+ ", consumptionFigures=" + consumptionFigures + ", temp3=" + temp3 + ", user=" + user + "]";
 	}
 
 	public User getUser() {
@@ -52,12 +52,12 @@ public class Indent {
         this.id = id;
     }
 
-    public Integer getOrderNumber() {
+    public String getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber == null ? null : orderNumber.trim();
     }
 
     public Integer getUserId() {
@@ -108,20 +108,20 @@ public class Indent {
         this.status = status == null ? null : status.trim();
     }
 
-    public String getTemp1() {
-        return temp1;
+    public String getConsumptionType() {
+        return consumptionType;
     }
 
-    public void setTemp1(String temp1) {
-        this.temp1 = temp1 == null ? null : temp1.trim();
+    public void setConsumptionType(String consumptionType) {
+        this.consumptionType = consumptionType == null ? null : consumptionType.trim();
     }
 
-    public String getTemp2() {
-        return temp2;
+    public String getConsumptionFigures() {
+        return consumptionFigures;
     }
 
-    public void setTemp2(String temp2) {
-        this.temp2 = temp2 == null ? null : temp2.trim();
+    public void setConsumptionFigures(String consumptionFigures) {
+        this.consumptionFigures = consumptionFigures == null ? null : consumptionFigures.trim();
     }
 
     public String getTemp3() {

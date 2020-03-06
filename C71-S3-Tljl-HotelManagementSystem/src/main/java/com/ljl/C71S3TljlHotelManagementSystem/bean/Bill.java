@@ -15,9 +15,9 @@ public class Bill {
 
     private Integer indentId;
 
-    private String temp1;
+    private Double receivedAmount;
 
-    private String temp2;
+    private Double refundOrSupplement;
 
     private String temp3;
 
@@ -69,20 +69,20 @@ public class Bill {
         this.indentId = indentId;
     }
 
-    public String getTemp1() {
-        return temp1;
+    public Double getReceivedAmount() {
+        return receivedAmount;
     }
 
-    public void setTemp1(String temp1) {
-        this.temp1 = temp1 == null ? null : temp1.trim();
+    public void setReceivedAmount(Double receivedAmount) {
+        this.receivedAmount = receivedAmount;
     }
 
-    public String getTemp2() {
-        return temp2;
+    public Double getRefundOrSupplement() {
+        return refundOrSupplement;
     }
 
-    public void setTemp2(String temp2) {
-        this.temp2 = temp2 == null ? null : temp2.trim();
+    public void setRefundOrSupplement(Double refundOrSupplement) {
+        this.refundOrSupplement = refundOrSupplement;
     }
 
     public String getTemp3() {

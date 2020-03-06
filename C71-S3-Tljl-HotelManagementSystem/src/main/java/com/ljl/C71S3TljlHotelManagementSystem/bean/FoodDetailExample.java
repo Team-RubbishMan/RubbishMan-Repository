@@ -285,63 +285,63 @@ public class FoodDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdIsNull() {
-            addCriterion("food_order_id is null");
+        public Criteria andIndentIdIsNull() {
+            addCriterion("indent_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdIsNotNull() {
-            addCriterion("food_order_id is not null");
+        public Criteria andIndentIdIsNotNull() {
+            addCriterion("indent_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdEqualTo(Integer value) {
-            addCriterion("food_order_id =", value, "foodOrderId");
+        public Criteria andIndentIdEqualTo(Integer value) {
+            addCriterion("indent_id =", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdNotEqualTo(Integer value) {
-            addCriterion("food_order_id <>", value, "foodOrderId");
+        public Criteria andIndentIdNotEqualTo(Integer value) {
+            addCriterion("indent_id <>", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdGreaterThan(Integer value) {
-            addCriterion("food_order_id >", value, "foodOrderId");
+        public Criteria andIndentIdGreaterThan(Integer value) {
+            addCriterion("indent_id >", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("food_order_id >=", value, "foodOrderId");
+        public Criteria andIndentIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("indent_id >=", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdLessThan(Integer value) {
-            addCriterion("food_order_id <", value, "foodOrderId");
+        public Criteria andIndentIdLessThan(Integer value) {
+            addCriterion("indent_id <", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdLessThanOrEqualTo(Integer value) {
-            addCriterion("food_order_id <=", value, "foodOrderId");
+        public Criteria andIndentIdLessThanOrEqualTo(Integer value) {
+            addCriterion("indent_id <=", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdIn(List<Integer> values) {
-            addCriterion("food_order_id in", values, "foodOrderId");
+        public Criteria andIndentIdIn(List<Integer> values) {
+            addCriterion("indent_id in", values, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdNotIn(List<Integer> values) {
-            addCriterion("food_order_id not in", values, "foodOrderId");
+        public Criteria andIndentIdNotIn(List<Integer> values) {
+            addCriterion("indent_id not in", values, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdBetween(Integer value1, Integer value2) {
-            addCriterion("food_order_id between", value1, value2, "foodOrderId");
+        public Criteria andIndentIdBetween(Integer value1, Integer value2) {
+            addCriterion("indent_id between", value1, value2, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andFoodOrderIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("food_order_id not between", value1, value2, "foodOrderId");
+        public Criteria andIndentIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("indent_id not between", value1, value2, "indentId");
             return (Criteria) this;
         }
     }

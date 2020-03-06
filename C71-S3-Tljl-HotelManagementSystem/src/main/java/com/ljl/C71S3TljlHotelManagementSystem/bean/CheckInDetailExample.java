@@ -465,73 +465,63 @@ public class CheckInDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andTemp2IsNull() {
-            addCriterion("temp2 is null");
+        public Criteria andRoomTypeIdIsNull() {
+            addCriterion("room_type_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2IsNotNull() {
-            addCriterion("temp2 is not null");
+        public Criteria andRoomTypeIdIsNotNull() {
+            addCriterion("room_type_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2EqualTo(String value) {
-            addCriterion("temp2 =", value, "temp2");
+        public Criteria andRoomTypeIdEqualTo(Integer value) {
+            addCriterion("room_type_id =", value, "roomTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2NotEqualTo(String value) {
-            addCriterion("temp2 <>", value, "temp2");
+        public Criteria andRoomTypeIdNotEqualTo(Integer value) {
+            addCriterion("room_type_id <>", value, "roomTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2GreaterThan(String value) {
-            addCriterion("temp2 >", value, "temp2");
+        public Criteria andRoomTypeIdGreaterThan(Integer value) {
+            addCriterion("room_type_id >", value, "roomTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2GreaterThanOrEqualTo(String value) {
-            addCriterion("temp2 >=", value, "temp2");
+        public Criteria andRoomTypeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("room_type_id >=", value, "roomTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2LessThan(String value) {
-            addCriterion("temp2 <", value, "temp2");
+        public Criteria andRoomTypeIdLessThan(Integer value) {
+            addCriterion("room_type_id <", value, "roomTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2LessThanOrEqualTo(String value) {
-            addCriterion("temp2 <=", value, "temp2");
+        public Criteria andRoomTypeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("room_type_id <=", value, "roomTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2Like(String value) {
-            addCriterion("temp2 like", value, "temp2");
+        public Criteria andRoomTypeIdIn(List<Integer> values) {
+            addCriterion("room_type_id in", values, "roomTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2NotLike(String value) {
-            addCriterion("temp2 not like", value, "temp2");
+        public Criteria andRoomTypeIdNotIn(List<Integer> values) {
+            addCriterion("room_type_id not in", values, "roomTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2In(List<String> values) {
-            addCriterion("temp2 in", values, "temp2");
+        public Criteria andRoomTypeIdBetween(Integer value1, Integer value2) {
+            addCriterion("room_type_id between", value1, value2, "roomTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2NotIn(List<String> values) {
-            addCriterion("temp2 not in", values, "temp2");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemp2Between(String value1, String value2) {
-            addCriterion("temp2 between", value1, value2, "temp2");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemp2NotBetween(String value1, String value2) {
-            addCriterion("temp2 not between", value1, value2, "temp2");
+        public Criteria andRoomTypeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("room_type_id not between", value1, value2, "roomTypeId");
             return (Criteria) this;
         }
 

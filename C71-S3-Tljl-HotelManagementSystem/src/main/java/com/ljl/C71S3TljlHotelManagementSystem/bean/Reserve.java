@@ -31,11 +31,15 @@ public class Reserve {
 
     private String email;
 
-    private String temp2;
+    private Integer status;
 
     private String temp3;
     
     private User user;
+    
+    private RoomType roomType;
+    
+    private EntertainmentDevice entertaiment;
     
     
     @Override
@@ -45,7 +49,8 @@ public class Reserve {
 				+ ", consumptionType=" + consumptionType + ", roomTypeId=" + roomTypeId + ", numberOfRooms="
 				+ numberOfRooms + ", numberOfEntertaiment=" + numberOfEntertaiment + ", dinnerTime=" + dinnerTime
 				+ ", reserveCheckInTime=" + reserveCheckInTime + ", reserveCheckOutTime=" + reserveCheckOutTime
-				+ ", email=" + email + ", temp2=" + temp2 + ", temp3=" + temp3 + ", user=" + user + "]";
+				+ ", email=" + email + ", status=" + status + ", temp3=" + temp3 + ", user=" + user + ", roomType="
+				+ roomType + ", entertaiment=" + entertaiment + "]";
 	}
 
 	public User getUser() {
@@ -54,6 +59,22 @@ public class Reserve {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public RoomType getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(RoomType roomType) {
+		this.roomType = roomType;
+	}
+
+	public EntertainmentDevice getEntertaiment() {
+		return entertaiment;
+	}
+
+	public void setEntertaiment(EntertainmentDevice entertaiment) {
+		this.entertaiment = entertaiment;
 	}
 
 	public Integer getId() {
@@ -168,12 +189,12 @@ public class Reserve {
         this.email = email == null ? null : email.trim();
     }
 
-    public String getTemp2() {
-        return temp2;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setTemp2(String temp2) {
-        this.temp2 = temp2 == null ? null : temp2.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getTemp3() {

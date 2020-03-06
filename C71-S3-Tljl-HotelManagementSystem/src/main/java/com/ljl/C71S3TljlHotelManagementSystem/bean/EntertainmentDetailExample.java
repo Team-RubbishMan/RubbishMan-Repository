@@ -1,7 +1,6 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class EntertainmentDetailExample {
@@ -165,66 +164,6 @@ public class EntertainmentDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andPayTimeIsNull() {
-            addCriterion("pay_time is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayTimeIsNotNull() {
-            addCriterion("pay_time is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayTimeEqualTo(Date value) {
-            addCriterion("pay_time =", value, "payTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayTimeNotEqualTo(Date value) {
-            addCriterion("pay_time <>", value, "payTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayTimeGreaterThan(Date value) {
-            addCriterion("pay_time >", value, "payTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("pay_time >=", value, "payTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayTimeLessThan(Date value) {
-            addCriterion("pay_time <", value, "payTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayTimeLessThanOrEqualTo(Date value) {
-            addCriterion("pay_time <=", value, "payTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayTimeIn(List<Date> values) {
-            addCriterion("pay_time in", values, "payTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayTimeNotIn(List<Date> values) {
-            addCriterion("pay_time not in", values, "payTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayTimeBetween(Date value1, Date value2) {
-            addCriterion("pay_time between", value1, value2, "payTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayTimeNotBetween(Date value1, Date value2) {
-            addCriterion("pay_time not between", value1, value2, "payTime");
-            return (Criteria) this;
-        }
-
         public Criteria andEntertainmentDeviceIdIsNull() {
             addCriterion("entertainment_device_id is null");
             return (Criteria) this;
@@ -285,63 +224,63 @@ public class EntertainmentDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdIsNull() {
-            addCriterion("entertainment_order_id is null");
+        public Criteria andIndentIdIsNull() {
+            addCriterion("indent_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdIsNotNull() {
-            addCriterion("entertainment_order_id is not null");
+        public Criteria andIndentIdIsNotNull() {
+            addCriterion("indent_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdEqualTo(Integer value) {
-            addCriterion("entertainment_order_id =", value, "entertainmentOrderId");
+        public Criteria andIndentIdEqualTo(Integer value) {
+            addCriterion("indent_id =", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdNotEqualTo(Integer value) {
-            addCriterion("entertainment_order_id <>", value, "entertainmentOrderId");
+        public Criteria andIndentIdNotEqualTo(Integer value) {
+            addCriterion("indent_id <>", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdGreaterThan(Integer value) {
-            addCriterion("entertainment_order_id >", value, "entertainmentOrderId");
+        public Criteria andIndentIdGreaterThan(Integer value) {
+            addCriterion("indent_id >", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("entertainment_order_id >=", value, "entertainmentOrderId");
+        public Criteria andIndentIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("indent_id >=", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdLessThan(Integer value) {
-            addCriterion("entertainment_order_id <", value, "entertainmentOrderId");
+        public Criteria andIndentIdLessThan(Integer value) {
+            addCriterion("indent_id <", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdLessThanOrEqualTo(Integer value) {
-            addCriterion("entertainment_order_id <=", value, "entertainmentOrderId");
+        public Criteria andIndentIdLessThanOrEqualTo(Integer value) {
+            addCriterion("indent_id <=", value, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdIn(List<Integer> values) {
-            addCriterion("entertainment_order_id in", values, "entertainmentOrderId");
+        public Criteria andIndentIdIn(List<Integer> values) {
+            addCriterion("indent_id in", values, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdNotIn(List<Integer> values) {
-            addCriterion("entertainment_order_id not in", values, "entertainmentOrderId");
+        public Criteria andIndentIdNotIn(List<Integer> values) {
+            addCriterion("indent_id not in", values, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdBetween(Integer value1, Integer value2) {
-            addCriterion("entertainment_order_id between", value1, value2, "entertainmentOrderId");
+        public Criteria andIndentIdBetween(Integer value1, Integer value2) {
+            addCriterion("indent_id between", value1, value2, "indentId");
             return (Criteria) this;
         }
 
-        public Criteria andEntertainmentOrderIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("entertainment_order_id not between", value1, value2, "entertainmentOrderId");
+        public Criteria andIndentIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("indent_id not between", value1, value2, "indentId");
             return (Criteria) this;
         }
     }

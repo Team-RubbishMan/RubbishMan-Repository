@@ -9,7 +9,7 @@ public class FoodDetail {
 
     private Integer dishId;
 
-    private Integer foodOrderId;
+    private Integer indentId;
 
     public Integer getId() {
         return id;
@@ -35,11 +35,11 @@ public class FoodDetail {
         this.dishId = dishId;
     }
 
-    public Integer getFoodOrderId() {
-        return foodOrderId;
+    public Integer getIndentId() {
+        return indentId;
     }
 
-    public void setFoodOrderId(Integer foodOrderId) {
-        this.foodOrderId = foodOrderId;
+    public void setIndentId(Integer indentId) {
+        this.indentId = indentId;
     }
 }

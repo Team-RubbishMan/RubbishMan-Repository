@@ -1,15 +1,11 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
-import java.util.Date;
-
 public class EntertainmentDetail {
     private Integer id;
 
-    private Date payTime;
-
     private Integer entertainmentDeviceId;
 
-    private Integer entertainmentOrderId;
+    private Integer indentId;
 
     public Integer getId() {
         return id;
@@ -17,14 +13,6 @@ public class EntertainmentDetail {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Date getPayTime() {
-        return payTime;
-    }
-
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
     }
 
     public Integer getEntertainmentDeviceId() {
@@ -35,11 +23,11 @@ public class EntertainmentDetail {
         this.entertainmentDeviceId = entertainmentDeviceId;
     }
 
-    public Integer getEntertainmentOrderId() {
-        return entertainmentOrderId;
+    public Integer getIndentId() {
+        return indentId;
     }
 
-    public void setEntertainmentOrderId(Integer entertainmentOrderId) {
-        this.entertainmentOrderId = entertainmentOrderId;
+    public void setIndentId(Integer indentId) {
+        this.indentId = indentId;
     }
 }

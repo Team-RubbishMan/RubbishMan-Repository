@@ -465,143 +465,123 @@ public class BillExample {
             return (Criteria) this;
         }
 
-        public Criteria andTemp1IsNull() {
-            addCriterion("temp1 is null");
+        public Criteria andReceivedAmountIsNull() {
+            addCriterion("received_amount is null");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1IsNotNull() {
-            addCriterion("temp1 is not null");
+        public Criteria andReceivedAmountIsNotNull() {
+            addCriterion("received_amount is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1EqualTo(String value) {
-            addCriterion("temp1 =", value, "temp1");
+        public Criteria andReceivedAmountEqualTo(Double value) {
+            addCriterion("received_amount =", value, "receivedAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1NotEqualTo(String value) {
-            addCriterion("temp1 <>", value, "temp1");
+        public Criteria andReceivedAmountNotEqualTo(Double value) {
+            addCriterion("received_amount <>", value, "receivedAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1GreaterThan(String value) {
-            addCriterion("temp1 >", value, "temp1");
+        public Criteria andReceivedAmountGreaterThan(Double value) {
+            addCriterion("received_amount >", value, "receivedAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1GreaterThanOrEqualTo(String value) {
-            addCriterion("temp1 >=", value, "temp1");
+        public Criteria andReceivedAmountGreaterThanOrEqualTo(Double value) {
+            addCriterion("received_amount >=", value, "receivedAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1LessThan(String value) {
-            addCriterion("temp1 <", value, "temp1");
+        public Criteria andReceivedAmountLessThan(Double value) {
+            addCriterion("received_amount <", value, "receivedAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1LessThanOrEqualTo(String value) {
-            addCriterion("temp1 <=", value, "temp1");
+        public Criteria andReceivedAmountLessThanOrEqualTo(Double value) {
+            addCriterion("received_amount <=", value, "receivedAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1Like(String value) {
-            addCriterion("temp1 like", value, "temp1");
+        public Criteria andReceivedAmountIn(List<Double> values) {
+            addCriterion("received_amount in", values, "receivedAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1NotLike(String value) {
-            addCriterion("temp1 not like", value, "temp1");
+        public Criteria andReceivedAmountNotIn(List<Double> values) {
+            addCriterion("received_amount not in", values, "receivedAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1In(List<String> values) {
-            addCriterion("temp1 in", values, "temp1");
+        public Criteria andReceivedAmountBetween(Double value1, Double value2) {
+            addCriterion("received_amount between", value1, value2, "receivedAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1NotIn(List<String> values) {
-            addCriterion("temp1 not in", values, "temp1");
+        public Criteria andReceivedAmountNotBetween(Double value1, Double value2) {
+            addCriterion("received_amount not between", value1, value2, "receivedAmount");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1Between(String value1, String value2) {
-            addCriterion("temp1 between", value1, value2, "temp1");
+        public Criteria andRefundOrSupplementIsNull() {
+            addCriterion("refund_or_supplement is null");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1NotBetween(String value1, String value2) {
-            addCriterion("temp1 not between", value1, value2, "temp1");
+        public Criteria andRefundOrSupplementIsNotNull() {
+            addCriterion("refund_or_supplement is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2IsNull() {
-            addCriterion("temp2 is null");
+        public Criteria andRefundOrSupplementEqualTo(Double value) {
+            addCriterion("refund_or_supplement =", value, "refundOrSupplement");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2IsNotNull() {
-            addCriterion("temp2 is not null");
+        public Criteria andRefundOrSupplementNotEqualTo(Double value) {
+            addCriterion("refund_or_supplement <>", value, "refundOrSupplement");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2EqualTo(String value) {
-            addCriterion("temp2 =", value, "temp2");
+        public Criteria andRefundOrSupplementGreaterThan(Double value) {
+            addCriterion("refund_or_supplement >", value, "refundOrSupplement");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2NotEqualTo(String value) {
-            addCriterion("temp2 <>", value, "temp2");
+        public Criteria andRefundOrSupplementGreaterThanOrEqualTo(Double value) {
+            addCriterion("refund_or_supplement >=", value, "refundOrSupplement");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2GreaterThan(String value) {
-            addCriterion("temp2 >", value, "temp2");
+        public Criteria andRefundOrSupplementLessThan(Double value) {
+            addCriterion("refund_or_supplement <", value, "refundOrSupplement");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2GreaterThanOrEqualTo(String value) {
-            addCriterion("temp2 >=", value, "temp2");
+        public Criteria andRefundOrSupplementLessThanOrEqualTo(Double value) {
+            addCriterion("refund_or_supplement <=", value, "refundOrSupplement");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2LessThan(String value) {
-            addCriterion("temp2 <", value, "temp2");
+        public Criteria andRefundOrSupplementIn(List<Double> values) {
+            addCriterion("refund_or_supplement in", values, "refundOrSupplement");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2LessThanOrEqualTo(String value) {
-            addCriterion("temp2 <=", value, "temp2");
+        public Criteria andRefundOrSupplementNotIn(List<Double> values) {
+            addCriterion("refund_or_supplement not in", values, "refundOrSupplement");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2Like(String value) {
-            addCriterion("temp2 like", value, "temp2");
+        public Criteria andRefundOrSupplementBetween(Double value1, Double value2) {
+            addCriterion("refund_or_supplement between", value1, value2, "refundOrSupplement");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2NotLike(String value) {
-            addCriterion("temp2 not like", value, "temp2");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemp2In(List<String> values) {
-            addCriterion("temp2 in", values, "temp2");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemp2NotIn(List<String> values) {
-            addCriterion("temp2 not in", values, "temp2");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemp2Between(String value1, String value2) {
-            addCriterion("temp2 between", value1, value2, "temp2");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemp2NotBetween(String value1, String value2) {
-            addCriterion("temp2 not between", value1, value2, "temp2");
+        public Criteria andRefundOrSupplementNotBetween(Double value1, Double value2) {
+            addCriterion("refund_or_supplement not between", value1, value2, "refundOrSupplement");
             return (Criteria) this;
         }
 

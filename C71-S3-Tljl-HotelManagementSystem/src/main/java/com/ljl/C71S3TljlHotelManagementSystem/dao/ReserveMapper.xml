@@ -1,389 +1,436 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ljl.C71S3TljlHotelManagementSystem.dao.ReserveMapper">
-  <resultMap id="BaseResultMap" type="com.ljl.C71S3TljlHotelManagementSystem.bean.Reserve">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="reserve_number" jdbcType="VARCHAR" property="reserveNumber" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="pay_amount" jdbcType="DOUBLE" property="payAmount" />
-    <result column="pay_status" jdbcType="INTEGER" property="payStatus" />
-    <result column="consumption_figures" jdbcType="INTEGER" property="consumptionFigures" />
-    <result column="consumption_type" jdbcType="INTEGER" property="consumptionType" />
-    <result column="room_type_id" jdbcType="INTEGER" property="roomTypeId" />
-    <result column="number_of_rooms" jdbcType="INTEGER" property="numberOfRooms" />
-    <result column="number_of_entertaiment" jdbcType="INTEGER" property="numberOfEntertaiment" />
-    <result column="dinner_time" jdbcType="TIMESTAMP" property="dinnerTime" />
-    <result column="reserve_check_in_time" jdbcType="TIMESTAMP" property="reserveCheckInTime" />
-    <result column="reserve_check_out_time" jdbcType="TIMESTAMP" property="reserveCheckOutTime" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
-    <result column="temp3" jdbcType="VARCHAR" property="temp3" />
-    <association property="user" column="user_id" select="com.ljl.C71S3TljlHotelManagementSystem.dao.UserMapper.selectByPrimaryKey">
-			
-	</association>
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, reserve_number, user_id, pay_amount, pay_status, consumption_figures, consumption_type, 
-    room_type_id, number_of_rooms, number_of_entertaiment, dinner_time, reserve_check_in_time, 
-    reserve_check_out_time, email, temp2, temp3
-  </sql>
-  <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.ReserveExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from reserve
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from reserve
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from reserve
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.ReserveExample">
-    delete from reserve
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Reserve">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into reserve (reserve_number, user_id, pay_amount, 
-      pay_status, consumption_figures, consumption_type, 
-      room_type_id, number_of_rooms, number_of_entertaiment, 
-      dinner_time, reserve_check_in_time, reserve_check_out_time, 
-      email, temp2, temp3
-      )
-    values (#{reserveNumber,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{payAmount,jdbcType=DOUBLE}, 
-      #{payStatus,jdbcType=INTEGER}, #{consumptionFigures,jdbcType=INTEGER}, #{consumptionType,jdbcType=INTEGER}, 
-      #{roomTypeId,jdbcType=INTEGER}, #{numberOfRooms,jdbcType=INTEGER}, #{numberOfEntertaiment,jdbcType=INTEGER}, 
-      #{dinnerTime,jdbcType=TIMESTAMP}, #{reserveCheckInTime,jdbcType=TIMESTAMP}, #{reserveCheckOutTime,jdbcType=TIMESTAMP}, 
-      #{email,jdbcType=VARCHAR}, #{temp2,jdbcType=VARCHAR}, #{temp3,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Reserve">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into reserve
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="reserveNumber != null">
-        reserve_number,
-      </if>
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="payAmount != null">
-        pay_amount,
-      </if>
-      <if test="payStatus != null">
-        pay_status,
-      </if>
-      <if test="consumptionFigures != null">
-        consumption_figures,
-      </if>
-      <if test="consumptionType != null">
-        consumption_type,
-      </if>
-      <if test="roomTypeId != null">
-        room_type_id,
-      </if>
-      <if test="numberOfRooms != null">
-        number_of_rooms,
-      </if>
-      <if test="numberOfEntertaiment != null">
-        number_of_entertaiment,
-      </if>
-      <if test="dinnerTime != null">
-        dinner_time,
-      </if>
-      <if test="reserveCheckInTime != null">
-        reserve_check_in_time,
-      </if>
-      <if test="reserveCheckOutTime != null">
-        reserve_check_out_time,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="temp2 != null">
-        temp2,
-      </if>
-      <if test="temp3 != null">
-        temp3,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="reserveNumber != null">
-        #{reserveNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="payAmount != null">
-        #{payAmount,jdbcType=DOUBLE},
-      </if>
-      <if test="payStatus != null">
-        #{payStatus,jdbcType=INTEGER},
-      </if>
-      <if test="consumptionFigures != null">
-        #{consumptionFigures,jdbcType=INTEGER},
-      </if>
-      <if test="consumptionType != null">
-        #{consumptionType,jdbcType=INTEGER},
-      </if>
-      <if test="roomTypeId != null">
-        #{roomTypeId,jdbcType=INTEGER},
-      </if>
-      <if test="numberOfRooms != null">
-        #{numberOfRooms,jdbcType=INTEGER},
-      </if>
-      <if test="numberOfEntertaiment != null">
-        #{numberOfEntertaiment,jdbcType=INTEGER},
-      </if>
-      <if test="dinnerTime != null">
-        #{dinnerTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="reserveCheckInTime != null">
-        #{reserveCheckInTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="reserveCheckOutTime != null">
-        #{reserveCheckOutTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="temp2 != null">
-        #{temp2,jdbcType=VARCHAR},
-      </if>
-      <if test="temp3 != null">
-        #{temp3,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.ReserveExample" resultType="java.lang.Long">
-    select count(*) from reserve
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update reserve
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.reserveNumber != null">
-        reserve_number = #{record.reserveNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
-      </if>
-      <if test="record.payAmount != null">
-        pay_amount = #{record.payAmount,jdbcType=DOUBLE},
-      </if>
-      <if test="record.payStatus != null">
-        pay_status = #{record.payStatus,jdbcType=INTEGER},
-      </if>
-      <if test="record.consumptionFigures != null">
-        consumption_figures = #{record.consumptionFigures,jdbcType=INTEGER},
-      </if>
-      <if test="record.consumptionType != null">
-        consumption_type = #{record.consumptionType,jdbcType=INTEGER},
-      </if>
-      <if test="record.roomTypeId != null">
-        room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
-      </if>
-      <if test="record.numberOfRooms != null">
-        number_of_rooms = #{record.numberOfRooms,jdbcType=INTEGER},
-      </if>
-      <if test="record.numberOfEntertaiment != null">
-        number_of_entertaiment = #{record.numberOfEntertaiment,jdbcType=INTEGER},
-      </if>
-      <if test="record.dinnerTime != null">
-        dinner_time = #{record.dinnerTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.reserveCheckInTime != null">
-        reserve_check_in_time = #{record.reserveCheckInTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.reserveCheckOutTime != null">
-        reserve_check_out_time = #{record.reserveCheckOutTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.email != null">
-        email = #{record.email,jdbcType=VARCHAR},
-      </if>
-      <if test="record.temp2 != null">
-        temp2 = #{record.temp2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.temp3 != null">
-        temp3 = #{record.temp3,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update reserve
-    set id = #{record.id,jdbcType=INTEGER},
-      reserve_number = #{record.reserveNumber,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      pay_amount = #{record.payAmount,jdbcType=DOUBLE},
-      pay_status = #{record.payStatus,jdbcType=INTEGER},
-      consumption_figures = #{record.consumptionFigures,jdbcType=INTEGER},
-      consumption_type = #{record.consumptionType,jdbcType=INTEGER},
-      room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
-      number_of_rooms = #{record.numberOfRooms,jdbcType=INTEGER},
-      number_of_entertaiment = #{record.numberOfEntertaiment,jdbcType=INTEGER},
-      dinner_time = #{record.dinnerTime,jdbcType=TIMESTAMP},
-      reserve_check_in_time = #{record.reserveCheckInTime,jdbcType=TIMESTAMP},
-      reserve_check_out_time = #{record.reserveCheckOutTime,jdbcType=TIMESTAMP},
-      email = #{record.email,jdbcType=VARCHAR},
-      temp2 = #{record.temp2,jdbcType=VARCHAR},
-      temp3 = #{record.temp3,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Reserve">
-    update reserve
-    <set>
-      <if test="reserveNumber != null">
-        reserve_number = #{reserveNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="payAmount != null">
-        pay_amount = #{payAmount,jdbcType=DOUBLE},
-      </if>
-      <if test="payStatus != null">
-        pay_status = #{payStatus,jdbcType=INTEGER},
-      </if>
-      <if test="consumptionFigures != null">
-        consumption_figures = #{consumptionFigures,jdbcType=INTEGER},
-      </if>
-      <if test="consumptionType != null">
-        consumption_type = #{consumptionType,jdbcType=INTEGER},
-      </if>
-      <if test="roomTypeId != null">
-        room_type_id = #{roomTypeId,jdbcType=INTEGER},
-      </if>
-      <if test="numberOfRooms != null">
-        number_of_rooms = #{numberOfRooms,jdbcType=INTEGER},
-      </if>
-      <if test="numberOfEntertaiment != null">
-        number_of_entertaiment = #{numberOfEntertaiment,jdbcType=INTEGER},
-      </if>
-      <if test="dinnerTime != null">
-        dinner_time = #{dinnerTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="reserveCheckInTime != null">
-        reserve_check_in_time = #{reserveCheckInTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="reserveCheckOutTime != null">
-        reserve_check_out_time = #{reserveCheckOutTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="temp2 != null">
-        temp2 = #{temp2,jdbcType=VARCHAR},
-      </if>
-      <if test="temp3 != null">
-        temp3 = #{temp3,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Reserve">
-    update reserve
-    set reserve_number = #{reserveNumber,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=INTEGER},
-      pay_amount = #{payAmount,jdbcType=DOUBLE},
-      pay_status = #{payStatus,jdbcType=INTEGER},
-      consumption_figures = #{consumptionFigures,jdbcType=INTEGER},
-      consumption_type = #{consumptionType,jdbcType=INTEGER},
-      room_type_id = #{roomTypeId,jdbcType=INTEGER},
-      number_of_rooms = #{numberOfRooms,jdbcType=INTEGER},
-      number_of_entertaiment = #{numberOfEntertaiment,jdbcType=INTEGER},
-      dinner_time = #{dinnerTime,jdbcType=TIMESTAMP},
-      reserve_check_in_time = #{reserveCheckInTime,jdbcType=TIMESTAMP},
-      reserve_check_out_time = #{reserveCheckOutTime,jdbcType=TIMESTAMP},
-      email = #{email,jdbcType=VARCHAR},
-      temp2 = #{temp2,jdbcType=VARCHAR},
-      temp3 = #{temp3,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper
+	namespace="com.ljl.C71S3TljlHotelManagementSystem.dao.ReserveMapper">
+	<resultMap id="BaseResultMap"
+		type="com.ljl.C71S3TljlHotelManagementSystem.bean.Reserve">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="reserve_number" jdbcType="VARCHAR"
+			property="reserveNumber" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="pay_amount" jdbcType="DOUBLE"
+			property="payAmount" />
+		<result column="pay_status" jdbcType="INTEGER"
+			property="payStatus" />
+		<result column="consumption_figures" jdbcType="INTEGER"
+			property="consumptionFigures" />
+		<result column="consumption_type" jdbcType="INTEGER"
+			property="consumptionType" />
+		<result column="room_type_id" jdbcType="INTEGER"
+			property="roomTypeId" />
+		<result column="number_of_rooms" jdbcType="INTEGER"
+			property="numberOfRooms" />
+		<result column="number_of_entertaiment" jdbcType="INTEGER"
+			property="numberOfEntertaiment" />
+		<result column="dinner_time" jdbcType="TIMESTAMP"
+			property="dinnerTime" />
+		<result column="reserve_check_in_time" jdbcType="TIMESTAMP"
+			property="reserveCheckInTime" />
+		<result column="reserve_check_out_time" jdbcType="TIMESTAMP"
+			property="reserveCheckOutTime" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="temp3" jdbcType="VARCHAR" property="temp3" />
+		<association property="user" column="user_id"
+			select="com.ljl.C71S3TljlHotelManagementSystem.dao.UserMapper.selectByPrimaryKey">
+		</association>
+		<association property="roomType" column="room_type_id"
+			select="com.ljl.C71S3TljlHotelManagementSystem.dao.RoomTypeMapper.selectByPrimaryKey">
+		</association>
+		<association property="entertainmentDevice"
+			column="number_of_entertaiment"
+			select="com.ljl.C71S3TljlHotelManagementSystem.dao.EntertainmentDeviceMapper.selectByPrimaryKey">
+		</association>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value"
+										item="listItem" open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value"
+										item="listItem" open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, reserve_number, user_id, pay_amount, pay_status, consumption_figures,
+		consumption_type,
+		room_type_id, number_of_rooms, number_of_entertaiment, dinner_time,
+		reserve_check_in_time,
+		reserve_check_out_time, email, status, temp3
+	</sql>
+	<select id="selectByExample"
+		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.ReserveExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from reserve
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from reserve
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from reserve
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample"
+		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.ReserveExample">
+		delete from reserve
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert"
+		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Reserve">
+		<selectKey keyProperty="id" order="AFTER"
+			resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into reserve (reserve_number, user_id, pay_amount,
+		pay_status, consumption_figures, consumption_type,
+		room_type_id, number_of_rooms, number_of_entertaiment,
+		dinner_time, reserve_check_in_time, reserve_check_out_time,
+		email, status, temp3
+		)
+		values (#{reserveNumber,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
+		#{payAmount,jdbcType=DOUBLE},
+		#{payStatus,jdbcType=INTEGER}, #{consumptionFigures,jdbcType=INTEGER},
+		#{consumptionType,jdbcType=INTEGER},
+		#{roomTypeId,jdbcType=INTEGER}, #{numberOfRooms,jdbcType=INTEGER},
+		#{numberOfEntertaiment,jdbcType=INTEGER},
+		#{dinnerTime,jdbcType=TIMESTAMP},
+		#{reserveCheckInTime,jdbcType=TIMESTAMP},
+		#{reserveCheckOutTime,jdbcType=TIMESTAMP},
+		#{email,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{temp3,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Reserve">
+		<selectKey keyProperty="id" order="AFTER"
+			resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into reserve
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="reserveNumber != null">
+				reserve_number,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="payAmount != null">
+				pay_amount,
+			</if>
+			<if test="payStatus != null">
+				pay_status,
+			</if>
+			<if test="consumptionFigures != null">
+				consumption_figures,
+			</if>
+			<if test="consumptionType != null">
+				consumption_type,
+			</if>
+			<if test="roomTypeId != null">
+				room_type_id,
+			</if>
+			<if test="numberOfRooms != null">
+				number_of_rooms,
+			</if>
+			<if test="numberOfEntertaiment != null">
+				number_of_entertaiment,
+			</if>
+			<if test="dinnerTime != null">
+				dinner_time,
+			</if>
+			<if test="reserveCheckInTime != null">
+				reserve_check_in_time,
+			</if>
+			<if test="reserveCheckOutTime != null">
+				reserve_check_out_time,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="temp3 != null">
+				temp3,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="reserveNumber != null">
+				#{reserveNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="payAmount != null">
+				#{payAmount,jdbcType=DOUBLE},
+			</if>
+			<if test="payStatus != null">
+				#{payStatus,jdbcType=INTEGER},
+			</if>
+			<if test="consumptionFigures != null">
+				#{consumptionFigures,jdbcType=INTEGER},
+			</if>
+			<if test="consumptionType != null">
+				#{consumptionType,jdbcType=INTEGER},
+			</if>
+			<if test="roomTypeId != null">
+				#{roomTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="numberOfRooms != null">
+				#{numberOfRooms,jdbcType=INTEGER},
+			</if>
+			<if test="numberOfEntertaiment != null">
+				#{numberOfEntertaiment,jdbcType=INTEGER},
+			</if>
+			<if test="dinnerTime != null">
+				#{dinnerTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reserveCheckInTime != null">
+				#{reserveCheckInTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reserveCheckOutTime != null">
+				#{reserveCheckOutTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="temp3 != null">
+				#{temp3,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample"
+		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.ReserveExample"
+		resultType="java.lang.Long">
+		select count(*) from reserve
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update reserve
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.reserveNumber != null">
+				reserve_number = #{record.reserveNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="record.userId != null">
+				user_id = #{record.userId,jdbcType=INTEGER},
+			</if>
+			<if test="record.payAmount != null">
+				pay_amount = #{record.payAmount,jdbcType=DOUBLE},
+			</if>
+			<if test="record.payStatus != null">
+				pay_status = #{record.payStatus,jdbcType=INTEGER},
+			</if>
+			<if test="record.consumptionFigures != null">
+				consumption_figures = #{record.consumptionFigures,jdbcType=INTEGER},
+			</if>
+			<if test="record.consumptionType != null">
+				consumption_type = #{record.consumptionType,jdbcType=INTEGER},
+			</if>
+			<if test="record.roomTypeId != null">
+				room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="record.numberOfRooms != null">
+				number_of_rooms = #{record.numberOfRooms,jdbcType=INTEGER},
+			</if>
+			<if test="record.numberOfEntertaiment != null">
+				number_of_entertaiment = #{record.numberOfEntertaiment,jdbcType=INTEGER},
+			</if>
+			<if test="record.dinnerTime != null">
+				dinner_time = #{record.dinnerTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.reserveCheckInTime != null">
+				reserve_check_in_time = #{record.reserveCheckInTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.reserveCheckOutTime != null">
+				reserve_check_out_time = #{record.reserveCheckOutTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.email != null">
+				email = #{record.email,jdbcType=VARCHAR},
+			</if>
+			<if test="record.status != null">
+				status = #{record.status,jdbcType=INTEGER},
+			</if>
+			<if test="record.temp3 != null">
+				temp3 = #{record.temp3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update reserve
+		set id = #{record.id,jdbcType=INTEGER},
+		reserve_number = #{record.reserveNumber,jdbcType=VARCHAR},
+		user_id = #{record.userId,jdbcType=INTEGER},
+		pay_amount = #{record.payAmount,jdbcType=DOUBLE},
+		pay_status = #{record.payStatus,jdbcType=INTEGER},
+		consumption_figures = #{record.consumptionFigures,jdbcType=INTEGER},
+		consumption_type = #{record.consumptionType,jdbcType=INTEGER},
+		room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
+		number_of_rooms = #{record.numberOfRooms,jdbcType=INTEGER},
+		number_of_entertaiment = #{record.numberOfEntertaiment,jdbcType=INTEGER},
+		dinner_time = #{record.dinnerTime,jdbcType=TIMESTAMP},
+		reserve_check_in_time = #{record.reserveCheckInTime,jdbcType=TIMESTAMP},
+		reserve_check_out_time =
+		#{record.reserveCheckOutTime,jdbcType=TIMESTAMP},
+		email = #{record.email,jdbcType=VARCHAR},
+		status = #{record.status,jdbcType=INTEGER},
+		temp3 = #{record.temp3,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Reserve">
+		update reserve
+		<set>
+			<if test="reserveNumber != null">
+				reserve_number = #{reserveNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="payAmount != null">
+				pay_amount = #{payAmount,jdbcType=DOUBLE},
+			</if>
+			<if test="payStatus != null">
+				pay_status = #{payStatus,jdbcType=INTEGER},
+			</if>
+			<if test="consumptionFigures != null">
+				consumption_figures = #{consumptionFigures,jdbcType=INTEGER},
+			</if>
+			<if test="consumptionType != null">
+				consumption_type = #{consumptionType,jdbcType=INTEGER},
+			</if>
+			<if test="roomTypeId != null">
+				room_type_id = #{roomTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="numberOfRooms != null">
+				number_of_rooms = #{numberOfRooms,jdbcType=INTEGER},
+			</if>
+			<if test="numberOfEntertaiment != null">
+				number_of_entertaiment = #{numberOfEntertaiment,jdbcType=INTEGER},
+			</if>
+			<if test="dinnerTime != null">
+				dinner_time = #{dinnerTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reserveCheckInTime != null">
+				reserve_check_in_time = #{reserveCheckInTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reserveCheckOutTime != null">
+				reserve_check_out_time = #{reserveCheckOutTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="temp3 != null">
+				temp3 = #{temp3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.Reserve">
+		update reserve
+		set reserve_number = #{reserveNumber,jdbcType=VARCHAR},
+		user_id = #{userId,jdbcType=INTEGER},
+		pay_amount = #{payAmount,jdbcType=DOUBLE},
+		pay_status = #{payStatus,jdbcType=INTEGER},
+		consumption_figures = #{consumptionFigures,jdbcType=INTEGER},
+		consumption_type = #{consumptionType,jdbcType=INTEGER},
+		room_type_id = #{roomTypeId,jdbcType=INTEGER},
+		number_of_rooms = #{numberOfRooms,jdbcType=INTEGER},
+		number_of_entertaiment = #{numberOfEntertaiment,jdbcType=INTEGER},
+		dinner_time = #{dinnerTime,jdbcType=TIMESTAMP},
+		reserve_check_in_time = #{reserveCheckInTime,jdbcType=TIMESTAMP},
+		reserve_check_out_time = #{reserveCheckOutTime,jdbcType=TIMESTAMP},
+		email = #{email,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		temp3 = #{temp3,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>

@@ -8,7 +8,7 @@
     <result column="check_in_number" jdbcType="INTEGER" property="checkInNumber" />
     <result column="room_id" jdbcType="INTEGER" property="roomId" />
     <result column="order_id" jdbcType="INTEGER" property="orderId" />
-    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
+    <result column="room_type_id" jdbcType="INTEGER" property="roomTypeId" />
     <result column="temp3" jdbcType="VARCHAR" property="temp3" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -70,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, check_in_time, check_out_time, check_in_number, room_id, order_id, temp2, temp3
+    id, check_in_time, check_out_time, check_in_number, room_id, order_id, room_type_id, 
+    temp3
   </sql>
   <select id="selectByExample" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.CheckInDetailExample" resultMap="BaseResultMap">
     select
@@ -107,10 +108,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into check_in_detail (check_in_time, check_out_time, check_in_number, 
-      room_id, order_id, temp2, 
+      room_id, order_id, room_type_id, 
       temp3)
     values (#{checkInTime,jdbcType=TIMESTAMP}, #{checkOutTime,jdbcType=TIMESTAMP}, #{checkInNumber,jdbcType=INTEGER}, 
-      #{roomId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{temp2,jdbcType=VARCHAR}, 
+      #{roomId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{roomTypeId,jdbcType=INTEGER}, 
       #{temp3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ljl.C71S3TljlHotelManagementSystem.bean.CheckInDetail">
@@ -134,8 +135,8 @@
       <if test="orderId != null">
         order_id,
       </if>
-      <if test="temp2 != null">
-        temp2,
+      <if test="roomTypeId != null">
+        room_type_id,
       </if>
       <if test="temp3 != null">
         temp3,
@@ -157,8 +158,8 @@
       <if test="orderId != null">
         #{orderId,jdbcType=INTEGER},
       </if>
-      <if test="temp2 != null">
-        #{temp2,jdbcType=VARCHAR},
+      <if test="roomTypeId != null">
+        #{roomTypeId,jdbcType=INTEGER},
       </if>
       <if test="temp3 != null">
         #{temp3,jdbcType=VARCHAR},
@@ -192,8 +193,8 @@
       <if test="record.orderId != null">
         order_id = #{record.orderId,jdbcType=INTEGER},
       </if>
-      <if test="record.temp2 != null">
-        temp2 = #{record.temp2,jdbcType=VARCHAR},
+      <if test="record.roomTypeId != null">
+        room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
       </if>
       <if test="record.temp3 != null">
         temp3 = #{record.temp3,jdbcType=VARCHAR},
@@ -211,7 +212,7 @@
       check_in_number = #{record.checkInNumber,jdbcType=INTEGER},
       room_id = #{record.roomId,jdbcType=INTEGER},
       order_id = #{record.orderId,jdbcType=INTEGER},
-      temp2 = #{record.temp2,jdbcType=VARCHAR},
+      room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
       temp3 = #{record.temp3,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -235,8 +236,8 @@
       <if test="orderId != null">
         order_id = #{orderId,jdbcType=INTEGER},
       </if>
-      <if test="temp2 != null">
-        temp2 = #{temp2,jdbcType=VARCHAR},
+      <if test="roomTypeId != null">
+        room_type_id = #{roomTypeId,jdbcType=INTEGER},
       </if>
       <if test="temp3 != null">
         temp3 = #{temp3,jdbcType=VARCHAR},
@@ -251,7 +252,7 @@
       check_in_number = #{checkInNumber,jdbcType=INTEGER},
       room_id = #{roomId,jdbcType=INTEGER},
       order_id = #{orderId,jdbcType=INTEGER},
-      temp2 = #{temp2,jdbcType=VARCHAR},
+      room_type_id = #{roomTypeId,jdbcType=INTEGER},
       temp3 = #{temp3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -15,7 +15,7 @@ public class CheckInDetail {
 
     private Integer orderId;
 
-    private String temp2;
+    private Integer roomTypeId;
 
     private String temp3;
 
@@ -67,12 +67,12 @@ public class CheckInDetail {
         this.orderId = orderId;
     }
 
-    public String getTemp2() {
-        return temp2;
+    public Integer getRoomTypeId() {
+        return roomTypeId;
     }
 
-    public void setTemp2(String temp2) {
-        this.temp2 = temp2 == null ? null : temp2.trim();
+    public void setRoomTypeId(Integer roomTypeId) {
+        this.roomTypeId = roomTypeId;
     }
 
     public String getTemp3() {

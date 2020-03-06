@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www.thymeleaf.org">
 <head>
 <title>Home</title>
 <!-- for-mobile-apps -->
@@ -116,6 +115,12 @@
 						<h5>房间类型</h5>
 						<select>
 							<option>请选择您需要的房间类型</option>
+							<option>请选择您需要的房间类型</option>
+								<option th:each="roomType : ${roomType}"
+									th:value="${roomType.id}"
+									th:text="${roomType.type}">
+							</option>
+							
 						</select>
 					</div>
 					<div class="best-hot">

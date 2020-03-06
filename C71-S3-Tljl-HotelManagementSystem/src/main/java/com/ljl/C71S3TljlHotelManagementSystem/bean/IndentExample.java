@@ -175,52 +175,62 @@ public class IndentExample {
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumberEqualTo(Integer value) {
+        public Criteria andOrderNumberEqualTo(String value) {
             addCriterion("order_number =", value, "orderNumber");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumberNotEqualTo(Integer value) {
+        public Criteria andOrderNumberNotEqualTo(String value) {
             addCriterion("order_number <>", value, "orderNumber");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumberGreaterThan(Integer value) {
+        public Criteria andOrderNumberGreaterThan(String value) {
             addCriterion("order_number >", value, "orderNumber");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumberGreaterThanOrEqualTo(Integer value) {
+        public Criteria andOrderNumberGreaterThanOrEqualTo(String value) {
             addCriterion("order_number >=", value, "orderNumber");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumberLessThan(Integer value) {
+        public Criteria andOrderNumberLessThan(String value) {
             addCriterion("order_number <", value, "orderNumber");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumberLessThanOrEqualTo(Integer value) {
+        public Criteria andOrderNumberLessThanOrEqualTo(String value) {
             addCriterion("order_number <=", value, "orderNumber");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumberIn(List<Integer> values) {
+        public Criteria andOrderNumberLike(String value) {
+            addCriterion("order_number like", value, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberNotLike(String value) {
+            addCriterion("order_number not like", value, "orderNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderNumberIn(List<String> values) {
             addCriterion("order_number in", values, "orderNumber");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumberNotIn(List<Integer> values) {
+        public Criteria andOrderNumberNotIn(List<String> values) {
             addCriterion("order_number not in", values, "orderNumber");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumberBetween(Integer value1, Integer value2) {
+        public Criteria andOrderNumberBetween(String value1, String value2) {
             addCriterion("order_number between", value1, value2, "orderNumber");
             return (Criteria) this;
         }
 
-        public Criteria andOrderNumberNotBetween(Integer value1, Integer value2) {
+        public Criteria andOrderNumberNotBetween(String value1, String value2) {
             addCriterion("order_number not between", value1, value2, "orderNumber");
             return (Criteria) this;
         }
@@ -595,143 +605,143 @@ public class IndentExample {
             return (Criteria) this;
         }
 
-        public Criteria andTemp1IsNull() {
-            addCriterion("temp1 is null");
+        public Criteria andConsumptionTypeIsNull() {
+            addCriterion("consumption_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1IsNotNull() {
-            addCriterion("temp1 is not null");
+        public Criteria andConsumptionTypeIsNotNull() {
+            addCriterion("consumption_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1EqualTo(String value) {
-            addCriterion("temp1 =", value, "temp1");
+        public Criteria andConsumptionTypeEqualTo(String value) {
+            addCriterion("consumption_type =", value, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1NotEqualTo(String value) {
-            addCriterion("temp1 <>", value, "temp1");
+        public Criteria andConsumptionTypeNotEqualTo(String value) {
+            addCriterion("consumption_type <>", value, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1GreaterThan(String value) {
-            addCriterion("temp1 >", value, "temp1");
+        public Criteria andConsumptionTypeGreaterThan(String value) {
+            addCriterion("consumption_type >", value, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1GreaterThanOrEqualTo(String value) {
-            addCriterion("temp1 >=", value, "temp1");
+        public Criteria andConsumptionTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("consumption_type >=", value, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1LessThan(String value) {
-            addCriterion("temp1 <", value, "temp1");
+        public Criteria andConsumptionTypeLessThan(String value) {
+            addCriterion("consumption_type <", value, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1LessThanOrEqualTo(String value) {
-            addCriterion("temp1 <=", value, "temp1");
+        public Criteria andConsumptionTypeLessThanOrEqualTo(String value) {
+            addCriterion("consumption_type <=", value, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1Like(String value) {
-            addCriterion("temp1 like", value, "temp1");
+        public Criteria andConsumptionTypeLike(String value) {
+            addCriterion("consumption_type like", value, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1NotLike(String value) {
-            addCriterion("temp1 not like", value, "temp1");
+        public Criteria andConsumptionTypeNotLike(String value) {
+            addCriterion("consumption_type not like", value, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1In(List<String> values) {
-            addCriterion("temp1 in", values, "temp1");
+        public Criteria andConsumptionTypeIn(List<String> values) {
+            addCriterion("consumption_type in", values, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1NotIn(List<String> values) {
-            addCriterion("temp1 not in", values, "temp1");
+        public Criteria andConsumptionTypeNotIn(List<String> values) {
+            addCriterion("consumption_type not in", values, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1Between(String value1, String value2) {
-            addCriterion("temp1 between", value1, value2, "temp1");
+        public Criteria andConsumptionTypeBetween(String value1, String value2) {
+            addCriterion("consumption_type between", value1, value2, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp1NotBetween(String value1, String value2) {
-            addCriterion("temp1 not between", value1, value2, "temp1");
+        public Criteria andConsumptionTypeNotBetween(String value1, String value2) {
+            addCriterion("consumption_type not between", value1, value2, "consumptionType");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2IsNull() {
-            addCriterion("temp2 is null");
+        public Criteria andConsumptionFiguresIsNull() {
+            addCriterion("consumption_figures is null");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2IsNotNull() {
-            addCriterion("temp2 is not null");
+        public Criteria andConsumptionFiguresIsNotNull() {
+            addCriterion("consumption_figures is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2EqualTo(String value) {
-            addCriterion("temp2 =", value, "temp2");
+        public Criteria andConsumptionFiguresEqualTo(String value) {
+            addCriterion("consumption_figures =", value, "consumptionFigures");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2NotEqualTo(String value) {
-            addCriterion("temp2 <>", value, "temp2");
+        public Criteria andConsumptionFiguresNotEqualTo(String value) {
+            addCriterion("consumption_figures <>", value, "consumptionFigures");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2GreaterThan(String value) {
-            addCriterion("temp2 >", value, "temp2");
+        public Criteria andConsumptionFiguresGreaterThan(String value) {
+            addCriterion("consumption_figures >", value, "consumptionFigures");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2GreaterThanOrEqualTo(String value) {
-            addCriterion("temp2 >=", value, "temp2");
+        public Criteria andConsumptionFiguresGreaterThanOrEqualTo(String value) {
+            addCriterion("consumption_figures >=", value, "consumptionFigures");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2LessThan(String value) {
-            addCriterion("temp2 <", value, "temp2");
+        public Criteria andConsumptionFiguresLessThan(String value) {
+            addCriterion("consumption_figures <", value, "consumptionFigures");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2LessThanOrEqualTo(String value) {
-            addCriterion("temp2 <=", value, "temp2");
+        public Criteria andConsumptionFiguresLessThanOrEqualTo(String value) {
+            addCriterion("consumption_figures <=", value, "consumptionFigures");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2Like(String value) {
-            addCriterion("temp2 like", value, "temp2");
+        public Criteria andConsumptionFiguresLike(String value) {
+            addCriterion("consumption_figures like", value, "consumptionFigures");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2NotLike(String value) {
-            addCriterion("temp2 not like", value, "temp2");
+        public Criteria andConsumptionFiguresNotLike(String value) {
+            addCriterion("consumption_figures not like", value, "consumptionFigures");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2In(List<String> values) {
-            addCriterion("temp2 in", values, "temp2");
+        public Criteria andConsumptionFiguresIn(List<String> values) {
+            addCriterion("consumption_figures in", values, "consumptionFigures");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2NotIn(List<String> values) {
-            addCriterion("temp2 not in", values, "temp2");
+        public Criteria andConsumptionFiguresNotIn(List<String> values) {
+            addCriterion("consumption_figures not in", values, "consumptionFigures");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2Between(String value1, String value2) {
-            addCriterion("temp2 between", value1, value2, "temp2");
+        public Criteria andConsumptionFiguresBetween(String value1, String value2) {
+            addCriterion("consumption_figures between", value1, value2, "consumptionFigures");
             return (Criteria) this;
         }
 
-        public Criteria andTemp2NotBetween(String value1, String value2) {
-            addCriterion("temp2 not between", value1, value2, "temp2");
+        public Criteria andConsumptionFiguresNotBetween(String value1, String value2) {
+            addCriterion("consumption_figures not between", value1, value2, "consumptionFigures");
             return (Criteria) this;
         }
 
