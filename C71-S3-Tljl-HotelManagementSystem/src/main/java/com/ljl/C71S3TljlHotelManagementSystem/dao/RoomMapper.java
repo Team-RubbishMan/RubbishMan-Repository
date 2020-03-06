@@ -4,8 +4,13 @@ import com.ljl.C71S3TljlHotelManagementSystem.bean.Room;
 import com.ljl.C71S3TljlHotelManagementSystem.bean.RoomExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface RoomMapper {
+	
+	@Select("select count(*) from room where room_type_id = #{roomTypeId} and status = '0'")
+	int selectCountRoom(Integer roomTypeId);
+	
     long countByExample(RoomExample example);
 
     int deleteByExample(RoomExample example);

@@ -4,8 +4,13 @@ import com.ljl.C71S3TljlHotelManagementSystem.bean.RoomType;
 import com.ljl.C71S3TljlHotelManagementSystem.bean.RoomTypeExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface RoomTypeMapper {
+	
+	@Select("select sum(amount+deposit) from room_type where id = #{roomTypeId}")
+	Object selectMoney(Integer roomTypeId);
+	
     long countByExample(RoomTypeExample example);
 
     int deleteByExample(RoomTypeExample example);

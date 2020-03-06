@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>订单确认</title>
+</head>
+<body>
+	<table>
+    <tr>
+        <td th:text=" ${'订单编号 : '+order.reserveNumber}"></td>
+    </tr>
+    <!-- <tr th:each="roomType:${roomType}">
+        <td th:text="'房间类型 : '+@{(${order.numberOfRooms}=${roomType.id} ? ${roomType.type}:'')}" th:style="'display:' + @{(${order.numberOfRooms} ? 'inline-block' : 'none')} + ''"></td>
+    </tr> -->
+    <tr>
+        <td th:text="${'房间数量 : '+order.numberOfRooms}" th:style="'display:' + @{(${order.numberOfRooms} ? 'inline-block' : 'none')} + ''"></td>
+    </tr>
+    <tr>
+        <td th:text="${'预定时间 : '+#dates.format(order.reserveCheckInTime, 'yyyy-MM-dd')}" th:style="'display:' + @{(${order.reserveCheckInTime} ? 'inline-block' : 'none')} + ''"></td>
+    </tr>
+    <tr>
+        <td th:text="${'用餐时间 : '+#dates.format(order.dinnerTime)}" th:style="'display:' + @{(${order.dinnerTime} ? 'inline-block' : 'none')} + ''"></td>
+    </tr>
+    <!-- <tr th:each="entertainmentDevice:${entertainmentDevice}">
+        <td th:text="'娱乐类型 : '+@{(${order.numberOfEntertaiment}=${entertainmentDevice.id} ? ${entertainmentDevice.name}:'')}" th:style="'display:' + @{(${order.numberOfEntertaiment} ? 'inline-block' : 'none')} + ''"></td>
+    </tr> -->
+    <tr>
+        <td th:text="${'应付金额 : '+order.payAmount }"> </td>
+    </tr>
+    <tr>
+        <td>
+            <form method="post" th:action="@{/alipay/gopay}">
+                <input type="hidden" name="orderid" th:value="${order.id}" />
+                <input type="submit" value="前往支付宝进行支付">
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
