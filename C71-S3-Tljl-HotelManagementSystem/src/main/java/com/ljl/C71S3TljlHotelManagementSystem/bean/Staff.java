@@ -1,6 +1,11 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
-public class Staff {
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value = {"handler"})
+public class Staff implements Serializable{
     private Integer id;
 
     private String username;

@@ -53,22 +53,66 @@
 			<h3 class="title1">订单管理</h3>
 			<div class="table-responsive bs-example widget-shadow">
 				<h4>订单一览表:</h4>
-				<div id="toolbar" class="btn-group">
-					<button id="btn_add" type="button" class="btn btn-default"
-						onclick="addFoodBtn()">
-						 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-						           
-					</button>
-
-					<button id="btn_delete" type="button" class="btn btn-default"
-						onclick="deleteMany()">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>选择删除
-					</button>
-				</div>
-				<table id="foodInfoTable" class="table table-bordered">
+				
+				<table id="orderInfoTable" data-search="true" class="table table-bordered">
 				</table>
 			</div>
-			
+			<!-- 新增菜品模态框（Modal） -->
+			<div class="modal fade" id="checkModel" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">结 算 确 认</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-body">
+								<form id="addFoodForm">
+									<div class="form-group">
+										<label for="exampleInputEmail1">用户名称：</label> <input
+											type="text" class="form-control" id="userid" name="userid" readonly="readonly"
+											>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">消费金额：</label> <input
+											type="text" class="form-control" id="account" name="account" readonly="readonly"
+											>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">顾客实付：</label> <input
+											type="text" class="form-control" id="realpay" name="realpay" readonly="readonly"
+											>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">结算金额：</label> <input
+											type="text" class="form-control" id="finalpay" name="finalpay" readonly="readonly"
+											>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">操作职员：</label> <input
+											type="text" class="form-control" id="staffid" name="satffid" readonly="readonly"
+											>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">操作时间：</label> <input
+											type="text" class="form-control" id="time" name="time" readonly="readonly"
+											>
+									</div>
+								</form>
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary"
+								onclick="settleAccount()">结算</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
 		</div>
 	</div>
 
@@ -88,7 +132,7 @@
 	<script src="js/custom.js"></script>
 	<script>
 		$(function() {
-			$('#foodInfoTable')
+			$('#orderInfoTable')
 					.bootstrapTable(
 							{
 								method : "POST",
@@ -96,15 +140,16 @@
 								dataType : "json",
 								url : "loadOrderInfo",     //执行加载表格的PostMapping
 								pagination : true, //分页
-								search : false, //显示搜索框
+								search : true, //显示搜索框
 								sidePagination : "server", //服务端处理分页
 								showRefresh : true,
 								pageNumber : 1, //初始化加载第一页，默认第一页
 								pageSize : 5, //每页的记录行数（*）
 								pageList : [ 5, 10 ],
 								toolbar : '#toolbar',
+								detailView: true, 
 								queryParams : function queryParams(params) {
-									params.pageNumber = this.pageNumber;
+									params.pageNumber = this.pageNumber;									
 									return params;
 								},
 								sidePagination : "server",
@@ -123,40 +168,193 @@
 										title : '订单号'
 									},
 										{
-											field : 'userId',
+											field : 'user.username',
 											sortable : true,
 											title : '用户'
-										},
-										{
+										},{
+											field : 'temp1',
+											sortable : true,
+											title : '账单类型',
+											formatter : function formatStatus(
+													value, row, index) {
+												var str;
+												switch (value) {
+												case "1":
+													str = "住房";
+													break;
+												case "2":
+													str = "餐饮";
+													break;
+												case "3":
+													str = "娱乐";
+													break;
+												}
+												return str;
+											}
+										},{
 											field : 'orderTime',
 											sortable : true,
-											title : '预定时间'
-										},
-										{
-											field : 'eCheckInTime',
-											sortable : true,
-											title : '入住时间'
-										},
-										{
-											field : 'eCheckOutTime',
-											sortable : true,
-											title : '离店时间'
-										},
-										{
-											field : 'consumptionAmount',
-											sortable : true,
-											title : '消费金额'
-										},
+											title : '预定时间',
+											formatter:function formatDate(value,row,index){
+												var d = new Date(value);
+												var times=d.getFullYear() + '年' 
+												+ (d.getMonth() + 1) + '月' + d.getDate() 
+												+ '日 ' + d.getHours() + ':' + d.getMinutes() 
+												+ ':' + d.getSeconds();
+												return times;
+											}
+										}, {
+							                field: 'consumptionAmount',
+							                title: '消费金额'
+							            },
 										{
 											field : 'status',
 											sortable : true,
-											title : '状态'
-										}]
+											title : '状态',
+											formatter : function formatStatus(
+													value, row, index) {
+												var str;
+												switch (value) {
+												case "0":
+													str = "已完结";
+													break;
+												case "1":
+													str = "未完结";
+													break;
+												}
+												return str;
+											}
+										},{
+											filed : 'id',
+											title : '结算',
+											formatter : function(value, row,
+													index) {
+												//通过formatter可以自定义列显示的内容
+												//value：当前field的值，即id
+												//row：当前行的数据
+												var indent = JSON.stringify(row);
+												var result = "";
+												if(row.status=='1'){
+													result += "<a class='btn btn-xs blue'  title='结算' onclick='checkAccountById("
+														+ indent
+														+ ")'><span class='glyphicon glyphicon-pencil'></span></a>";
+												}
+												return result;
+											}
+										}],
+										 //注册加载子表的事件。注意下这里的三个参数！
+										 //index：父表当前行的行索引。
+										//row：父表当前行的Json数据对象。
+										//$detail：当前行下面创建的新行里面的td对象。
+						                onExpandRow: function (index, row, $detail) {
+						                	//console.log(row);
+						                	if(row.temp1==1){
+						                		InitSubTable(index, row, $detail);
+						                	}
+						                } 
 
 							});
+			
 		})
-
-		
+	//初始化子表格(无线循环)
+    InitSubTable = function (index, row, $detail) {
+			
+        var parentid = row.id;
+        var detailTable = $detail.html('<table></table>').find('table');
+        $(detailTable).bootstrapTable({
+            url: 'loadCheckInDetailInfoByIndentId',
+            method: 'POST',
+            contentType : "application/x-www-form-urlencoded",
+			dataType : "json",
+            queryParams: function queryParams(params) {
+				params.indentId = parentid;
+				return params;
+            },
+           // ajaxOptions: { id: parentid },
+            clickToSelect: true,
+            uniqueId: "id",
+            pageSize: 5,
+            pageList: [5,10],
+            columns: [{
+                field: 'roomId',
+                title: '入住房间号'
+            },{
+                field: 'checkInNumber',
+                title: '入住人数'
+            }, {
+                field: 'checkInTime',
+                title: '入住时间',
+                formatter:function formatDate(value,row,index){
+					var d = new Date(value);
+					var times=d.getFullYear() + '年' 
+					+ (d.getMonth() + 1) + '月' + d.getDate() 
+					+ '日 ' + d.getHours() + ':' + d.getMinutes() 
+					+ ':' + d.getSeconds();
+					return times;
+				} 
+            }, {
+                field: 'checkOutTime',
+                title: '结算时间',
+                formatter:function formatDate(value,row,index){
+					var d = new Date(value);
+					var times=d.getFullYear() + '年' 
+					+ (d.getMonth() + 1) + '月' + d.getDate() 
+					+ '日 ' + d.getHours() + ':' + d.getMinutes() 
+					+ ':' + d.getSeconds();
+					return times;
+				}
+            } ],
+            //无线循环取子表，直到子表里面没有记录
+            onExpandRow: function (index, row, $Subdetail) {
+                oInit.InitSubTable(index, row, $Subdetail);
+            }
+        });
+    };
+    //规范时间函数
+    function formatTime(value){
+		var d = new Date(value);
+		var times=d.getFullYear() + '年' 
+		+ (d.getMonth() + 1) + '月' + d.getDate() 
+		+ '日 ' + d.getHours() + ':' + d.getMinutes() 
+		+ ':' + d.getSeconds();
+		return times;
+	}
+    //核对账单模态框
+    function checkAccountById(indent){
+    	var indentId = indent.id;
+    	console.log(indentId);
+    	$.post('checkAccount',{indentId:indentId},function(result){
+    		$("#userid").val(result.data.user.username);
+    		$("#account").val(result.data.consumptionAmount);
+    		$("#realpay").val(result.data.temp1);
+    		$("#finalpay").val(result.data.temp2);
+    		$("#time").val(formatTime(result.data.recordTime));
+    		var staffName='[[${session.objStaff.name}]]';
+    		$("#staffid").val(staffName);
+    		console.log(result.data);
+    		$("#checkModel").modal('show');
+    	})
+    }
+    //结算功能
+	function settleAccount(){
+		$.post('settleAccount',null,function(result){
+			if(result.code==0){
+				bootbox.alert({
+					size : "small",
+					title : "提示",
+					message : result.message
+				})
+			}else{
+				bootbox.alert({
+					size : "small",
+					title : "提示",
+					message : result.message
+				});
+				$("#checkModel").modal('hide');
+				$("#orderInfoTable").bootstrapTable('refresh');
+			}
+		})
+	}
 	</script>
 
 	<script>

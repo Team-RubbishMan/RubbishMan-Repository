@@ -11,6 +11,13 @@
     <result column="received_amount" jdbcType="DOUBLE" property="receivedAmount" />
     <result column="refund_or_supplement" jdbcType="DOUBLE" property="refundOrSupplement" />
     <result column="temp3" jdbcType="VARCHAR" property="temp3" />
+    <association property="user" column="user_id" select="com.ljl.C71S3TljlHotelManagementSystem.dao.UserMapper.selectByPrimaryKey">
+    </association>
+    <association property="staff" column="staff_id" select="com.ljl.C71S3TljlHotelManagementSystem.dao.StaffMapper.selectByPrimaryKey">
+    </association>
+    <association property="indent" column="indent_id" select="com.ljl.C71S3TljlHotelManagementSystem.dao.IndentMapper.selectByPrimaryKey">
+</association>
+    
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

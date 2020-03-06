@@ -117,6 +117,7 @@ public class StaffAction {
 			e.printStackTrace();
 			return new Result(2, e.getMessage(), username);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new Result(0, "系统繁忙，请稍后再试！", null);
 		}
 
