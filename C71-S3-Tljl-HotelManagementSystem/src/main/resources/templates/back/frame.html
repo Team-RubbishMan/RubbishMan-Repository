@@ -265,7 +265,7 @@
 						</a>
 							<ul class="dropdown-menu drp-mnu">
 								<li><a href="#" onclick="setting()"><i class="fa fa-cog"></i> 设置</a></li>
-								<li><a href="#"><i class="fa fa-sign-out"></i> 退出</a></li>
+								<li><a href="#" onclick="exit()"><i class="fa fa-sign-out"></i> 退出</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -335,6 +335,29 @@
 		}
 		function setting(){
 			$("#dynamicDisplayDiv").load("setting.html");
+		}
+		function exit(){
+			bootbox.confirm({
+			size : "big",
+			message : "您是否选择退出？",
+			buttons : {
+				confirm : {
+					label : "是",
+					className : "btn-success"
+				},
+				cancel : {
+					label : "否",
+					className : "btn-danger"
+				}
+			},
+			callback : function(result) {
+				if (result) {
+					$.post("exit", null, function(result) {
+						window.location.href="/back/login.html";
+					})
+				}
+			}
+		})
 		}
 		function foodManagement(){
 			$("#dynamicDisplayDiv").load("foodmanagement.html");

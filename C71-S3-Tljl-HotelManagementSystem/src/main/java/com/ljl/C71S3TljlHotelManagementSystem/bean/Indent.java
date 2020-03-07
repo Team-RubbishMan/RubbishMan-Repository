@@ -1,8 +1,12 @@
 package com.ljl.C71S3TljlHotelManagementSystem.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Indent {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value = {"handler"})
+public class Indent implements Serializable{
     private Integer id;
 
     private String orderNumber;

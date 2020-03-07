@@ -51,13 +51,4 @@ public class BillAction {
 		PageInfo<Bill> loadBillInfo = billBiz.loadBillInfo( pageNumber,limit);
 		return loadBillInfo;
 	}
-	
-//	@PostMapping("back/loadCheckInDetailInfoByIndentId")
-//	@ResponseBody
-//	public List<CheckInDetail> loadCheckInDetailInfoByIndentId(
-//			@RequestParam("indentId")Integer indentId ) {
-//		return indentBiz.selectCheckInDetailInfoByIndentId(indentId);
-//	}
-
-
 }

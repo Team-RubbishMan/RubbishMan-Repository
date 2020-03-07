@@ -256,4 +256,11 @@ public class StaffAction {
 		}
 		return new Result(0, "注册失败");
 	}
+	
+	@PostMapping("/back/exit")
+	@ResponseBody
+	public void exit(HttpServletRequest request, HttpServletResponse response) {
+		// 清空session内容
+		request.getSession().invalidate();
+	}
 }

@@ -86,11 +86,12 @@
 								pagination : true, //分页
 								sidePagination : "server", //服务端处理分页
 								showRefresh : true,
+								search : false,
 								pageNumber : 1, //初始化加载第一页，默认第一页
 								pageSize : 5, //每页的记录行数（*）
 								pageList : [ 5, 10 ],
 								toolbar : '#toolbar',
-								detailView: true, 
+								detailView: false, 
 								queryParams : function queryParams(params) {
 									params.pageNumber = this.pageNumber;									
 									return params;
@@ -121,13 +122,13 @@
 											sortable : true,
 											title : '消费金额',
 										},{
-							                field : 'consumptionAmount',
+							                field : 'receivedAmount',
 							                sortable : true,
-							                title: '消费金额'
+							                title: '实收金额'
 							            },{
-							                field : 'consumptionAmount',
+							                field : 'refundOrSupplement',
 							                sortable : true,
-							                title: '消费金额'
+							                title: '结算金额'
 							            },{
 											field : 'recordTime',
 											sortable : true,
@@ -144,17 +145,6 @@
 							});
 			
 		})
-	
-    //规范时间函数
-    function formatTime(value){
-		var d = new Date(value);
-		var times=d.getFullYear() + '年' 
-		+ (d.getMonth() + 1) + '月' + d.getDate() 
-		+ '日 ' + d.getHours() + ':' + d.getMinutes() 
-		+ ':' + d.getSeconds();
-		return times;
-	}
-    
 	</script>
 
 	<script>
