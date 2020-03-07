@@ -147,6 +147,14 @@ public class StaffAction {
 		try {
 			//获取文件名
 			String strFilename=profileModifyFile.getOriginalFilename();
+			File objOriginalFile = new File("D:/z-s3/originalImg");
+			if( !objOriginalFile.exists()) {
+				objOriginalFile.mkdirs();
+			}
+			File objProfileFile = new File("D:/z-s3/back");
+			if( !objProfileFile.exists()) {
+				objProfileFile.mkdirs();
+			}
 			//获取磁盘路径
 			String strDiskPath = "D:/z-s3/originalImg/"+strFilename;
 			//以磁盘路径创建文件
@@ -157,6 +165,7 @@ public class StaffAction {
 			//创建文件夹存放压缩后的图片
 			String strProfileDiskPath = "D:/z-s3/back/"+strFilename;
 			objThumbnailatorUtil.changeImgSize(strDiskPath, strProfileDiskPath);
+			
 			
 			staffBiz.updateEmail(objStaff, Email);
 			staffBiz.updateTelephone(objStaff, telephone);
