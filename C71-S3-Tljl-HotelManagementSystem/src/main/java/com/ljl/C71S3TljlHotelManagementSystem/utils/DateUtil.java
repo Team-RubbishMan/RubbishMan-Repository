@@ -2,8 +2,10 @@ package com.ljl.C71S3TljlHotelManagementSystem.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class DateUtil {
 	//获取当天日期
@@ -115,6 +117,18 @@ public class DateUtil {
      }
 	
 	/**
+	 * 字符串转Date yyyy
+	 * @author Da
+	 * @param str 时间字符串
+	 * @return
+	 * @throws ParseException
+	 */
+	public Date toDateYear(String str) throws ParseException {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy");
+		Date date = simpleDateFormat.parse(str);
+		return date;
+	}
+	/**
 	 * 字符串转Date yyyy-MM-dd
 	 * @author Da
 	 * @param str 时间字符串
@@ -155,5 +169,125 @@ public class DateUtil {
 		date.setSeconds(59);
 		return date;
 	}
+	/**
+	 * 获取今年时间
+	 * @author Da
+	 * @return
+	 */
+	public String getThisYear() {
+		// 获取当前系统时间
+		calendar.setTime(date);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy");
+		String date = simpleDateFormat.format(calendar.getTime());
+		return date;
+	}
+	/**
+	 * 获取去年时间
+	 * @author Da
+	 * @return
+	 */
+	public String getLastYear() {
+		// 获取当前系统时间 
+		calendar.setTime(date);
+		calendar.add(1,-1);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy");
+		String date = simpleDateFormat.format(calendar.getTime());
+		return date;
+	}
+	/**
+	 * 获取前年时间
+	 * @author Da
+	 * @return
+	 */
+	public String getBeforeYear() {
+		// 获取当前系统时间
+		calendar.setTime(date);
+		calendar.add(1,-2);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy");
+		String date = simpleDateFormat.format(calendar.getTime());
+		return date;
+	}
 	
+//	/**
+//	 * 获得本月第一天0点时间
+//	 * @author Da
+//	 * @return
+//	 */
+//    public Date getTimesMonthmorning() {  
+//    	// 获取当前系统时间
+//    	calendar.setTime(date); 
+//    	calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONDAY), calendar.get(Calendar.DAY_OF_MONTH), 0, 0, 0);  
+//    	calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));  
+//        return calendar.getTime();  
+//    }  
+//  
+//    /**
+//	 * 获得本月最后一天24点时间 
+//	 * @author Da
+//	 * @return
+//	 */
+//    public Date getTimesMonthnight() {  
+//    	// 获取当前系统时间
+//    	calendar.setTime(date); 
+//    	calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONDAY), calendar.get(Calendar.DAY_OF_MONTH), 0, 0, 0);  
+//    	calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));  
+//    	calendar.set(Calendar.HOUR_OF_DAY, 24);  
+//        return calendar.getTime();  
+//    }  
+	
+	/**
+	 * 获取本年的季度
+	 * @author Da
+	 * @return
+	 * @throws ParseException
+	 */
+    public List<Date> getQuarterOfYear() throws ParseException{
+    	List<Date> quarterList = new ArrayList<Date>();
+    	// 获取当前系统时间
+    	calendar.setTime(date);
+    	quarterList.add(new DateUtil().toDateTime(calendar.get(Calendar.YEAR)+"-1-1 0:00:00"));
+    	quarterList.add(new DateUtil().toDateTime(calendar.get(Calendar.YEAR)+"-4-1 0:00:00"));
+    	quarterList.add(new DateUtil().toDateTime(calendar.get(Calendar.YEAR)+"-7-1 0:00:00"));
+    	quarterList.add(new DateUtil().toDateTime(calendar.get(Calendar.YEAR)+"-10-1 0:00:00"));
+    	quarterList.add(new DateUtil().toDateTime(calendar.get(Calendar.YEAR)+"-12-31 23:59:59"));
+    	
+    	return quarterList;
+    	
+    }
+	
+	
+	/**
+	 * 获取当年所有月份
+	 * @author Da
+	 * @return
+	 */
+	public List<String> getMonthListOfYear() {
+		List<String> list = new ArrayList<String>();
+		calendar.setTime(date); 
+		int year = calendar.get(Calendar.YEAR) + 1;
+		int month = calendar.get(Calendar.MONTH);
+		int day = calendar.getActualMaximum(Calendar.DATE);
+		for (int i = 1; i <= day; i++) {
+			String aDate = String.valueOf(year)+"-"+month+"-"+i;
+			list.add(aDate);
+		}
+		return list;
+	}
+    /**
+     * 获取本月所有天数
+     * @author Da
+     * @return
+     */
+    public List<String> getDayListOfMonth() {
+        List<String> list = new ArrayList<String>();
+        calendar.setTime(date); 
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.getActualMaximum(Calendar.DATE);
+        for (int i = 1; i <= day; i++) {
+            String aDate = String.valueOf(year)+"-"+month+"-"+i;
+            list.add(aDate);
+        }
+        return list;
+    }
 }

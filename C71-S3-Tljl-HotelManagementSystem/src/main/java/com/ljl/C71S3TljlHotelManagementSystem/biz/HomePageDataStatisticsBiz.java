@@ -1,7 +1,7 @@
 package com.ljl.C71S3TljlHotelManagementSystem.biz;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,8 +10,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.ljl.C71S3TljlHotelManagementSystem.bean.Bill;
+import com.ljl.C71S3TljlHotelManagementSystem.bean.BillExample;
 import com.ljl.C71S3TljlHotelManagementSystem.bean.CheckInDetail;
 import com.ljl.C71S3TljlHotelManagementSystem.bean.CheckInDetailExample;
+import com.ljl.C71S3TljlHotelManagementSystem.dao.BillMapper;
 import com.ljl.C71S3TljlHotelManagementSystem.dao.CheckInDetailMapper;
 import com.ljl.C71S3TljlHotelManagementSystem.utils.DateUtil;
 
@@ -20,6 +23,8 @@ public class HomePageDataStatisticsBiz {
 
 	@Resource
 	private CheckInDetailMapper checkInDetailMapper;
+	@Resource
+	private BillMapper billMapper;
 	//实例化日期工具
 	private DateUtil objDateUtil = new DateUtil();
 	
@@ -129,4 +134,142 @@ public class HomePageDataStatisticsBiz {
 		}
 		return iHistoryCheckInOrder2;
 	}
+	
+	/**
+	 * 年度账单
+	 * @author Da
+	 * @return
+	 * @throws ParseException
+	 */
+	public Double[] getYearConsumptionAmount() throws ParseException {
+		BillExample objBillExample = new BillExample();
+		objBillExample.createCriteria().andRecordTimeBetween(objDateUtil.toDateYear(objDateUtil.getBeforeYear()),objDateUtil.toDateYear(objDateUtil.getLastYear()));
+		List<Bill> beforeYearBill = billMapper.selectByExample(objBillExample);
+		Double objbeforeYearConsumptionAmount = 0.0;
+		for (Bill bill : beforeYearBill) {
+			objbeforeYearConsumptionAmount += bill.getConsumptionAmount();
+		}
+		
+		objBillExample.clear();
+		objBillExample.createCriteria().andRecordTimeBetween(objDateUtil.toDateYear(objDateUtil.getLastYear()),objDateUtil.toDateYear(objDateUtil.getThisYear()));
+		List<Bill> lastYearBill = billMapper.selectByExample(objBillExample);
+		Double objlastYearConsumptionAmount = 0.0;
+		for (Bill bill : lastYearBill) {
+			objlastYearConsumptionAmount += bill.getConsumptionAmount();
+		}
+		
+		objBillExample.clear();
+		objBillExample.createCriteria().andRecordTimeGreaterThanOrEqualTo(objDateUtil.toDateYear(objDateUtil.getThisYear()));
+		List<Bill> thisYearBill = billMapper.selectByExample(objBillExample);
+		Double objthisYearConsumptionAmount = 0.0;
+		for (Bill bill : thisYearBill) {
+			objthisYearConsumptionAmount += bill.getConsumptionAmount();
+		}
+		
+		Double [] consumptionAmountStrings = new Double[3];
+		consumptionAmountStrings[0] = objbeforeYearConsumptionAmount;
+		consumptionAmountStrings[1] = objlastYearConsumptionAmount;
+		consumptionAmountStrings[2] = objthisYearConsumptionAmount;
+		
+		return consumptionAmountStrings;
+	}
+	
+	/**
+	 * 获取年份标签
+	 * @author Da
+	 * @return
+	 */
+	public String[] getYear() {
+		String[] yearStrings = new String[3];
+		yearStrings[0] = objDateUtil.getBeforeYear();
+		yearStrings[1] = objDateUtil.getLastYear();
+		yearStrings[2] = objDateUtil.getThisYear();
+		
+		return yearStrings;
+	}
+ 	
+	/**
+	 * 季度账单
+	 * @author Da
+	 * @return
+	 * @throws ParseException
+	 */
+	public Double[] getQuarterConsumptionAmount() throws ParseException {
+		BillExample objBillExample = new BillExample();
+		List<Date> quarterOfYear = objDateUtil.getQuarterOfYear();
+		Double[] quarterDoubles = new Double[5];
+		
+		for (int i = 0; i < quarterOfYear.size(); i++) {
+			objBillExample.clear();
+			
+			if(i+1==quarterOfYear.size()) {
+				objBillExample.createCriteria().andRecordTimeGreaterThanOrEqualTo(quarterOfYear.get(i));
+			}else {
+				objBillExample.createCriteria().andRecordTimeBetween(quarterOfYear.get(i), quarterOfYear.get(i+1));
+			}
+			
+			List<Bill> quarterConsumptionAmount = billMapper.selectByExample(objBillExample);
+			
+			if(quarterConsumptionAmount.size()==0) {
+				quarterDoubles[i] = 0.0;
+			}else {
+				Double objQuarterConsumptionAmount = 0.0;
+				for (Bill bill : quarterConsumptionAmount) {
+					objQuarterConsumptionAmount += bill.getConsumptionAmount();
+				}
+				quarterDoubles[i] = objQuarterConsumptionAmount;
+			}
+		}
+		Double[] tempQuarterDoubles = new Double[4];
+		for (int i = 0; i < tempQuarterDoubles.length; i++) {
+			tempQuarterDoubles[i] = quarterDoubles[i];
+		}
+		return tempQuarterDoubles;
+	}
+	
+	/**
+	 * 本月账单
+	 * @author Da
+	 * @return
+	 * @throws ParseException
+	 */
+	public Double[] getMonthConsumptionAmount() throws ParseException {
+		BillExample objBillExample = new BillExample();
+		List<String> dayListOfMonth = objDateUtil.getDayListOfMonth();
+		Double[] monthDoubles = new Double[dayListOfMonth.size()];
+		
+		for (int i = 0; i < dayListOfMonth.size(); i++) {
+			objBillExample.clear();
+			
+			if(i+1==dayListOfMonth.size()) {
+				objBillExample.createCriteria().andRecordTimeGreaterThanOrEqualTo(objDateUtil.toDate(dayListOfMonth.get(i)));
+			}else {
+				objBillExample.createCriteria().andRecordTimeBetween(objDateUtil.toDate(dayListOfMonth.get(i)), objDateUtil.toDate(dayListOfMonth.get(i+1)));
+			}
+			
+			List<Bill> dayConsumptionAmount = billMapper.selectByExample(objBillExample);
+			
+			if(dayConsumptionAmount.size()==0) {
+				monthDoubles[i] = 0.0;
+			}else {
+				monthDoubles[i] = dayConsumptionAmount.get(0).getConsumptionAmount();
+			}
+		}
+		
+		return monthDoubles;
+	}
+	
+	/**
+	 * 获取月份标签
+	 * @author Da
+	 * @return
+	 */
+	public String[] getMonth() {
+		String[] yearStrings = new String[objDateUtil.getDayListOfMonth().size()];
+		for (int i = 0; i < objDateUtil.getDayListOfMonth().size(); i++) {
+			yearStrings[i] = String.valueOf(i+1);
+		}
+		return yearStrings;
+	}
+	
 }

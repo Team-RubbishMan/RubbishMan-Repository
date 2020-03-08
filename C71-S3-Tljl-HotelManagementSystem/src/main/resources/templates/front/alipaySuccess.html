@@ -17,5 +17,20 @@
         <td th:text="'实付金额: '+${total_amount}"></td>
     </tr>
 </table>
+<font id="id" size="6" color="red">5</font>秒钟后将自动跳转到主页<a href="../front/index.html" >或点击我直接跳转</a>
+<script type="text/javascript">
+var time = 5;
+var timer = setInterval('fun()', 1000);
+function fun() {
+	var t = document.getElementById("id");
+	if (time > 0) {
+		t.innerHTML = time;
+		time--;
+	} else {
+		clearInterval(timer);
+		location.href = "index";
+	}
+}
+</script>
 </body>
 </html>

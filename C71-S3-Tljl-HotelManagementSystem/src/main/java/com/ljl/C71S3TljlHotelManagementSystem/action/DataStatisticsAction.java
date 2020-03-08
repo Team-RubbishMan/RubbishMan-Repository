@@ -2,6 +2,7 @@ package com.ljl.C71S3TljlHotelManagementSystem.action;
 
 
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,10 +24,13 @@ public class DataStatisticsAction {
 	
 	@GetMapping("/back/home.html")
 	public String home(Model m) {
-		
 		m.addAttribute("orders", homePageDataStatisticsBiz.queryOrder());
 		m.addAttribute("peoples", homePageDataStatisticsBiz.queryPeople());
 		return "back/home";
+	}
+	@GetMapping("/back/billstatistics.html")
+	public String home2(){
+		return "back/billstatistics";
 	}
 	
 	@PostMapping("/back/getDate")
@@ -44,6 +48,20 @@ public class DataStatisticsAction {
 		colHistoryDataMap.put("objHistoryCheckInOrderArr", objHistoryCheckInOrderArr);
 		
 		return colHistoryDataMap;
+	}
+	
+	@PostMapping("/back/getConsumptionAmount")
+	@ResponseBody
+	public Map<String, Object[]> getConsumptionAmount() throws ParseException {
+		
+		Map<String, Object[]> colConsumptionAmountMap = new HashMap<String, Object[]>();
+		colConsumptionAmountMap.put("year", homePageDataStatisticsBiz.getYearConsumptionAmount());
+		colConsumptionAmountMap.put("quarter", homePageDataStatisticsBiz.getQuarterConsumptionAmount());
+		colConsumptionAmountMap.put("month", homePageDataStatisticsBiz.getMonthConsumptionAmount());
+		colConsumptionAmountMap.put("getYear", homePageDataStatisticsBiz.getYear());
+		colConsumptionAmountMap.put("getMonth", homePageDataStatisticsBiz.getMonth());
+		
+		return colConsumptionAmountMap;
 	}
 	
 }
