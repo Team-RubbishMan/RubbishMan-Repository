@@ -65,6 +65,8 @@ public class ToReserveBiz {
 		reserve.setConsumptionFigures(Integer.parseInt(dinnerNumber));
 		reserve.setPayAmount(amountDouble);
 		reserve.setConsumptionType(2);
+		
+		System.out.println(dateUtil.toDateTime(dinnerTime));
 		reserve.setDinnerTime(dateUtil.toDateTime(dinnerTime));
 		return reserve;
 	}

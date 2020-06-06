@@ -63,9 +63,10 @@ public class RoomAction {
     }
 	
 	@PostMapping("back/roomMaintenance")
+	@ResponseBody
 	public Result roomMaintenance(int id) {
 		try {
-			System.out.println(id);
+			System.out.println("房间的Id=sd"+id);
 			roomBiz.roomMaintenance(id);
 			return new Result(1,"操作成功",null);
 		}catch(BizException e) {

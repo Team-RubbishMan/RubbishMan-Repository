@@ -41,7 +41,7 @@ public class RoomBiz {
 	
 	private boolean roomWasUsed(int id) throws BizException {
 		Room objRoom=roomMapper.selectByPrimaryKey(id);
-		if(!objRoom.getStatus().equals("0")) {
+		if(objRoom.getStatus().equals("0")) {
 			return false;
 		}else {
 			throw new BizException("该房间正在被使用，不能被修改成维护状态");
@@ -183,7 +183,7 @@ public class RoomBiz {
 	}
 	private boolean roomWasUsed(Room room) throws BizException {
 		Room objRoom=roomMapper.selectByPrimaryKey(room.getId());
-		if(!objRoom.getStatus().equals("0")) {
+		if(!objRoom.getStatus().equals("1")) {
 			return false;
 		}else {
 			throw new BizException("该房间正在被使用，不能修改信息");
@@ -199,7 +199,7 @@ public class RoomBiz {
 	private boolean roomWasUsed(String[] roomIds) throws BizException {
 		for(String id:roomIds) {
 			Room objRoom=roomMapper.selectByPrimaryKey(Integer.parseInt(id));
-			if(objRoom.getStatus().equals("0")) {
+			if(objRoom.getStatus().equals("1")) {
 				throw new BizException(objRoom.getRoomNumber()+"正在被使用，房间信息不能被删除");
 			}
 		}

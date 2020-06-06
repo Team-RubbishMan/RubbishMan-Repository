@@ -149,7 +149,7 @@ public class DateUtil {
 	 * @throws ParseException
 	 */
 	public Date toDateTime(String str) throws ParseException {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = simpleDateFormat.parse(str);
 		return date;
 	}
